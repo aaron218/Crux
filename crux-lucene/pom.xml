@@ -5,11 +5,27 @@
     <parent>
         <artifactId>crux</artifactId>
         <groupId>net.newString.crux</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>0.1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>crux-lucene</artifactId>
 
+    <dependencies>
+        <dependency><!--这个包的依赖项尽量的覆盖了相应版本的Solr Lucene依赖包-->
+            <groupId>org.apache.solr</groupId>
+            <artifactId>solr-test-framework</artifactId>
+            <version>${crux.lucene.solr-framework}</version>
+            <scope>test</scope>
+        </dependency>
+
+
+    </dependencies>
+
+    <properties>
+        <crux.lucene.solr-framework>5.3.1</crux.lucene.solr-framework>
+        <crux.lucene.solr.version>${crux.lucene.solr-framework}</crux.lucene.solr.version>
+
+    </properties>
 
 </project>
