@@ -27,6 +27,7 @@
         <module>crux-core</module>
         <module>crux-nosql</module>
         <module>crux-lucene</module>
+        <module>crux-random</module>
     </modules>
 
     <dependencies>

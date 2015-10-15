@@ -68,11 +68,6 @@ public class MemoryUtil {
         return ((maxSize/8) + 1) * 8;   // padding
     }
 
-    public static void main(String[] args) {
-        testClass testC = new testClass();
-        System.out.println(MemoryUtil.sizeOf(testC));
-    }
-
     static class testClass{
        // private String name;
         private Long longValue;
