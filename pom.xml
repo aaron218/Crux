@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>net.newString.crux</groupId>
+    <artifactId>crux</artifactId>
+    <packaging>pom</packaging>
+    <version>${crux.core.version}</version>
+    <modules>
+        <module>crux-core</module>
+        <module>crux-nosql</module>
+        <module>crux-lucene</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${crux.junit.version}</version>
+        </dependency>
+
+    </dependencies>
+
+    <properties>
+        <crux.version>0.1.0-SNAPSHOT</crux.version>
+        <crux.core.version>0.1.0-SNAPSHOT</crux.core.version>
+        <crux.junit.version>4.12</crux.junit.version>
+    </properties>
+
+</project>
