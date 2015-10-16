@@ -99,11 +99,4 @@ public class PersonIDUtil {
         return IDHeadMap.get(code);
     }
 
-    public static void main(String[] args) {
-        System.out.println(put18thValue("33010420140705531"));
-        System.out.println(validID18("33010420140705531x"));
-        System.out.println(getHeadCodeValue("330382"));
-        System.out.println("测试");
-    }
-
 }

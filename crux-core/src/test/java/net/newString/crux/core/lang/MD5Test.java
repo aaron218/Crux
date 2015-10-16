@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 /**
  * Created by aaron on 10/16/2015.
  *
- * 
+ *
  */
 public class MD5Test {
 
