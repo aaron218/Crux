@@ -1,6 +1,7 @@
 package net.newString.crux.core.lang;
 
 import net.newString.crux.core.stable;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -826,6 +827,22 @@ public class StringUtil {
             d[i] = (byte) (charToByte(hexChars[pos]) << 4 | charToByte(hexChars[pos + 1]));
         }
         return d;
+    }
+    /////////////////////////////////////////以下是重新封装的代码，一般封装自第三方库，修改了部分逻辑
+    /**
+     * 按照默认值将对象转换为Int，如果转换失败，则返回默认值。默认值为null则为0
+     * <br>
+     * 参考{@link NumberUtils#toInt(String, int)}
+     * @param value 待转换对象
+     * @param defaultValue 默认值
+     * @return 返回值
+     */
+    @stable
+    public static Integer toInt(Object value,Integer defaultValue){
+        if(defaultValue == null){
+            defaultValue=0;
+        }
+        return NumberUtils.toInt(obj2Str(value),defaultValue);
     }
 
 

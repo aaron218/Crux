@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>crux-core</artifactId>
+    <description>最基本核心包，主要是使用了Java基本库编辑。不包括除Apache commons lang库和junit库以外的第三方库，本包要求java8以上</description>
 
     <dependencies>
         <dependency>

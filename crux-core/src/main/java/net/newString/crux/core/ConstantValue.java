@@ -2,7 +2,7 @@ package net.newString.crux.core;
 
 /**
  * Created by aaron on 10/15/2015.
- * 全局的静态数值等，这里的静态数值可能会在crux项目下其他的子项目中使用
+ * 鍏ㄥ眬鐨勯潤鎬佹暟鍊肩瓑锛岃繖閲岀殑闈欐�佹暟鍊煎彲鑳戒細鍦╟rux椤圭洰涓嬪叾浠栫殑瀛愰」鐩腑浣跨敤
  */
 public final class ConstantValue {
 }
