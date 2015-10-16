@@ -1,0 +1,5 @@
+模块介绍：
+core 基本操作包
+lucene lucene和相应的工具如solr的操作包
+nosql nosql包，后续可能会增加同级的其他操作包
+random  随机信息产生工具

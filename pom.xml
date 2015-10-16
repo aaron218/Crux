@@ -8,10 +8,30 @@
     <artifactId>crux</artifactId>
     <packaging>pom</packaging>
     <version>0.1.0-SNAPSHOT</version>
+<<<<<<< HEAD
+=======
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+>>>>>>> origin/master
     <modules>
         <module>crux-core</module>
         <module>crux-nosql</module>
         <module>crux-lucene</module>
+        <module>crux-random</module>
+        <module>crux-extend</module>
     </modules>
 
     <dependencies>
@@ -20,13 +40,25 @@
             <artifactId>junit</artifactId>
             <version>${crux.junit.version}</version>
         </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${crux.log4j.version}</version>
+        </dependency>
+        <dependency>
+        <groupId>commons-logging</groupId>
+        <artifactId>commons-logging</artifactId>
+        <version>${crux.commons-logging.version}</version>
+        </dependency>
+
 
     </dependencies>
 
     <properties>
         <crux.version>0.1.0-SNAPSHOT</crux.version>
-        <crux.core.version>0.1.0-SNAPSHOT</crux.core.version>
         <crux.junit.version>4.12</crux.junit.version>
+        <crux.log4j.version>1.2.17</crux.log4j.version>
+        <crux.commons-logging.version>1.1.2</crux.commons-logging.version>
     </properties>
 
 </project>

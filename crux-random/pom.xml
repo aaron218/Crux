@@ -9,22 +9,15 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>crux-lucene</artifactId>
+    <artifactId>crux-random</artifactId>
+    <description>随机信息产生工具，设计包括按照预定义模式产生常用信息的随机数据以及按照某些格式导出</description>
 
     <dependencies>
-        <dependency><!--这个包的依赖项尽量的覆盖了相应版本的Solr Lucene依赖包-->
-            <groupId>org.apache.solr</groupId>
-            <artifactId>solr-test-framework</artifactId>
-            <version>${crux.lucene.solr-framework}</version>
-            <scope>test</scope>
-        </dependency>
-
 
     </dependencies>
 
+
     <properties>
-        <crux.lucene.solr-framework>5.3.1</crux.lucene.solr-framework>
-        <crux.lucene.solr.version>${crux.lucene.solr-framework}</crux.lucene.solr.version>
 
     </properties>
 
