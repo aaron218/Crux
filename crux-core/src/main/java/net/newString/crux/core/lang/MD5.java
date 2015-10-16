@@ -15,27 +15,27 @@ import java.security.NoSuchAlgorithmException;
 @stable
 public class MD5 {
 
-    static final int S11 = 7;
-    static final int S12 = 12;
-    static final int S13 = 17;
-    static final int S14 = 22;
+    private static final int S11 = 7;
+    private static final int S12 = 12;
+    private static final int S13 = 17;
+    private static final int S14 = 22;
 
-    static final int S21 = 5;
-    static final int S22 = 9;
-    static final int S23 = 14;
-    static final int S24 = 20;
+    private static final int S21 = 5;
+    private static final int S22 = 9;
+    private static final int S23 = 14;
+    private static final int S24 = 20;
 
-    static final int S31 = 4;
-    static final int S32 = 11;
-    static final int S33 = 16;
-    static final int S34 = 23;
+    private static final int S31 = 4;
+    private static final int S32 = 11;
+    private static final int S33 = 16;
+    private static final int S34 = 23;
 
-    static final int S41 = 6;
-    static final int S42 = 10;
-    static final int S43 = 15;
-    static final int S44 = 21;
+    private static final int S41 = 6;
+    private static final int S42 = 10;
+    private static final int S43 = 15;
+    private static final int S44 = 21;
 
-    static final byte[] PADDING = {-128, 0, 0, 0, 0, 0, 0, 0, 0,
+    private static final byte[] PADDING = {-128, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -45,7 +45,7 @@ public class MD5 {
     /* digestHexStr是MD5的唯一一个公共成员，是最新一次计算结果的
     　 16进制ASCII表示.
     */
-    public String digestHexStr;
+    private String digestHexStr;
     /* 下面的三个成员是MD5计算过程中用到的3个核心数据，在原始的C实现中
        被定义到MD5_CTX结构中
 

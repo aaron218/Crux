@@ -379,11 +379,11 @@ public class JsonUtil {
         return sb.toString();
     }
 
-    public static String createSuccesJson() {
+    public static String createSuccessJson() {
         return "{success:true,message:''}";
     }
 
-    public static String createSuccesJson(String message) {
+    public static String createSuccessJson(String message) {
         return "{success:true,message:'" + message + "'}";
     }
 

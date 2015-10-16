@@ -36,7 +36,7 @@ public class PersonIDUtil {
      * @param value17 17位身份证号码
      * @return 补足后的18位号码或者null(不满足条件)
      */
-    private static String put18thValue(String value17){
+    public static String put18thValue(String value17){
         if(value17==null || value17.length()!=17){
             return null;
         }
