@@ -3,8 +3,6 @@ package net.newString.crux.core.lang;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by aaron on 10/16/2015.
  * 时间日期工具集
@@ -53,13 +51,13 @@ public class DateUtilTest {
 
     @Test
     public void testGetMicroSeconds() throws Exception {
-        Assert.assertNotEquals(DateUtil.getMicroSeconds(),null);
+        Assert.assertNotEquals(DateUtil.getMicroSeconds(), null);
     }
 
     @Test
     public void testGetNanoSeconds() throws Exception {
         long nano_1 = DateUtil.getNanoSeconds();
         long nano2 = DateUtil.getNanoSeconds();
-        Assert.assertNotEquals(nano_1,nano2);//nano time must not equal
+        Assert.assertNotEquals(nano_1, nano2);//nano time must not equal
     }
 }

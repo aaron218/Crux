@@ -2,8 +2,6 @@ package net.newString.crux.core.lang;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by aaron on 10/16/2015.
  */

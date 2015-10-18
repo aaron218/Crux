@@ -15,9 +15,8 @@ import java.util.regex.Pattern;
  */
 @Deprecated
 public class FileUtil {
-    private static Log log = LogFactory.getLog(FileUtil.class);
-
     private final static byte[] UTF_8_BOM = {(byte) 0xEF, (byte) 0xBB, (byte) 0xBF};
+    private static Log log = LogFactory.getLog(FileUtil.class);
 
     /**
      * 删除指定文件或目录

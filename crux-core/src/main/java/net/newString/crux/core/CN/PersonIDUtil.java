@@ -4,8 +4,8 @@ import org.apache.commons.lang3.math.NumberUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Properties;
 import java.util.Map;
+import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -15,10 +15,12 @@ import java.util.concurrent.ConcurrentHashMap;
 public class PersonIDUtil {
     private static final char[] code = {'1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'}; // 11个
     private static final int[] factor = {0, 2, 4, 8, 5, 10, 9, 7, 3, 6, 1, 2, 4, 8, 5, 10, 9, 7}; // 18个;
-    private static Map<String,String> IDHeadMap = new ConcurrentHashMap<>();
+    private static Map<String, String> IDHeadMap = new ConcurrentHashMap<>();
+
     /**
      * 转换15位身份证号码到18位 不验证15位证件号的合法性
      * 转换算法：首先在15位号码的第六位后面加上19，然后将这个17位的号码按照生成规范产生第18位
+     *
      * @param personIDCode 待处理的15位号码
      * @return 产生的18位证件号码
      */
@@ -33,14 +35,15 @@ public class PersonIDUtil {
 
     /**
      * 补足身份证号码最后一位。同时也是身份证号码最后一位产生器，可用于证件号码校验
+     *
      * @param value17 17位身份证号码
      * @return 补足后的18位号码或者null(不满足条件)
      */
-    public static String put18thValue(String value17){
-        if(value17==null || value17.length()!=17){
+    public static String put18thValue(String value17) {
+        if (value17 == null || value17.length() != 17) {
             return null;
         }
-        if(!NumberUtils.isDigits(value17)){
+        if (!NumberUtils.isDigits(value17)) {
             return null;
         }
         int[] idcd = new int[18];
@@ -61,36 +64,37 @@ public class PersonIDUtil {
 
     /**
      * 验证是否是合法的18位证件号码 如果不满足18位和只包含数字与X(或x，不推荐)则返回false
+     *
      * @param id 待处理身份证号
      * @return 是否符合条件
      */
-    public static boolean validID18(String id){
-        if(id==null){
+    public static boolean validID18(String id) {
+        if (id == null) {
             return false;
         }
-        if(id.length()!=18){
+        if (id.length() != 18) {
             return false;
         }
-        if(!NumberUtils.isDigits(id.substring(0,17))){
+        if (!NumberUtils.isDigits(id.substring(0, 17))) {
             return false;
         }
-        if(id.equals(put18thValue(id.substring(0, 17)))){
+        if (id.equals(put18thValue(id.substring(0, 17)))) {
             return true;
-        }else if(id.toUpperCase().equals(put18thValue(id.substring(0,17)))){
+        } else if (id.toUpperCase().equals(put18thValue(id.substring(0, 17)))) {
             return true;
         }
         return false;
     }
 
     @Deprecated //具体实现方案待定 目前无完备数据
-    private static String getHeadCodeValue(String code){
-        if(IDHeadMap==null || IDHeadMap.size()==0){  //使用数据结构减少文件读取
+    private static String getHeadCodeValue(String code) {
+        if (IDHeadMap == null || IDHeadMap.size() == 0) {  //使用数据结构减少文件读取
             Properties prop = new Properties();
             InputStream in = PersonIDUtil.class.getResourceAsStream("/crux-core-personID.properties");
             try {
                 prop.load(in);
-                for(Object str:prop.keySet()){
-                    IDHeadMap.put(str.toString(),new String(prop.get(str).toString().getBytes("ISO-8859-1"),"gbk"));
+                for (Object str : prop.keySet()) {
+                    IDHeadMap.put(str.toString(), new String(prop.get(str).toString().getBytes("ISO-8859-1"), "gbk"));
                 }
             } catch (IOException e) {
                 e.printStackTrace();

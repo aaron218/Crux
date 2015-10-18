@@ -1,12 +1,10 @@
 package net.newString.crux.core.lang;
 
-import sun.instrument.InstrumentationImpl;
 import sun.misc.Unsafe;
 
 import java.lang.instrument.Instrumentation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -63,17 +61,17 @@ public class MemoryUtil {
         long maxSize = 0;
         for (Field f : fields) {
             long offset = u.objectFieldOffset(f);
-                maxSize += offset;
+            maxSize += offset;
         }
-        return ((maxSize/8) + 1) * 8;   // padding
+        return ((maxSize / 8) + 1) * 8;   // padding
     }
 
-    static class testClass{
-       // private String name;
+    static class testClass {
+        // private String name;
         private Long longValue;
         private Double dub;
         private Integer intValue;
         private List<String> test;
-        private Map<String,String> map;
+        private Map<String, String> map;
     }
 }

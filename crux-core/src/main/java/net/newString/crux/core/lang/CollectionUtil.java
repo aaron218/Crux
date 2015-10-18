@@ -10,18 +10,18 @@ import java.util.List;
 public class CollectionUtil {
 
 
-    public static List arrayToList(Object[] array){
-        if(array==null || array.length==0){
+    public static List arrayToList(Object[] array) {
+        if (array == null || array.length == 0) {
             return null;
         }
         List list = new ArrayList<>();
         try {
-            for(Object obj:array){
-                if(obj!=null){
+            for (Object obj : array) {
+                if (obj != null) {
                     list.add(obj);
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             return null;
         }
         return list;

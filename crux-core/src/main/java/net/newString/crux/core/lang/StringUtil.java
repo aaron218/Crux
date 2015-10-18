@@ -6,8 +6,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import java.io.UnsupportedEncodingException;
-import java.text.DecimalFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.text.StringCharacterIterator;
 import java.util.*;
@@ -20,6 +18,21 @@ import java.util.regex.Pattern;
  */
 @stable("lic")
 public class StringUtil {
+    public static final String BJX = "李王张刘陈杨赵黄周吴徐孙胡朱高林何郭马罗\n" +
+            "梁宋郑谢韩唐冯于董萧程曹袁邓许傅沈曾彭吕\n" +
+            "苏卢蒋蔡贾丁魏薛叶阎余潘杜戴夏钟汪田任姜\n" +
+            "范方石姚谭廖邹熊金陆郝孔白崔康毛邱秦江史\n" +
+            "顾侯邵孟龙万段雷钱汤尹黎易常武乔贺赖龚文\n" +
+            "庞樊兰殷施陶洪翟安颜倪严牛温芦季俞章鲁葛\n" +
+            "伍韦申尤毕聂丛焦向柳邢骆岳齐尚梅莫庄辛管\n" +
+            "祝左涂谷祁时舒耿牟卜路詹关苗凌费纪靳盛童\n" +
+            "欧甄项曲成游阳裴席卫查屈鲍位覃霍翁隋植甘\n" +
+            "景蒲单包司柏宁柯阮桂闵欧阳解强柴华车冉房边\n" +
+            "辜吉饶刁瞿戚丘古米池滕晋苑邬臧畅宫来缪苟\n" +
+            "全褚廉简娄盖符奚木穆党燕郎邸冀谈姬屠连郜\n" +
+            "晏栾郁商蒙计喻揭窦迟宇敖糜鄢冷卓花仇艾蓝\n" +
+            "都巩稽井练仲乐虞卞封竺冼原官衣楚佟栗匡宗\n" +
+            "应台巫鞠僧桑荆谌银扬明沙薄伏岑习胥保和蔺";
     static Log log = LogFactory.getLog(StringUtil.class);
     private static char hexDigits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8',
             '9', 'a', 'b', 'c', 'd', 'e', 'f'};
@@ -311,7 +324,6 @@ public class StringUtil {
             return true;
         return false;
     }
-
 
     /**
      * 对象转换为布尔值，空字符串等转换为null
@@ -619,7 +631,6 @@ public class StringUtil {
         }
     }
 
-
     /**
      * 判断字符串中是否包含除中英文字符和数字外的特殊字符，包含返回true
      *
@@ -806,6 +817,7 @@ public class StringUtil {
     private static byte charToByte(char c) {
         return (byte) "0123456789ABCDEF".indexOf(c);
     }
+    /////////////////////////////////////////以下是重新封装的代码，一般封装自第三方库，修改了部分逻辑
 
     /**
      * 将包含16进制信息的字符串转换成byte数组
@@ -828,23 +840,23 @@ public class StringUtil {
         }
         return d;
     }
-    /////////////////////////////////////////以下是重新封装的代码，一般封装自第三方库，修改了部分逻辑
+
     /**
      * 按照默认值将对象转换为Int，如果转换失败，则返回默认值。默认值为null则为0
      * <br>
      * 参考{@link NumberUtils#toInt(String, int)}
-     * @param value 待转换对象
+     *
+     * @param value        待转换对象
      * @param defaultValue 默认值
      * @return 返回值
      */
     @stable
-    public static Integer toInt(Object value,Integer defaultValue){
-        if(defaultValue == null){
-            defaultValue=0;
+    public static Integer toInt(Object value, Integer defaultValue) {
+        if (defaultValue == null) {
+            defaultValue = 0;
         }
-        return NumberUtils.toInt(obj2Str(value),defaultValue);
+        return NumberUtils.toInt(obj2Str(value), defaultValue);
     }
-
 
     /////////////////////////////////////////////////////以下是未完成或者不明确行为的代码，代码只有参考意义，暂时全部设置为private
     private static String hexStringToString(String hex, String charset) {
@@ -940,21 +952,4 @@ public class StringUtil {
         }
         return false;
     }
-
-
-    public static final String BJX="李王张刘陈杨赵黄周吴徐孙胡朱高林何郭马罗\n" +
-            "梁宋郑谢韩唐冯于董萧程曹袁邓许傅沈曾彭吕\n" +
-            "苏卢蒋蔡贾丁魏薛叶阎余潘杜戴夏钟汪田任姜\n" +
-            "范方石姚谭廖邹熊金陆郝孔白崔康毛邱秦江史\n" +
-            "顾侯邵孟龙万段雷钱汤尹黎易常武乔贺赖龚文\n" +
-            "庞樊兰殷施陶洪翟安颜倪严牛温芦季俞章鲁葛\n" +
-            "伍韦申尤毕聂丛焦向柳邢骆岳齐尚梅莫庄辛管\n" +
-            "祝左涂谷祁时舒耿牟卜路詹关苗凌费纪靳盛童\n" +
-            "欧甄项曲成游阳裴席卫查屈鲍位覃霍翁隋植甘\n" +
-            "景蒲单包司柏宁柯阮桂闵欧阳解强柴华车冉房边\n" +
-            "辜吉饶刁瞿戚丘古米池滕晋苑邬臧畅宫来缪苟\n" +
-            "全褚廉简娄盖符奚木穆党燕郎邸冀谈姬屠连郜\n" +
-            "晏栾郁商蒙计喻揭窦迟宇敖糜鄢冷卓花仇艾蓝\n" +
-            "都巩稽井练仲乐虞卞封竺冼原官衣楚佟栗匡宗\n" +
-            "应台巫鞠僧桑荆谌银扬明沙薄伏岑习胥保和蔺";
 }
