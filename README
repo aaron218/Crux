@@ -1,5 +1,6 @@
 模块介绍：
-core 基本操作包
-lucene lucene和相应的工具如solr的操作包
-nosql nosql包，后续可能会增加同级的其他操作包
-random  随机信息产生工具
+crux-core 基本操作包 仅包含对JDK和apache commons lang 的再封装 提供基本功能，在不需要更多功能的时候使用
+crux-extend 扩展包 包含了基本包和二次封装的第三方包 主要是apache commons 和guava等
+crux-lucene lucene和相应的工具如solr的操作包 基于solr test platform依赖
+crux-nosql nosql包，后续可能会增加同级的其他操作包基本各种NOSQL工具的对应版本驱动
+crux-random  随机信息产生工具 基于Core包的随机信息产生，但是可以通过配置对象产生更加复杂的随机数据
