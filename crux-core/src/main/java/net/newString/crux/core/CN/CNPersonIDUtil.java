@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Created by aaron on 10/16/2015.
  * 身份证相关工具 包括了一个搜索内嵌配置文件身份证号前6位转换为省市县的功能模块
  */
-public class PersonIDUtil {
+public class CNPersonIDUtil {
     private static final char[] code = {'1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'}; // 11个
     private static final int[] factor = {0, 2, 4, 8, 5, 10, 9, 7, 3, 6, 1, 2, 4, 8, 5, 10, 9, 7}; // 18个;
     private static Map<String, String> IDHeadMap = new ConcurrentHashMap<>();
@@ -90,7 +90,7 @@ public class PersonIDUtil {
     private static String getHeadCodeValue(String code) {
         if (IDHeadMap == null || IDHeadMap.size() == 0) {  //使用数据结构减少文件读取
             Properties prop = new Properties();
-            InputStream in = PersonIDUtil.class.getResourceAsStream("/crux-core-personID.properties");
+            InputStream in = CNPersonIDUtil.class.getResourceAsStream("/crux-core-personID.properties");
             try {
                 prop.load(in);
                 for (Object str : prop.keySet()) {

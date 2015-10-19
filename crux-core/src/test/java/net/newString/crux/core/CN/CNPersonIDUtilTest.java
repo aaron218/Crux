@@ -5,7 +5,7 @@ import org.junit.Test;
 /**
  * Created by aaron on 10/16/2015.
  */
-public class PersonIDUtilTest {
+public class CNPersonIDUtilTest {
 
     @Test
     public void testFixPersonIDCode() throws Exception {
