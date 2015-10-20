@@ -46,16 +46,16 @@ public class CNPersonIDUtil {
         if (!NumberUtils.isDigits(value17)) {
             return null;
         }
-        int[] idcd = new int[18];
+        int[] id = new int[18];
         int j;
         int remainder;
         for (int i = 1; i < 18; i++) {
             j = 17 - i;
-            idcd[i] = Integer.parseInt(value17.substring(j, j + 1));
+            id[i] = Integer.parseInt(value17.substring(j, j + 1));
         }
         int sum = 0;
         for (int i = 1; i < 18; i++) {
-            sum = sum + idcd[i] * factor[i];
+            sum = sum + id[i] * factor[i];
         }
         remainder = sum % 11;
         String lastCheckBit = String.valueOf(code[remainder]);
@@ -78,10 +78,12 @@ public class CNPersonIDUtil {
         if (!NumberUtils.isDigits(id.substring(0, 17))) {
             return false;
         }
-        if (id.equals(put18thValue(id.substring(0, 17)))) {
+        if (id.equals(put18thValue(id.substring(0, 17)))) {//ID与产生的ID相同
             return true;
-        } else if (id.toUpperCase().equals(put18thValue(id.substring(0, 17)))) {
+        } else if (id.toUpperCase().equals(put18thValue(id.substring(0, 17)))) {//ID大写与产生的ID相同（适应小写x）
             return true;
+        } else if(id.substring(18).equals("*") && id.replace("*","X").equals(put18thValue(id.substring(0, 17)))){
+            return true; //处理末位是星号的情况，在部分单据中证件号码可能用*替代X
         }
         return false;
     }
