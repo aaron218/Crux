@@ -58,4 +58,26 @@ public class RandomUtil {
         return Arrays.copyOf(seed, len);
     }
 
+    /**
+     * 获取随机的布尔值 并且按照真值比例给出，比例数值限定在0-1之间，大于1的，视为1，小于0的，视为0
+     * @param trueRate 真值比例
+     * @return 布尔对象
+     */
+    public static Boolean getRandomBoolean(Double trueRate) {
+        if (trueRate > 1.0) {
+            trueRate = 1.0;
+        } else if (trueRate < 0.0) {
+            trueRate = 0.0;
+        }
+        return (trueRate == 1.0)|| trueRate != 0.0 && Math.random() * Integer.MAX_VALUE < (Integer.MAX_VALUE * trueRate);
+    }
+
+    /**
+     * 获取随机的布尔值，真假各半
+     * @return 布尔对象
+     */
+    public static Boolean getRandomBoolean(){
+        return getRandomBoolean(0.5);
+    }
+
 }

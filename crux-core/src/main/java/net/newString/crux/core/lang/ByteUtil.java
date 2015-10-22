@@ -7,7 +7,7 @@ import java.io.*;
 
 /**
  * byte数组和位操作的工具 参考价具体业务和特殊需求使用，使用前先阅读相应的代码 勿滥用
- * <p/>
+ * <p>
  * codeReview @ 20150701
  */
 @stable("lic")

@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 /**
  * 类说明: 文件操作类
- * <p/>
+ * <p>
  * 未验证
  */
 @Deprecated
@@ -341,7 +341,6 @@ public class FileUtil {
                 try {
                     is.close();
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -349,7 +348,6 @@ public class FileUtil {
                 try {
                     fos.close();
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -447,7 +445,6 @@ public class FileUtil {
                 try {
                     is.close();
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -455,7 +452,6 @@ public class FileUtil {
                 try {
                     fos.close();
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }

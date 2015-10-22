@@ -8,8 +8,8 @@ import java.security.Security;
 
 /**
  * DES加密和解密工具,可以对字符串进行加密和解密操作  。
- * <p/>
- * <p/>
+ * <p>
+ * <p>
  * 未验证
  */
 @stable

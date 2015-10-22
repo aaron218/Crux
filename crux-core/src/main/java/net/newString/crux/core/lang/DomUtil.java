@@ -28,7 +28,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * XML组装和解析的工具类
- * <p/>
+ * <p>
  * 未验证
  */
 @Deprecated

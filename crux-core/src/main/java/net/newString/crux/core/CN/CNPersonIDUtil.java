@@ -82,7 +82,7 @@ public class CNPersonIDUtil {
             return true;
         } else if (id.toUpperCase().equals(put18thValue(id.substring(0, 17)))) {//ID大写与产生的ID相同（适应小写x）
             return true;
-        } else if(id.substring(18).equals("*") && id.replace("*","X").equals(put18thValue(id.substring(0, 17)))){
+        } else if (id.substring(18).equals("*") && id.replace("*", "X").equals(put18thValue(id.substring(0, 17)))) {
             return true; //处理末位是星号的情况，在部分单据中证件号码可能用*替代X
         }
         return false;

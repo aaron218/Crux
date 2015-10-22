@@ -9,7 +9,6 @@ import java.util.List;
  */
 public class CollectionUtil {
 
-
     public static List arrayToList(Object[] array) {
         if (array == null || array.length == 0) {
             return null;
@@ -26,4 +25,5 @@ public class CollectionUtil {
         }
         return list;
     }
+
 }

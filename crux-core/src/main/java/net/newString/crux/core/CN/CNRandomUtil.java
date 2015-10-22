@@ -1,7 +1,10 @@
 package net.newString.crux.core.CN;
 
+import net.newString.crux.core.lang.RandomUtil;
+
 /**
  * Created by aaron on 10/15/2015.
+ * 中文汉字随机产生器 包括汉字产生和汉字姓产生
  */
 public class CNRandomUtil {
 
@@ -18,15 +21,16 @@ public class CNRandomUtil {
         return zh7500.toCharArray()[i];
     }
 
-    public static String getRandomSurName(){
+    public static String getRandomSurName() {
         int i = (int) (Math.random() * surName504Length);
         return surName504[i];
     }
 
-
-    public static void main(String[] args) {
-        for (int i = 0; i < 10; i++){
-            System.out.println(getRandomSurName()+getRandomCNchar());
-        }
-    }
+//
+//    public static void main(String[] args) {
+//        for (int i = 0; i < 10; i++) {
+//            System.out.println(getRandomSurName() + getRandomCNchar()
+//                    +(RandomUtil.getRandomBoolean(0.62)?getRandomCNchar():""));
+//        }
+//    }
 }
