@@ -3,7 +3,7 @@ package net.newString.crux.jclouds.OpenStack.swift;
 /**
  * Created by aaron on 10/23/2015.
  *
- * ÄÚ²¿¶¨ÒåÄÚ²¿ÀàÊ¹ÓÃ
+ * å†…éƒ¨å®šä¹‰å†…éƒ¨ç±»ä½¿ç”¨
  */
 public interface SwiftConstant {
 }
