@@ -2,8 +2,8 @@ package net.newString.crux.extend.PINYIN;
 
 /**
  * Created by aaron on 10/22/2015.
- * Í¨¹ıUnicodeÂëµ½Æ´ÒôµÄ¿â»ñÈ¡ºº×Öµ½Æ´ÒôÒÔ¼°Æ´Òôµ½ºº×ÖµÄ×ª»»¡£
- * ¼òµ¥µÄÊµÏÖ£¬Ö÷ÒªµÄ¹¦ÄÜ²Î¿¼Pinyin4j¡£
+ * é€šè¿‡Unicodeç åˆ°æ‹¼éŸ³çš„åº“è·å–æ±‰å­—åˆ°æ‹¼éŸ³ä»¥åŠæ‹¼éŸ³åˆ°æ±‰å­—çš„è½¬æ¢ã€‚
+ * ç®€å•çš„å®ç°ï¼Œä¸»è¦çš„åŠŸèƒ½å‚è€ƒPinyin4jã€‚
  */
 public class PinYinConstant {
 

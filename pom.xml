@@ -29,6 +29,7 @@
         <module>crux-lucene</module>
         <module>crux-random</module>
         <module>crux-extend</module>
+        <module>crux-jclouds</module>
     </modules>
 
     <dependencies>

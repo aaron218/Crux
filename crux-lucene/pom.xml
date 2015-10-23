@@ -23,8 +23,8 @@
     </dependencies>
 
     <properties>
-        <crux.lucene.solr-framework>5.3.1</crux.lucene.solr-framework>
-        <crux.lucene.solr.version>${crux.lucene.solr-framework}</crux.lucene.solr.version>
+        <crux.lucene.solr-framework>${crux.lucene.solr.version}</crux.lucene.solr-framework>
+        <crux.lucene.solr.version>5.1.0</crux.lucene.solr.version>
 
     </properties>
 
