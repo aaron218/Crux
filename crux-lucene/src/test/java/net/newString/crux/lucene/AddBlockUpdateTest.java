@@ -131,7 +131,7 @@ public class AddBlockUpdateTest extends SolrTestCaseJ4 {
                         doc(child, "a", "id", "66"),
                         doc(child, "b", "id", "66"))));
         String overwritten = random().nextBoolean() ? "X" : "Y";
-        String dubbed = overwritten == "X" ? "Y" : "X";
+        String dubbed = Objects.equals(overwritten, "X") ? "Y" : "X";
 
         assertU(add(
                 nest(doc("id", overwritten, parent, overwritten),

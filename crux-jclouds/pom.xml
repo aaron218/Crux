@@ -12,8 +12,9 @@
 
     <description>
         基于Apache JClouds，主要是管理依赖以及再次封装部分API。
-        本版本基于Apache JCloud 1.9.X
-        如果熟悉Jclouds建议直接使用
+        本项目为嵌套结构，内部子模块才是实际的应用API模块
+        本版本基于Apache JCloud 1.9.X （Version见：jclouds.version）
+        如果熟悉JClouds建议直接使用Apache JClouds API完成其直接能够完成的工作
     </description>
     <modules>
         <module>crux-AWS</module>

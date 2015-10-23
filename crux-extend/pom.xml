@@ -18,6 +18,11 @@
             <artifactId>httpclient</artifactId>
             <version>4.5.1</version>
         </dependency>
+        <dependency><!-- 依赖的基础包，暂时不使用嵌套结构来管理 -->
+            <groupId>net.newString.crux</groupId>
+            <artifactId>crux-core</artifactId>
+            <version>${crux.version}</version>
+        </dependency>
     </dependencies>
 
 </project>
