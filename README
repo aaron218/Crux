@@ -5,3 +5,4 @@ crux-lucene lucene和相应的工具如solr的操作包 基于solr test platform
 crux-nosql nosql包，后续可能会增加同级的其他操作包基本各种NOSQL工具的对应版本驱动
 crux-random  随机信息产生工具 基于Core包的随机信息产生，但是可以通过配置对象产生更加复杂的随机数据
 crux-jclouds 基于Apache JCloud的工具集 主要用于管理各个云平台的依赖和部分再次封装的API
+DOCS 编写自定义工具集过程中的笔记和心得 建议文档类型：TXT DOC PDF 以及脑图
