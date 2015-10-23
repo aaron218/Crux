@@ -8,12 +8,17 @@
         <version>0.1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
 
     <description>
         基于Apache JClouds，主要是管理依赖以及再次封装部分API。
         本版本基于Apache JCloud 1.9.X
         如果熟悉Jclouds建议直接使用
     </description>
+    <modules>
+        <module>crux-AWS</module>
+        <module>crux-Spark</module>
+    </modules>
 
     <artifactId>crux-JClouds</artifactId>
 
