@@ -1,6 +1,7 @@
-Ä£¿é½éÉÜ£º¸÷¸öÄ£¿é»ùÓÚJ2SE(J2EE)²âÊÔ£¬²»±£Ö¤ÔÚJ2MEµÈÇ¶ÈëÊ½ÀàÐÍJVMÉÏÕý³£Ö´ÐÐ,ÐèÒªJVM8»òÕß¼æÈÝ°æ±¾
-crux-core »ù±¾²Ù×÷°ü ½ö°üº¬¶ÔJDKºÍapache commons lang µÄÔÙ·â×° Ìá¹©»ù±¾¹¦ÄÜ£¬ÔÚ²»ÐèÒª¸ü¶à¹¦ÄÜµÄÊ±ºòÊ¹ÓÃ
-crux-extend À©Õ¹°ü °üº¬ÁË»ù±¾°üºÍ¶þ´Î·â×°µÄµÚÈý·½°ü Ö÷ÒªÊÇapache commons ºÍguavaµÈ
-crux-lucene luceneºÍÏàÓ¦µÄ¹¤¾ßÈçsolrµÄ²Ù×÷°ü »ùÓÚsolr test platformÒÀÀµ
-crux-nosql nosql°ü£¬ºóÐø¿ÉÄÜ»áÔö¼ÓÍ¬¼¶µÄÆäËû²Ù×÷°ü»ù±¾¸÷ÖÖNOSQL¹¤¾ßµÄ¶ÔÓ¦°æ±¾Çý¶¯
-crux-random  Ëæ»úÐÅÏ¢²úÉú¹¤¾ß »ùÓÚCore°üµÄËæ»úÐÅÏ¢²úÉú£¬µ«ÊÇ¿ÉÒÔÍ¨¹ýÅäÖÃ¶ÔÏó²úÉú¸ü¼Ó¸´ÔÓµÄËæ»úÊý¾Ý
+æ¨¡å—ä»‹ç»ï¼šå„ä¸ªæ¨¡å—åŸºäºŽJ2SE(J2EE)æµ‹è¯•ï¼Œä¸ä¿è¯åœ¨J2MEç­‰åµŒå…¥å¼ç±»åž‹JVMä¸Šæ­£å¸¸æ‰§è¡Œ,éœ€è¦JVM8æˆ–è€…å…¼å®¹ç‰ˆæœ¬
+crux-core åŸºæœ¬æ“ä½œåŒ… ä»…åŒ…å«å¯¹JDKå’Œapache commons lang çš„å†å°è£… æä¾›åŸºæœ¬åŠŸèƒ½ï¼Œåœ¨ä¸éœ€è¦æ›´å¤šåŠŸèƒ½çš„æ—¶å€™ä½¿ç”¨
+crux-extend æ‰©å±•åŒ… åŒ…å«äº†åŸºæœ¬åŒ…å’ŒäºŒæ¬¡å°è£…çš„ç¬¬ä¸‰æ–¹åŒ… ä¸»è¦æ˜¯apache commons å’Œguavaç­‰
+crux-lucene luceneå’Œç›¸åº”çš„å·¥å…·å¦‚solrçš„æ“ä½œåŒ… åŸºäºŽsolr test platformä¾èµ–
+crux-nosql nosqlåŒ…ï¼ŒåŽç»­å¯èƒ½ä¼šå¢žåŠ åŒçº§çš„å…¶ä»–æ“ä½œåŒ…åŸºæœ¬å„ç§NOSQLå·¥å…·çš„å¯¹åº”ç‰ˆæœ¬é©±åŠ¨
+crux-random  éšæœºä¿¡æ¯äº§ç”Ÿå·¥å…· åŸºäºŽCoreåŒ…çš„éšæœºä¿¡æ¯äº§ç”Ÿï¼Œä½†æ˜¯å¯ä»¥é€šè¿‡é…ç½®å¯¹è±¡äº§ç”Ÿæ›´åŠ å¤æ‚çš„éšæœºæ•°æ®
+crux-jclouds åŸºäºŽApache JCloudçš„å·¥å…·é›† ä¸»è¦ç”¨äºŽç®¡ç†å„ä¸ªäº‘å¹³å°çš„ä¾èµ–å’Œéƒ¨åˆ†å†æ¬¡å°è£…çš„API
