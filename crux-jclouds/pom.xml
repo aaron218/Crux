@@ -19,6 +19,7 @@
     <modules>
         <module>crux-AWS</module>
         <module>crux-Spark</module>
+        <module>crux-OpenStack</module>
     </modules>
 
     <artifactId>crux-JClouds</artifactId>
