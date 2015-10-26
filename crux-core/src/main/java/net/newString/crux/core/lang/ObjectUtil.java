@@ -1,18 +1,7 @@
 package net.newString.crux.core.lang;
 
-/**
- * Created by aaron on 10/19/2015.
- * 对象操作工具组
- */
 public class ObjectUtil {
 
-
-    /**
-     * 对象转换成Integer 无法执行的情况返回null
-     *
-     * @param localObject 待处理对象
-     * @return Integer值或者null
-     */
     public static Integer getIntValue(Object localObject) {
         if (localObject == null) {
             return null;
@@ -36,13 +25,6 @@ public class ObjectUtil {
             return localIntValue;
         }
     }
-
-    /**
-     * 对象转换成Long对象 无法执行情况返回null
-     *
-     * @param localObject 待处理对象
-     * @return 转换结果
-     */
     public static Long getLongValue(Object localObject) {
         if (localObject == null) {
             return null;
