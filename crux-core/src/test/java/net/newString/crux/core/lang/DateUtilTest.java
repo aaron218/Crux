@@ -5,7 +5,6 @@ import org.junit.Test;
 
 /**
  * Created by aaron on 10/16/2015.
- * 时间日期工具集
  */
 public class DateUtilTest {
 

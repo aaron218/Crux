@@ -5,7 +5,6 @@ import java.util.List;
 
 /**
  * Created by aaron on 10/16/2015.
- * 对包括Collection List等在内的对象进行操作的工具，注意，所有返回的对象默认非线程安全
  */
 public class CollectionUtil {
 

@@ -1,0 +1,2 @@
+忽略测试的重新构建
+mvn clean install -Dmaven.test.skip=true
