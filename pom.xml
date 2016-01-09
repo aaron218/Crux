@@ -30,6 +30,7 @@
         <module>crux-random</module>
         <module>crux-extend</module>
         <module>crux-jclouds</module>
+        <module>crux-CDH</module>
     </modules>
 
     <dependencies>
