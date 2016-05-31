@@ -64,12 +64,13 @@ public class RandomUtil {
      * @return 布尔对象
      */
     public static Boolean getRandomBoolean(Double trueRate) {
-        if (trueRate > 1.0) {
-            trueRate = 1.0;
-        } else if (trueRate < 0.0) {
-            trueRate = 0.0;
+        if (trueRate >= 1.0) {
+            return true;
+        } else if (trueRate <= 0.0) {
+            return false;
         }
-        return (trueRate == 1.0)|| trueRate != 0.0 && Math.random() * Integer.MAX_VALUE < (Integer.MAX_VALUE * trueRate);
+        return (Math.random() <= trueRate);
+        //return (trueRate == 1.0)|| trueRate != 0.0 && Math.random() * Integer.MAX_VALUE < (Integer.MAX_VALUE * trueRate);
     }
 
     /**

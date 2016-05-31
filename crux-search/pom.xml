@@ -12,4 +12,17 @@
     <artifactId>crux-search</artifactId>
 
 
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.solr</groupId>
+            <artifactId>solr-solrj</artifactId>
+            <version>5.5.1</version>
+        </dependency>
+        <!-- http://mvnrepository.com/artifact/org.elasticsearch/elasticsearch -->
+        <dependency>
+            <groupId>org.elasticsearch</groupId>
+            <artifactId>elasticsearch</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+    </dependencies>
 </project>

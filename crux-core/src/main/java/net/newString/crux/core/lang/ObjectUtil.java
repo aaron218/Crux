@@ -25,6 +25,8 @@ public class ObjectUtil {
             return localIntValue;
         }
     }
+
+
     public static Long getLongValue(Object localObject) {
         if (localObject == null) {
             return null;

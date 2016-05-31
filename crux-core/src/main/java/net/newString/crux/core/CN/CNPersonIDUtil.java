@@ -1,5 +1,6 @@
 package net.newString.crux.core.CN;
 
+import net.newString.crux.core.stable;
 import org.apache.commons.lang3.math.NumberUtils;
 
 import java.io.IOException;
@@ -29,7 +30,7 @@ public class CNPersonIDUtil {
             return personIDCode;
         }
         String id17 = personIDCode.substring(0, 6) + "19"
-                + personIDCode.substring(6, 15); // 15为身份证补\'19\'
+                + personIDCode.substring(6, 15); // 15位身份证补\'19\'
         return put18thValue(id17);
     }
 
@@ -88,8 +89,14 @@ public class CNPersonIDUtil {
         return false;
     }
 
-    @Deprecated //具体实现方案待定 目前无完备数据
-    private static String getHeadCodeValue(String code) {
+    /**
+     * 获取身份证号码钱6位对应的地区信息参考值
+     * <br>错误或者未定义的数字码将会返回null
+     * @param code 6位数字码
+     * @return 对应地区名称或null
+     */
+    @stable
+    public static String getHeadCodeValue(String code) {
         if (IDHeadMap == null || IDHeadMap.size() == 0) {  //使用数据结构减少文件读取
             Properties prop = new Properties();
             InputStream in = CNPersonIDUtil.class.getResourceAsStream("/crux-core-personID.properties");

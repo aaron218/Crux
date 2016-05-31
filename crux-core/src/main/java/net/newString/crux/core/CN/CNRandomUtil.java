@@ -1,6 +1,5 @@
 package net.newString.crux.core.CN;
 
-import net.newString.crux.core.lang.RandomUtil;
 
 /**
  * Created by aaron on 10/15/2015.
@@ -26,11 +25,4 @@ public class CNRandomUtil {
         return surName504[i];
     }
 
-//
-//    public static void main(String[] args) {
-//        for (int i = 0; i < 10; i++) {
-//            System.out.println(getRandomSurName() + getRandomCNchar()
-//                    +(RandomUtil.getRandomBoolean(0.62)?getRandomCNchar():""));
-//        }
-//    }
 }
