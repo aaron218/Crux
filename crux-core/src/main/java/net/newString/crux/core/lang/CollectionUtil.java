@@ -1,6 +1,8 @@
 package net.newString.crux.core.lang;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -22,6 +24,7 @@ public class CollectionUtil {
         } catch (Exception e) {
             return null;
         }
+        Arrays.asList(array);
         return list;
     }
 

@@ -20,7 +20,11 @@ public class CNRandomUtil {
         return zh7500.toCharArray()[i];
     }
 
-    public static String getRandomSurName() {
+    /**
+     * 纯随机的姓氏获取
+     * @return 获取一个随机姓氏
+     */
+    public static String getPureRandomSurName() {
         int i = (int) (Math.random() * surName504Length);
         return surName504[i];
     }
