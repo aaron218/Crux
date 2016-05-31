@@ -28,6 +28,8 @@
         <module>crux-core</module>
         <module>crux-extend</module>
         <module>crux-source</module>
+        <module>crux-search</module>
+        <module>crux-cache</module>
     </modules>
 
     <dependencies>
