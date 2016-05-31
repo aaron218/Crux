@@ -1,8 +1,7 @@
-模块介绍：各个模块基于J2SE(J2EE)测试，不保证在J2ME等嵌入式类型JVM上正常执行,需要JVM8或者兼容版本
-crux-core 基本操作包 仅包含对JDK和apache commons lang 的再封装 提供基本功能，在不需要更多功能的时候使用
+模块介绍：各个模块基于J2SE(J2EE)测试，不保证在J2ME等嵌入式类型JVM上正常执行,需要JVM8u45+或者兼容版本
+crux-core 基本操作包 仅包含对JDK的再封装 提供基本功能，在不需要更多功能的时候使用 同时也是所有其他crux项目的依赖
 crux-extend 扩展包 包含了基本包和二次封装的第三方包 主要是apache commons 和guava等
-crux-lucene lucene和相应的工具如solr的操作包 基于solr test platform依赖
-crux-nosql nosql包，后续可能会增加同级的其他操作包基本各种NOSQL工具的对应版本驱动
-crux-random  随机信息产生工具 基于Core包的随机信息产生，但是可以通过配置对象产生更加复杂的随机数据
-crux-jclouds 基于Apache JCloud的工具集 主要用于管理各个云平台的依赖和部分再次封装的API
+crux-source 数据源处理工具
+crux-search 数据查询工具 SQL format and Lucene format。
+crux-cache 数据缓存工具 包括内嵌的缓存服务和redis memcached等缓存的接口优化
 DOCS 编写自定义工具集过程中的笔记和心得 建议文档类型：TXT DOC PDF 以及脑图
