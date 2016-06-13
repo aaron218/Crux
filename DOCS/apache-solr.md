@@ -26,7 +26,7 @@ A. 无效列表
 分割线
 ***
 
-```java
+```java code
     public static void escape(StringBuffer original) {
         int index = 0;
         String escaped;
