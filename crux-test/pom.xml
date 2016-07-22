@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://maven.apache.org/POM/4.0.0"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>crux</artifactId>
@@ -8,10 +8,9 @@
         <version>1.1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>crux-core</artifactId>
-    <version>1.2.0</version>
 
-    <description>最基本核心包，使用了Java基本库编辑。要求java8以上 本项目部分代码参考了 commons lang包，按照业务进行了更改</description>
+    <artifactId>crux-test</artifactId>
+    <version>1.2.3</version>
 
     <build>
         <plugins>
@@ -27,9 +26,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <properties>
-        <crux.core.version>${crux.version}</crux.core.version>
-    </properties>
-
 </project>

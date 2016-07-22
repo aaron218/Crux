@@ -1,7 +1,6 @@
 package net.newString.crux.core.lang;
 
 import net.newString.crux.core.stable;
-import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -18,22 +17,8 @@ import java.util.regex.Pattern;
  */
 @stable("lic")
 public class StringUtil {
-    public static final String BJX = "李王张刘陈杨赵黄周吴徐孙胡朱高林何郭马罗\n" +
-            "梁宋郑谢韩唐冯于董萧程曹袁邓许傅沈曾彭吕\n" +
-            "苏卢蒋蔡贾丁魏薛叶阎余潘杜戴夏钟汪田任姜\n" +
-            "范方石姚谭廖邹熊金陆郝孔白崔康毛邱秦江史\n" +
-            "顾侯邵孟龙万段雷钱汤尹黎易常武乔贺赖龚文\n" +
-            "庞樊兰殷施陶洪翟安颜倪严牛温芦季俞章鲁葛\n" +
-            "伍韦申尤毕聂丛焦向柳邢骆岳齐尚梅莫庄辛管\n" +
-            "祝左涂谷祁时舒耿牟卜路詹关苗凌费纪靳盛童\n" +
-            "欧甄项曲成游阳裴席卫查屈鲍位覃霍翁隋植甘\n" +
-            "景蒲单包司柏宁柯阮桂闵欧阳解强柴华车冉房边\n" +
-            "辜吉饶刁瞿戚丘古米池滕晋苑邬臧畅宫来缪苟\n" +
-            "全褚廉简娄盖符奚木穆党燕郎邸冀谈姬屠连郜\n" +
-            "晏栾郁商蒙计喻揭窦迟宇敖糜鄢冷卓花仇艾蓝\n" +
-            "都巩稽井练仲乐虞卞封竺冼原官衣楚佟栗匡宗\n" +
-            "应台巫鞠僧桑荆谌银扬明沙薄伏岑习胥保和蔺";
     static Log log = LogFactory.getLog(StringUtil.class);
+
     private static char hexDigits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8',
             '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
@@ -42,7 +27,7 @@ public class StringUtil {
      * 日期转换异常则返回false
      * <br>一般推荐使用 {@link StringUtil#nullToDate(Object, String)} 来处理
      *
-     * @param str_input
+     * @param str_input 输入数据
      * @return boolean;符合为true,不符合为false
      */
     @stable
@@ -94,10 +79,7 @@ public class StringUtil {
      */
     @stable
     public static boolean isEmptyStr(String str) {
-        if (str == null || str.trim().equals("") || str.trim().length() == 0)
-            return true;
-        else
-            return false;
+        return str == null || str.trim().length() == 0 || str.trim().equals("");
     }
 
     /**
@@ -109,10 +91,7 @@ public class StringUtil {
      */
     @stable
     public static boolean isEmptyStr(Object obj) {
-        if (obj == null || isEmptyStr(obj.toString()))
-            return true;
-        else
-            return false;
+        return obj == null || isEmptyStr(obj.toString());
     }
 
     /**
@@ -148,31 +127,31 @@ public class StringUtil {
      */
     @stable
     public static String null2Str(Object value) {
-        return value == null ? "" : value.toString();
+        if (value == null) {
+            return null;
+        }
+        if (value instanceof String) {
+            return (String) value;
+        }
+        return value.toString();
     }
 
     /**
-     * 将对象解析为字符串，调用toString方法
+     * 将对象解析为字符串，如果是String则直接转换，否则调用toString方法
      * 当对对象为null的时候返回null 从而防止转换中抛出 NullPointer
      *
-     * @param value
-     * @return
+     * @param value 待处理对象
+     * @return 获取的字符串
      */
     @stable
     public static String obj2Str(Object value) {
-        return value == null ? null : value.toString();
-    }
-
-    /**
-     * 将null解析为""字符串，其他情况返回该字符串trim后的值
-     * 该方法不会有null返回
-     *
-     * @param value 待处理字符串
-     * @return 处理后String 不会为null
-     */
-    @stable
-    public static String null2Str(String value) {
-        return value == null ? "" : value.trim();
+        if (value == null) {
+            return null;
+        }
+        if (value instanceof String) {
+            return (String) value;
+        }
+        return value.toString();
     }
 
     /**
@@ -184,13 +163,14 @@ public class StringUtil {
      */
     @stable
     public static Long nullToLong(Object value) {
-        return value == null || isEmptyStr(value) ? 0L : stringToLong(value.toString().trim());
+        Long v = objToLong(value);
+        return v == null ? 0L : v;
     }
 
     /**
      * 将对象转换成Long，空对象 空字符串以及无法转换的对象转换成null
      *
-     * @param value
+     * @param value 待处理数据
      * @return Long对象
      */
     @stable
@@ -207,7 +187,8 @@ public class StringUtil {
      */
     @stable
     public static Integer nullToInteger(Object value) {
-        return value == null || isEmptyStr(value) ? 0 : stringToInteger(value.toString());
+        Integer v = stringToInteger(value.toString());
+        return v == null ? 0 : v;
     }
 
     /**
@@ -230,16 +211,14 @@ public class StringUtil {
      */
     @stable
     public static Double nullToDouble(Object value) {
-        Double d = new Double(0);
         try {
             if (value != null && !StringUtil.isEmptyStr(value.toString())) {
-                d = Double.parseDouble(String.valueOf(value));
+                return Double.parseDouble(String.valueOf(value));
             }
         } catch (Exception e) {
             e.printStackTrace();
-            d = new Double(0);
         }
-        return d;
+        return (double) 0;
     }
 
     /**
@@ -254,15 +233,13 @@ public class StringUtil {
         if (isEmptyStr(value)) {
             return null;
         }
-        Double d = new Double(0);
         try {
-            d = Double.parseDouble(String.valueOf(value));
+            return Double.parseDouble(String.valueOf(value));
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             log.debug("objToDouble :" + value.toString());
             return null;
         }
-        return d;
     }
 
     /**
@@ -274,16 +251,14 @@ public class StringUtil {
      */
     @stable
     public static Float nullToFloat(Object value) {
-        Float f = new Float(0);
         try {
             if (value != null && !StringUtil.isEmptyStr(value.toString())) {
-                f = Float.parseFloat(String.valueOf(value));
+                return Float.parseFloat(String.valueOf(value));
             }
         } catch (Exception e) {
-            e.printStackTrace();
-            f = new Float(0);
+            //e.printStackTrace();
         }
-        return f;
+        return (float) 0;
     }
 
     /**
@@ -298,15 +273,12 @@ public class StringUtil {
         if (isEmptyStr(value)) {
             return null;
         }
-        Float f = new Float(0);
         try {
-            f = Float.parseFloat(String.valueOf(value));
+            return Float.parseFloat(String.valueOf(value));
         } catch (Exception e) {
-            e.printStackTrace();
             log.debug("objToFloat :" + value.toString());
-            return null;
         }
-        return f;
+        return null;
     }
 
     /**
@@ -317,12 +289,7 @@ public class StringUtil {
      */
     @stable
     public static Boolean nullToBoolean(Object value) {
-        if (isEmptyStr(value))
-            return false;
-        if ("1".equals(value.toString().trim())
-                || "true".equalsIgnoreCase(value.toString().trim()))
-            return true;
-        return false;
+        return !isEmptyStr(value) && ("1".equals(value.toString().trim()) || "true".equalsIgnoreCase(value.toString().trim()));
     }
 
     /**
@@ -343,7 +310,7 @@ public class StringUtil {
             return true;
         if ("0".equals(value.toString().trim())
                 || "false".equalsIgnoreCase(value.toString().trim()))
-            return true;
+            return false;
 
         return null;
     }
@@ -397,25 +364,24 @@ public class StringUtil {
     /**
      * 将字符串转换成字符串List，按照给定的spliter
      *
-     * @param value     待处理字符串
-     * @param splitChar spliter
+     * @param value    待处理字符串
+     * @param splitter spliter
      * @return 字符串List，按照Spliter切分
      */
     @stable
-    public static List<String> strToStrArray(String value, String splitChar) {
+    public static List<String> strToStrArray(String value, String splitter) {
         if (value == null || "".equals(value)) {
             return null;
         }
-        List<String> ls = new ArrayList<String>();
-        String[] ids = value.split(splitChar);
-        for (int i = 0; i < ids.length; i++) {
+        List<String> ls = new ArrayList<>();
+        String[] ids = value.split(splitter);
+        for (String id : ids) {
             try {
-                if (!StringUtil.isEmptyStr(ids[i])) {
-                    ls.add(ids[i].trim());
+                if (!StringUtil.isEmptyStr(id)) {
+                    ls.add(id.trim());
                 }
             } catch (Exception e) {
-                e.printStackTrace();
-                continue;
+                //e.printStackTrace();
             }
         }
         return ls;
@@ -424,27 +390,26 @@ public class StringUtil {
     /**
      * 将字符串List转换为单个字符串，按照Spliter连接
      *
-     * @param list      待处理字符串List
-     * @param splitChar 连接用Spliter
+     * @param list     待处理字符串List
+     * @param splitter 连接用Spliter
      * @return 单一字符串，其中每个数值用Spliter连接
      */
     @stable
-    public static String strArrayToString(List<String> list, String splitChar) {
+    public static String strArrayToString(List<String> list, String splitter) {
         if (list == null || list.size() == 0) {
             return null;
         }
 
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         for (Iterator<String> it = list.iterator(); it.hasNext(); ) {
             try {
                 String value = it.next();
                 sb.append(value);
                 if (it.hasNext()) {
-                    sb.append(splitChar);
+                    sb.append(splitter);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
-                continue;
+                //e.printStackTrace();
             }
         }
         return sb.toString();
@@ -453,26 +418,25 @@ public class StringUtil {
     /**
      * 将Set转换为String 类似于List转换
      *
-     * @param set       待处理Set
-     * @param splitChar 连接用Spliter
+     * @param set      待处理Set
+     * @param splitter 连接用Spliter
      * @return 单一字符串
      */
     @stable
-    public static String strSetToString(Set<String> set, String splitChar) {
+    public static String strSetToString(Set<String> set, String splitter) {
         if (set == null || set.size() == 0) {
             return null;
         }
-        StringBuffer sb = new StringBuffer("");
+        StringBuilder sb = new StringBuilder("");
         for (Iterator<String> it = set.iterator(); it.hasNext(); ) {
             try {
                 String value = it.next();
                 sb.append(value);
                 if (it.hasNext()) {
-                    sb.append(splitChar);
+                    sb.append(splitter);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
-                continue;
+                //e.printStackTrace();
             }
         }
         return sb.toString();
@@ -493,23 +457,22 @@ public class StringUtil {
             try {
                 longList.add(Long.valueOf(str));
             } catch (Exception e) {
-                e.printStackTrace();
+                //e.printStackTrace();
                 log.debug("strListToLongList convert Exception @:" + str);
-                continue;
             }
         }
         return longList;
     }
 
     /**
-     * 转换List到SQL接受的字符串，实际上和利用Spliter连接类似，建议使用{@link StringUtil#strArrayToString(List, String)}
+     * 转换List到SQL接受的字符串，实际上和利用Splitter连接类似，建议使用{@link StringUtil#strArrayToString(List, String)}
      *
      * @param strList 字符串List
      * @return 处理后字符串
      */
     @stable
     public static String strListToSQL(List<String> strList) {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         if (strList == null || strList.size() == 0) return sb.toString();
         boolean isNotFirst = false;
         for (String str : strList) {
@@ -530,29 +493,27 @@ public class StringUtil {
     @stable
     public static boolean isBoolean(String value) {
         try {
-            Boolean b = Boolean.parseBoolean(value);
-            return true;
+            return Boolean.parseBoolean(value);
         } catch (Exception e) {
             return false;
         }
     }
 
     /**
-     * 清除特殊字符，清除字符串中的换行 制表 空格 单引号字符，对字符串的改动较大，一般无法回溯。
-     * 只用于特殊情况 null、空字符串返回""
+     * 清除特殊字符，清除字符串中的换行 制表 空格 单引号字符
      *
      * @param str 待处理字符串
      * @return 清理后字符串，不返回null
      */
     @stable
-    public static String getescapeText(String str) {
+    public static String getEscapeText(final String str) {
         if (str == null)
-            return ("");
+            return null;
         if (str.equals(""))
-            return ("");
+            return null;
         // 建立一个StringBuffer来处理输入数据
-        StringBuffer buf = new StringBuffer(str.length() + 6);
-        char ch = '\n';
+        StringBuilder buf = new StringBuilder(str.length() + 6);
+        char ch;
         for (int i = 0; i < str.length(); i++) {
             ch = str.charAt(i);
             if (ch == '\r') {
@@ -581,73 +542,21 @@ public class StringUtil {
      */
     @stable
     public static boolean isCharAndNum(String source) {
+        if (source == null) {
+            return false;
+        }
         StringCharacterIterator sci = new StringCharacterIterator(source);
         for (char c = sci.first(); c != StringCharacterIterator.DONE; c = sci.next()) {
-            if ((c > 47 && c < 58) || (c > 64 && c < 91) || (c > 96 && c < 123))
-                continue;
-            else
+            if (!Character.isLetterOrDigit(c)) {
                 return false;
+            }
         }
         return true;
     }
 
-    /**
-     * 清除所有特殊字符，只保留中英文字符和数字  使用patternMatcher，有性能问题，不建议使用
-     * 清除中英文的标点符号等
-     *
-     * @param str 待处理字符串
-     * @return 处理后字符串
-     */
-    @stable
-    public static String getEscapeText(String str) {
-        try {
-            String regEx = "[`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]";
-            Pattern p = Pattern.compile(regEx);
-            Matcher m = p.matcher(str);
-            return m.replaceAll("");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
 
     /**
-     * 清除所有特殊字符，只保留中英文字符和数字，以及中文标点符号
-     * 使用patternMatcher，有性能问题，不建议使用
-     *
-     * @param str 待处理字符串
-     * @return 处理后字符串
-     */
-    @stable
-    public static String getZWEscapeText(String str) {
-        try {
-            String regEx = "[`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~@#￥%……&*（）——+|{}]";
-            Pattern p = Pattern.compile(regEx);
-            Matcher m = p.matcher(str);
-            return m.replaceAll("");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    /**
-     * 判断字符串中是否包含除中英文字符和数字外的特殊字符，包含返回true
-     *
-     * @param str 待判定字符串
-     * @return 是否满足条件
-     */
-    @stable
-    public static boolean haveEscapeText(String str) {
-        if (str.replaceAll("[\u4e00-\u9fa5]*[+]*[a-z]*[A-Z]*\\d*-*_*\\s*", "").length() == 0) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    /**
-     * 是否包含中文和&符号
+     * 是否包含中文
      * 使用[一-龥]（[\u4e00-\u9fa5]）判定
      *
      * @param str 待判定字符串
@@ -657,41 +566,38 @@ public class StringUtil {
     public static boolean isContainChinese(String str) {
         if (str == null || "".equals(str))
             return false;
-
-        String regEx = "[\u4e00-\u9fa5]|&";
+        String regEx = "[\u4e00-\u9fa5]";
         Pattern p = Pattern.compile(regEx);
         Matcher m = p.matcher(str);
-        while (m.find()) {
-            return true;
-        }
-        return false;
+        return m.find();
     }
 
     /**
-     * 根据转义列表对字符串进行转义(escape)。
+     * 根据转义列表对字符串进行转义(escape)。 只能转义字符
      *
      * @param source        待转义的字符串
      * @param escapeCharMap 转义列表
      * @return 转义后的字符串
      */
     @stable
-    public static String escapeCharacter(String source, HashMap escapeCharMap) {
+    public static String escapeCharacter(String source, HashMap<Character, String> escapeCharMap) {
         if (source == null || source.length() == 0) {
             return source;
         }
         if (escapeCharMap.size() == 0) {
             return source;
         }
-        StringBuffer sb = new StringBuffer(source.length() + 100);
+        StringBuilder sb = new StringBuilder(source.length());
         StringCharacterIterator sci = new StringCharacterIterator(source);
         for (char c = sci.first();
              c != StringCharacterIterator.DONE;
              c = sci.next()) {
-            String character = String.valueOf(c);
+            Character character = c;
             if (escapeCharMap.containsKey(character)) {
-                character = (String) escapeCharMap.get(character);
+                sb.append(escapeCharMap.get(character));
+            } else {
+                sb.append(character);
             }
-            sb.append(character);
         }
         return sb.toString();
     }
@@ -762,7 +668,7 @@ public class StringUtil {
         }
         if (len > s.length()) {
             int size = len - s.length();
-            StringBuffer sb = new StringBuffer();
+            StringBuilder sb = new StringBuilder();
             while (size-- > 0) {
                 sb.append("0");
             }
@@ -817,7 +723,6 @@ public class StringUtil {
     private static byte charToByte(char c) {
         return (byte) "0123456789ABCDEF".indexOf(c);
     }
-    /////////////////////////////////////////以下是重新封装的代码，一般封装自第三方库，修改了部分逻辑
 
     /**
      * 将包含16进制信息的字符串转换成byte数组
@@ -844,7 +749,6 @@ public class StringUtil {
     /**
      * 按照默认值将对象转换为Int，如果转换失败，则返回默认值。默认值为null则为0
      * <br>
-     * 参考{@link NumberUtils#toInt(String, int)}
      *
      * @param value        待转换对象
      * @param defaultValue 默认值
@@ -855,14 +759,21 @@ public class StringUtil {
         if (defaultValue == null) {
             defaultValue = 0;
         }
-        return NumberUtils.toInt(obj2Str(value), defaultValue);
+        if (value == null) {
+            return defaultValue;
+        }
+        try {
+            return Integer.parseInt(value.toString());
+        } catch (final NumberFormatException nfe) {
+            return defaultValue;
+        }
     }
 
     /////////////////////////////////////////////////////以下是未完成或者不明确行为的代码，代码只有参考意义，暂时全部设置为private
-    private static String hexStringToString(String hex, String charset) {
-        StringBuffer sbuf = new StringBuffer();
+    private String hexStringToString(String hex, String charset) {
+        StringBuilder sbuf = new StringBuilder();
         try {
-            StringBuffer subhex = new StringBuffer();
+            StringBuilder subhex = new StringBuilder();
             int i = 0;
             while (i < hex.length()) {
                 if (hex.charAt(i) != '%') {
@@ -890,66 +801,4 @@ public class StringUtil {
         return sbuf.toString();
     }
 
-    /**
-     * 16进制转化
-     *
-     * @param value
-     * @return
-     */
-    private static String toHexValue(String value) {
-        StringBuffer sb = new StringBuffer();
-        byte[] bytes = value.getBytes();
-
-        for (byte b : bytes) {
-            String hex = Integer.toHexString(b & 0xFF);
-
-            if (hex.length() < 2) {
-                hex = '0' + hex;
-            }
-            sb.append(hex);
-        }
-        return sb.toString();
-    }
-
-    /**
-     * 二进制转化
-     *
-     * @param value
-     * @return
-     */
-    private static String toBinaryValue(String value) {
-        StringBuffer sb = new StringBuffer();
-        byte[] bytes = value.getBytes();
-        for (byte b : bytes) {
-            String binary = Integer.toBinaryString(b & 0xFF);
-            while (binary.length() < 8) {
-                binary = '0' + binary;
-            }
-            sb.append(binary);
-        }
-
-        return sb.toString();
-    }
-
-    private static String getPercent(int finishedCount, int allCount) {
-        float finishedCountF = finishedCount;
-        float allCountF = allCount;
-        float percentF = finishedCountF / allCountF * 100;
-        String percent = String.valueOf(percentF);
-        percent = (percent.split("\\."))[0];
-        while (percent.length() < 3) {
-            percent = " " + percent;
-        }
-        return percent;
-    }
-
-    private static Boolean includeIpAddress(String ip, String ips) {
-        if (ips == null || "".equals(ips)) return false;
-        String[] ipSplit = ips.split(",");
-        for (int i = 0; i < ipSplit.length; i++) {
-            if (ipSplit[i].equals(ip))
-                return true;
-        }
-        return false;
-    }
 }

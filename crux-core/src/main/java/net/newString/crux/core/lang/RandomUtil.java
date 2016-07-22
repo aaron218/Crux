@@ -44,11 +44,16 @@ public class RandomUtil {
             max = t;
         }
         final int LEN = max - min + 1;  //种子个数
-        if (len > LEN) len = LEN;  //如果出现 35 选 36 的情况就选35
+        if (len > LEN) {
+            len = LEN;
+        }
+        ;
         //计算无重复值随机数组
         initRnd();  //初始化随机数发生器
         int[] seed = new int[LEN];  //种子数组
-        for (int i = 0, n = min; i < LEN; ) seed[i++] = n++;  //初始化种子数组
+        for (int i = 0, n = min; i < LEN; ) {
+            seed[i++] = n++;
+        } //初始化种子数组
         for (int i = 0, j = 0, t = 0; i < len; ++i) {
             j = rnd.nextInt(LEN - i) + i;
             t = seed[i];
@@ -60,6 +65,7 @@ public class RandomUtil {
 
     /**
      * 获取随机的布尔值 并且按照真值比例给出，比例数值限定在0-1之间，大于1的，视为1，小于0的，视为0
+     *
      * @param trueRate 真值比例
      * @return 布尔对象
      */
@@ -70,15 +76,95 @@ public class RandomUtil {
             return false;
         }
         return (Math.random() <= trueRate);
-        //return (trueRate == 1.0)|| trueRate != 0.0 && Math.random() * Integer.MAX_VALUE < (Integer.MAX_VALUE * trueRate);
     }
 
     /**
      * 获取随机的布尔值，真假各半
+     *
      * @return 布尔对象
      */
-    public static Boolean getRandomBoolean(){
+    public static Boolean getRandomBoolean() {
         return getRandomBoolean(0.5);
+    }
+
+    /**
+     * 获取一个随机的Int值
+     *
+     * @return 随机Int值
+     */
+    @stable
+    public synchronized static Integer getRandomIntValue() {
+        return (new Double(Math.random() * Integer.MAX_VALUE)).intValue();
+    }
+
+    /**
+     * 获取一个随机的Long值
+     *
+     * @return 随机Long值
+     */
+    @stable
+    public synchronized static Long getRandomLongValue() {
+        return (new Double(Math.random() * Long.MAX_VALUE)).longValue();
+    }
+
+    /**
+     * 获取一个随机的Float值
+     *
+     * @return 随机Float值
+     */
+    @stable
+    public synchronized static Float getRandomFloatValue() {
+        return (new Double(Math.random() * Float.MAX_VALUE)).floatValue();
+    }
+
+    /**
+     * 获取一个随机的Double值
+     *
+     * @return 随机Double值
+     */
+    @stable
+    public synchronized static Double getRandomDoubleValue() {
+        return (Math.random() * Double.MAX_VALUE);
+    }
+
+    /**
+     * 获取一个随机的Int值 可以设置最大值，最大值不能达到
+     *
+     * @return 随机Int值
+     */
+    @stable
+    public synchronized static Integer getRandomIntValue(Integer max) {
+        return (new Double(Math.random() * max)).intValue();
+    }
+
+    /**
+     * 获取一个随机的Long值 可以设置最大值，最大值不能达到
+     *
+     * @return 随机Long值
+     */
+    @stable
+    public synchronized static Long getRandomLongValue(Long max) {
+        return (new Double(Math.random() * max)).longValue();
+    }
+
+    /**
+     * 获取一个随机的Float值 可以设置最大值，最大值不能达到
+     *
+     * @return 随机Float值
+     */
+    @stable
+    public synchronized static Float getRandomFloatValue(Float max) {
+        return (new Double(Math.random() * max)).floatValue();
+    }
+
+    /**
+     * 获取一个随机的Double值 可以设置最大值，最大值不能达到
+     *
+     * @return 随机Double值
+     */
+    @stable
+    public synchronized static Double getRandomDoubleValue(Double max) {
+        return (Math.random() * max);
     }
 
 }

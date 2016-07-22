@@ -13,6 +13,7 @@ import java.util.Map;
  * Created by Administrator on 2015/7/7 0007.
  * 测试
  */
+@Deprecated
 public class MemoryUtil {
 
     private static Instrumentation instrumentation;

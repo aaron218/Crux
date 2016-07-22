@@ -11,7 +11,7 @@ import java.io.*;
  * codeReview @ 20150701
  */
 @stable("lic")
-public class ByteUtil {
+public abstract class ByteUtil {
 
     //1字节整数
 
@@ -515,7 +515,7 @@ public class ByteUtil {
      * @return byte数组
      * @throws IOException
      */
-    public static byte[] objToByte(Object obj) throws IOException {
+    public synchronized static byte[] objToByte(Object obj) throws IOException {
         if (obj == null) {
             return null;
         }
@@ -536,7 +536,7 @@ public class ByteUtil {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public static Object byteToObject(byte[] bytes) throws IOException, ClassNotFoundException {
+    public synchronized static Object byteToObject(byte[] bytes) throws IOException, ClassNotFoundException {
         if (bytes == null || bytes.length == 0) {
             return null;
         }

@@ -1,6 +1,10 @@
 package net.newString.crux.core.CN;
 
 
+import net.newString.crux.core.lang.RandomUtil;
+
+import java.util.HashMap;
+
 /**
  * Created by aaron on 10/15/2015.
  * 中文汉字随机产生器 包括汉字产生和汉字姓产生
@@ -25,8 +29,31 @@ public class CNRandomUtil {
      * @return 获取一个随机姓氏
      */
     public static String getPureRandomSurName() {
-        int i = (int) (Math.random() * surName504Length);
+        int i = (int) (Math.random() * surName504Length+1);
         return surName504[i];
+    }
+
+    /**
+     * 获取随机的姓名 可定义最大程度(必须大于1)。姓氏来自姓氏表，名字来自汉字全表
+     * @param maxLen 最大长度
+     * @return 随机姓名或者null
+     */
+    public static String getRandomFullName(int maxLen){
+        if(maxLen<=1){
+            return null;
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append(getPureRandomSurName());
+        int len = RandomUtil.getRandomIntValue(maxLen-1) +1;
+        for(int i=0;i<len;i++){
+            sb.append(getRandomCNchar());
+        }
+        return sb.toString();
+    }
+
+
+    public static void main(String[] args) {
+        System.out.println(getRandomFullName(3));
     }
 
 }

@@ -1,7 +1,7 @@
 package net.newString.crux.core.CN;
 
+import net.newString.crux.core.lang.NumberUtil;
 import net.newString.crux.core.stable;
-import org.apache.commons.lang3.math.NumberUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -44,7 +44,7 @@ public class CNPersonIDUtil {
         if (value17 == null || value17.length() != 17) {
             return null;
         }
-        if (!NumberUtils.isDigits(value17)) {
+        if (!NumberUtil.isDigits(value17)) {
             return null;
         }
         int[] id = new int[18];
@@ -76,7 +76,7 @@ public class CNPersonIDUtil {
         if (id.length() != 18) {
             return false;
         }
-        if (!NumberUtils.isDigits(id.substring(0, 17))) {
+        if (!NumberUtil.isDigits(id.substring(0, 17))) {
             return false;
         }
         if (id.equals(put18thValue(id.substring(0, 17)))) {//ID与产生的ID相同

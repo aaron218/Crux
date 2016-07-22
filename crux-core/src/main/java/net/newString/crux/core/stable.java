@@ -19,5 +19,5 @@ import static java.lang.annotation.ElementType.*;
 public @interface stable {
     String value() default "default";
 
-    String version() default "0.1.0-SNAPSHOT";
+    String version() default "unVersioned";
 }

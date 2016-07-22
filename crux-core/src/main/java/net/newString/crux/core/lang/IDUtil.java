@@ -8,7 +8,7 @@ package net.newString.crux.core.lang;
  * <br>
  * 参照Mongo的Id生成规范，这里的默认生成ID规范中包括了一部分JVM信息。其中有：创建时间，JVM的PID
  */
-public class UniqueUtil {
+public class IDUtil {
     private static final char[] chars = new char[32];
 
     public String getUniqueId() {

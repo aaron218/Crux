@@ -4,12 +4,27 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>crux</artifactId>
-        <groupId>net.newString.crux</groupId>
-        <version>0.1.0-SNAPSHOT</version>
+        <groupId>net.newString</groupId>
+        <version>1.1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <artifactId>crux-extend</artifactId>
+    <version>1.2.0</version>
     <description>扩展的crux包，与core包不同，通过二次封装一些第三方库，本包提供了更加丰富的功能，但是也引入了更多的依赖</description>
 
     <dependencies>
@@ -18,11 +33,11 @@
             <artifactId>httpclient</artifactId>
             <version>4.5.1</version>
         </dependency>
-        <dependency><!-- 依赖的基础包，暂时不使用嵌套结构来管理 -->
-            <groupId>net.newString.crux</groupId>
-            <artifactId>crux-core</artifactId>
-            <version>${crux.version}</version>
-        </dependency>
+        <!--<dependency>&lt;!&ndash; 依赖的基础包，暂时不使用嵌套结构来管理 &ndash;&gt;-->
+            <!--<groupId>net.newString</groupId>-->
+            <!--<artifactId>crux-core</artifactId>-->
+            <!--<version>1.2.0</version>-->
+        <!--</dependency>-->
     </dependencies>
 
 </project>

@@ -5,6 +5,7 @@ hs_err_pid*
 */.svn/
 
 .idea/
+*/target/*
 # for modules in idea project
 */.idea/
 *.iml

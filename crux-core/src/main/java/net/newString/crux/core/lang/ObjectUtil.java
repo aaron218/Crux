@@ -2,6 +2,11 @@ package net.newString.crux.core.lang;
 
 public class ObjectUtil {
 
+    /**
+     * 从对象中解析出int值 通过类型操作而非字符串操作获取
+     * @param localObject 待处理对象
+     * @return Int 或 null
+     */
     public static Integer getIntValue(Object localObject) {
         if (localObject == null) {
             return null;
@@ -26,7 +31,11 @@ public class ObjectUtil {
         }
     }
 
-
+    /**
+     * 从对象中解析出 long 值 通过类型操作而非字符串操作获取
+     * @param localObject 待处理对象
+     * @return Long 或 null
+     */
     public static Long getLongValue(Object localObject) {
         if (localObject == null) {
             return null;
@@ -47,10 +56,8 @@ public class ObjectUtil {
                     return null;
                 }
             }
-
             return localLongValue;
         }
-
     }
 
 
