@@ -1,8 +1,6 @@
 package net.newString.crux.core.lang;
 
 import net.newString.crux.core.stable;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
@@ -25,7 +23,6 @@ public class JsonUtil {
     /**
      * Commons Logging instance.
      */
-    private static Log log = LogFactory.getLog(JsonUtil.class);
 
     /**
      * @param obj 任意对象

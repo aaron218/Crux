@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>crux-test</artifactId>
-    <version>1.2.3</version>
+    <version>${crux.test.version}</version>
 
     <build>
         <plugins>
@@ -26,4 +26,21 @@
             </plugin>
         </plugins>
     </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${crux.log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>${crux.commons-logging.version}</version>
+        </dependency>
+    </dependencies>
+
+    <properties>
+        <crux.test.version>${crux.module.version}</crux.test.version>
+    </properties>
 </project>

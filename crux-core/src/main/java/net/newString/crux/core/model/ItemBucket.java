@@ -9,30 +9,13 @@ import java.util.Map;
  *
  * @author lic
  */
-public class ItemBucket extends HashMap<String,Object> implements Serializable {
+public class ItemBucket extends HashMap<String, Object> implements Serializable {
     private static final long serialVersionUID = -1655165845615003943L;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @Override
-    public Object put(String key, Object value){
-        if(value instanceof ItemBucket){
+    public Object put(String key, Object value) {
+        if (value instanceof ItemBucket) {
             try {
                 throw new Exception("net.newString.crux.core.model.ItemBucket can't nested , put action ignored");
             } catch (Exception e) {
@@ -45,11 +28,11 @@ public class ItemBucket extends HashMap<String,Object> implements Serializable {
 
     @Override
     public void putAll(Map<? extends String, ?> m) {
-        if(m == null){
+        if (m == null) {
             return;
         }
-        for(Map.Entry entry : m.entrySet()){
-            if(entry.getValue() instanceof ItemBucket){
+        for (Map.Entry entry : m.entrySet()) {
+            if (entry.getValue() instanceof ItemBucket) {
                 try {
                     throw new Exception("net.newString.crux.core.model.ItemBucket can't nested, putAll action ignored..");
                 } catch (Exception e) {

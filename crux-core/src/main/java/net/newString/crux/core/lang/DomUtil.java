@@ -1,7 +1,5 @@
 package net.newString.crux.core.lang;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.w3c.dom.*;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -32,8 +30,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * 未验证
  */
 @Deprecated
-public class DomUtil {
-    private static Log log = LogFactory.getLog(DomUtil.class);
+public abstract class DomUtil {
 
     private static DocumentBuilderFactory factory;
 
@@ -48,7 +45,6 @@ public class DomUtil {
         try {
             doc = factory.newDocumentBuilder().newDocument();
         } catch (ParserConfigurationException e) {
-            log.error("", e);
         }
         doc.setXmlStandalone(true);
         return doc;
@@ -75,7 +71,6 @@ public class DomUtil {
             transformer.transform(source, result);
             s = result.getOutputStream().toString();
         } catch (Exception e) {
-            log.error("DOM转化异常:", e);
         }
         return s;
     }
@@ -91,7 +86,6 @@ public class DomUtil {
         try {
             document = factory.newDocumentBuilder().parse(is);
         } catch (Exception e) {
-            log.error("parse error:", e);
         }
         return document;
     }
@@ -107,7 +101,6 @@ public class DomUtil {
         try {
             document = factory.newDocumentBuilder().parse(new InputSource(new StringReader(is)));
         } catch (Exception e) {
-            log.error("parse error:", e);
         }
         return document;
     }
@@ -123,7 +116,6 @@ public class DomUtil {
         try {
             document = factory.newDocumentBuilder().parse(is);
         } catch (Exception e) {
-            log.error("parse error:", e);
         }
         return document;
     }
@@ -141,13 +133,11 @@ public class DomUtil {
             is = new FileInputStream(file);
             document = factory.newDocumentBuilder().parse(is);
         } catch (Exception e) {
-            log.error("parse error:", e);
         } finally {
             if (is != null) {
                 try {
                     is.close();
                 } catch (IOException e) {
-                    log.error("file close error:", e);
                 }
             }
         }
@@ -161,7 +151,6 @@ public class DomUtil {
      * @return
      */
     public static Document parserXmlFromFile(String filePath) {
-        log.info("filePath=" + filePath);
         Document document = parserXml(new File(filePath));
         return document;
     }
@@ -187,7 +176,6 @@ public class DomUtil {
                 schema = factory.newSchema(schemaSource);
                 schemaMap.put(file, schema);
             } catch (SAXException saxe) {
-                log.error("validate XML error:", saxe);
             }
         }
         // 获取验证器，验证器的XML Schema源就是之前创建的Schema
@@ -197,7 +185,6 @@ public class DomUtil {
             validator.validate(new StreamSource(document));
             return true;
         } catch (Exception e) {
-            log.error("validate XML error:", e);
             return false;
         }
     }

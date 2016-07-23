@@ -1,7 +1,5 @@
 package net.newString.crux.core.lang;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import java.io.*;
 import java.math.BigDecimal;
@@ -16,7 +14,6 @@ import java.util.regex.Pattern;
 @Deprecated
 public class FileUtil {
     private final static byte[] UTF_8_BOM = {(byte) 0xEF, (byte) 0xBB, (byte) 0xBF};
-    private static Log log = LogFactory.getLog(FileUtil.class);
 
     /**
      * 删除指定文件或目录
@@ -115,8 +112,6 @@ public class FileUtil {
         try {
             if (filePath == null || fileContent == null
                     || fileContent.length() <= 0) {
-                log.error("into writeFileByString [filePath=" + filePath
-                        + ",filePath=" + fileContent + "] is null return!!!");
                 return;
             }
 
@@ -139,7 +134,6 @@ public class FileUtil {
             out.print(fileContent);
             out.close();
         } catch (Exception e) {
-            log.error("writeFileByString Exception:" + e, e);
         } finally {
             if (out != null)
                 out.close();
@@ -370,13 +364,11 @@ public class FileUtil {
                     new FileOutputStream(filePath, true), "UTF-8"));
             out.write(content);
         } catch (Exception e) {
-            log.error("", e);
             res = false;
         }
         try {
             out.close();
         } catch (IOException e) {
-            log.error("", e);
         }
         return res;
     }
@@ -470,7 +462,6 @@ public class FileUtil {
                 br = new BufferedReader(read);
                 while ((line = br.readLine()) != null) {
                     ret += line + "\r\n";
-                    log.debug(ret);
                 }
             } catch (Exception e) {
                 ret = "";
@@ -502,8 +493,6 @@ public class FileUtil {
         try {
             if (filePath == null || fileContent == null
                     || fileContent.length() <= 0) {
-                log.error("into writeFileByString [filePath=" + filePath
-                        + ",filePath=" + fileContent + "] is null return!!!");
                 return;
             }
 
@@ -521,7 +510,6 @@ public class FileUtil {
             out.print(fileContent);
             out.close();
         } catch (Exception e) {
-            log.error("writeFileByString Exception:" + e, e);
             throw e;
         } finally {
             if (out != null)

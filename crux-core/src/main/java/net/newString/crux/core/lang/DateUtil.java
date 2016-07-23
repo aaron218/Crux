@@ -5,18 +5,14 @@ import net.newString.crux.core.stable;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by aaron on 6/23/2015.
  * 日期操作工具集
  */
 @stable("lic")
-public class DateUtil {
-    //public static final String TIME_PATTERN = "HH:mm:ss";
+public abstract class DateUtil {
     public static final String DATE_YYYYMMDD_PATTERN = "yyyyMMdd";
     public static final String DATE_TIME_MS_PATTERN = "yyyy-MM-dd HH:mm:ss.S"; //标准输出包括毫秒数
     public static final String DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
@@ -119,13 +115,13 @@ public class DateUtil {
      * @return 当前时间的转换值
      */
     @stable
-    public static String getNowDate(String pattern) {
+    public static String getNowDate(final String pattern) {
         return formatDate(pattern, new Date());
     }
 
     /**
      * 获取当前时间，按照默认的 无空格方式产生
-     * 格式 yyyyMMdd_HHmmss (20150101115959)
+     * 格式 yyyyMMddHHmmss (20150101115959)
      *
      * @return 返回的时间字符串
      */
@@ -190,6 +186,67 @@ public class DateUtil {
     @stable
     public static Long getNanoSeconds() {
         return Math.abs(System.nanoTime());
+    }
+
+    /**
+     * 将Date类型转换为 yyyyMMddHHmmssS 形式的Long数据 毫秒数为3位 比SimpleDateFormat速度快
+     * <br>使用拼接处理快速转换而非dateFormat 即 不处理时区问题
+     * <br>该方法内部使用了不建议使用的JDK方法
+     * @param date 待处理数据
+     * @return 返回Long 或者 null
+     */
+    @stable
+    public static Long formatDateToMillsLong(final Date date) {
+        if (date == null) {
+            return null;
+        }
+        long value = (long) date.getSeconds();
+        value += (long) date.getMinutes() * 100L;
+        value += (long) date.getHours() * 10000L;
+        value += (long) date.getDay() * 1000000L;
+        value += (long) (date.getMonth() + 1) * 100000000L;
+        value += (long) (date.getYear() + 1900) * 10000000000L;
+        value = value * 1000 + date.getTime() % 1000;
+        return value;
+    }
+
+    /**
+     * 将Date类型转换为 yyyyMMddHHmmss 形式的Long数据 比SimpleDateFormat速度快
+     * <br>使用拼接处理快速转换而非dateFormat 即 不处理时区问题
+     * <br>该方法内部使用了不建议使用的JDK方法
+     * @param date 待处理数据
+     * @return 返回Long 或者 null
+     */
+    @stable
+    public static Long formatDateToLong(final Date date) {
+        if (date == null) {
+            return null;
+        }
+        long value = (long) date.getSeconds();
+        value += (long) date.getMinutes() * 100L;
+        value += (long) date.getHours() * 10000L;
+        value += (long) date.getDay() * 1000000L;
+        value += (long) (date.getMonth() + 1) * 100000000L;
+        value += (long) (date.getYear() + 1900) * 10000000000L;
+        return value;
+    }
+
+    /**
+     * 将Date类型转换为yyyyMMdd形式的Long数据 比SimpleDateFormat速度快
+     * <br>使用拼接处理快速转换而非dateFormat 即 不处理时区问题
+     * <br>该方法内部使用了不建议使用的JDK方法
+     * @param date 待处理数据
+     * @return 返回Long 或者 null
+     */
+    @stable
+    public static Long formatDateToDayLong(final Date date) {
+        if (date == null) {
+            return null;
+        }
+        long value =  (long) date.getDay() ;
+        value += (long) (date.getMonth() + 1) * 100L;
+        value += (long) (date.getYear() + 1900) * 10000L;
+        return value;
     }
 
 

@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>crux-source</artifactId>
-    <version>1.2.0</version>
+    <version>${crux.source.version}</version>
     <build>
         <plugins>
             <plugin>
@@ -33,23 +33,27 @@
             <version>3.0.2</version>
         </dependency>
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.36</version>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${crux.core.commons-lang3.version}</version>
         </dependency>
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-lang3</artifactId>
-                <version>${crux.core.commons-lang3.version}</version>
-            </dependency>
-        <!--<dependency>-->
-            <!--<groupId>com.oracle</groupId>-->
-            <!--<artifactId>ojdbc14</artifactId>-->
-            <!--<version>10.2.0.4.0</version>-->
-        <!--</dependency>-->
+
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${crux.log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>${crux.commons-logging.version}</version>
+        </dependency>
     </dependencies>
 
+
     <properties>
-    <crux.core.commons-lang3.version>3.3.2</crux.core.commons-lang3.version>
+        <crux.core.commons-lang3.version>3.3.2</crux.core.commons-lang3.version>
+        <crux.source.version>${crux.module.version}</crux.source.version>
     </properties>
 </project>

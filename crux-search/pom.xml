@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>crux-search</artifactId>
-    <version>1.2.0</version>
+    <version>${crux.search.version}</version>
     <build>
         <plugins>
             <plugin>
@@ -27,16 +27,26 @@
     </build>
 
     <dependencies>
-        <!--<dependency>-->
-            <!--<groupId>org.apache.solr</groupId>-->
-            <!--<artifactId>solr-solrj</artifactId>-->
-            <!--<version>5.5.1</version>-->
-        <!--</dependency>-->
-        <!-- http://mvnrepository.com/artifact/org.elasticsearch/elasticsearch -->
         <dependency>
             <groupId>org.elasticsearch</groupId>
             <artifactId>elasticsearch</artifactId>
             <version>2.3.2</version>
         </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${crux.log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>${crux.commons-logging.version}</version>
+        </dependency>
     </dependencies>
+
+
+    <properties>
+        <crux.search.version>${crux.module.version}</crux.search.version>
+    </properties>
 </project>

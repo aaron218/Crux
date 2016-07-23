@@ -24,7 +24,7 @@
     </build>
 
     <artifactId>crux-extend</artifactId>
-    <version>1.2.0</version>
+    <version>${crux.extend.version}</version>
     <description>扩展的crux包，与core包不同，通过二次封装一些第三方库，本包提供了更加丰富的功能，但是也引入了更多的依赖</description>
 
     <dependencies>
@@ -33,11 +33,21 @@
             <artifactId>httpclient</artifactId>
             <version>4.5.1</version>
         </dependency>
-        <!--<dependency>&lt;!&ndash; 依赖的基础包，暂时不使用嵌套结构来管理 &ndash;&gt;-->
-            <!--<groupId>net.newString</groupId>-->
-            <!--<artifactId>crux-core</artifactId>-->
-            <!--<version>1.2.0</version>-->
-        <!--</dependency>-->
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${crux.log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>${crux.commons-logging.version}</version>
+        </dependency>
     </dependencies>
+
+    <properties>
+        <crux.extend.version>${crux.module.version}</crux.extend.version>
+    </properties>
 
 </project>

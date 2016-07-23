@@ -9,25 +9,15 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  * @author lic
  */
-public class ConcurrentItemBucket extends ConcurrentHashMap<String,Object> implements Serializable {
+public class ConcurrentItemBucket extends ConcurrentHashMap<String, Object> implements Serializable {
     private static final long serialVersionUID = -1655165845615003943L;
 
     private String BucketID;
 
 
-
-
-
-
-
-
-
-
-
-
     @Override
-    public Object put(String key, Object value){
-        if(value instanceof ConcurrentItemBucket || value instanceof ItemBucket){
+    public Object put(String key, Object value) {
+        if (value instanceof ConcurrentItemBucket || value instanceof ItemBucket) {
             try {
                 throw new Exception("net.newString.crux.core.model.ConcurrentItemBucket can't nested , put action ignored");
             } catch (Exception e) {
@@ -40,11 +30,11 @@ public class ConcurrentItemBucket extends ConcurrentHashMap<String,Object> imple
 
     @Override
     public void putAll(Map<? extends String, ?> m) {
-        if(m == null){
+        if (m == null) {
             return;
         }
-        for(Map.Entry entry : m.entrySet()){
-            if(entry.getValue() instanceof ConcurrentItemBucket || entry.getValue() instanceof ItemBucket){
+        for (Map.Entry entry : m.entrySet()) {
+            if (entry.getValue() instanceof ConcurrentItemBucket || entry.getValue() instanceof ItemBucket) {
                 try {
                     throw new Exception("net.newString.crux.core.model.ConcurrentItemBucket can't nested, putAll action ignored..");
                 } catch (Exception e) {

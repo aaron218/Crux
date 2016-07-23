@@ -83,8 +83,28 @@ public class CNPersonIDUtil {
             return true;
         } else if (id.toUpperCase().equals(put18thValue(id.substring(0, 17)))) {//ID大写与产生的ID相同（适应小写x）
             return true;
-        } else if (id.substring(18).equals("*") && id.replace("*", "X").equals(put18thValue(id.substring(0, 17)))) {
+        } else if (id.substring(18).equals("*") && new String(id).replace("*", "X").equals(put18thValue(id.substring(0, 17)))) {
             return true; //处理末位是星号的情况，在部分单据中证件号码可能用*替代X
+        }
+        return false;
+    }
+
+
+    /**
+     * 快速检查是否是正确的身份证号 不验证校验位，也不验证内部各个数字的合法性
+     * 15位必须全部是数字，18位的前17位必须是数字，最后一位是X或x
+     * @param id 待验证身份证号
+     * @return 是否合法
+     */
+    public static boolean validIDFast(String id){
+        if(id==null || !(id.length()==15 || id.length()==18)){
+            return false;
+        }
+        if(id.length()==15 && NumberUtil.isDigits(id)){
+            return true;
+        }
+        if(id.length()==18 && !NumberUtil.isDigits(id.substring(0,17))){
+            return id.endsWith("X") || id.endsWith("x");
         }
         return false;
     }
@@ -92,6 +112,7 @@ public class CNPersonIDUtil {
     /**
      * 获取身份证号码钱6位对应的地区信息参考值
      * <br>错误或者未定义的数字码将会返回null
+     *
      * @param code 6位数字码
      * @return 对应地区名称或null
      */

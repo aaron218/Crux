@@ -8,6 +8,6 @@ import java.util.HashMap;
  *
  * @author lic
  */
-public class Item extends HashMap<String,Object> implements Serializable {
+public class Item extends HashMap<String, Object> implements Serializable {
     private static final long serialVersionUID = 2629197375524473962L;
 }

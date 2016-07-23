@@ -1,8 +1,6 @@
 package net.newString.crux.core.lang;
 
 import net.newString.crux.core.stable;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
@@ -17,7 +15,6 @@ import java.util.regex.Pattern;
  */
 @stable("lic")
 public class StringUtil {
-    static Log log = LogFactory.getLog(StringUtil.class);
 
     private static char hexDigits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8',
             '9', 'a', 'b', 'c', 'd', 'e', 'f'};
@@ -25,13 +22,12 @@ public class StringUtil {
     /**
      * 判断是否为合法的日期时间字符串
      * 日期转换异常则返回false
-     * <br>一般推荐使用 {@link StringUtil#nullToDate(Object, String)} 来处理
      *
      * @param str_input 输入数据
      * @return boolean;符合为true,不符合为false
      */
     @stable
-    public static boolean isDate(String str_input, String rDateFormat) {
+    public static boolean isDateStr(String str_input, String rDateFormat) {
         if (str_input != null) {
             SimpleDateFormat formatter = new SimpleDateFormat(rDateFormat);
             formatter.setLenient(false);
@@ -45,29 +41,6 @@ public class StringUtil {
         return false;
     }
 
-    /**
-     * 将对象转换为日期，将对象转成String然后按照给定的日期格式花字符串给出日期
-     * 本方法会产生临时对象 大量吞吐量调用时不提倡 应该使用DateUtil中的方法
-     * 失败时会打印StackTrace并写入日志
-     *
-     * @param _input      输入的对象
-     * @param rDateFormat 日期格式化字符串
-     * @return 构造的对象或者null
-     */
-    @stable
-    public static Date nullToDate(Object _input, String rDateFormat) {
-        if (!isEmptyStr(_input)) {
-            try {
-                SimpleDateFormat formatter = new SimpleDateFormat(rDateFormat);
-                formatter.setLenient(false);
-                return formatter.parse(null2Str(_input));
-            } catch (Exception e) {
-                e.printStackTrace();
-                log.debug("nullToDate:: " + e.getMessage());
-            }
-        }
-        return null;
-    }
 
     /**
      * 是否空字符串 方法中调用了trim再进行判定
@@ -79,7 +52,8 @@ public class StringUtil {
      */
     @stable
     public static boolean isEmptyStr(String str) {
-        return str == null || str.trim().length() == 0 || str.trim().equals("");
+        return str == null || str.length() == 0
+                || str.trim().length() == 0 || str.trim().equals("");
     }
 
     /**
@@ -128,7 +102,7 @@ public class StringUtil {
     @stable
     public static String null2Str(Object value) {
         if (value == null) {
-            return null;
+            return "";
         }
         if (value instanceof String) {
             return (String) value;
@@ -154,166 +128,6 @@ public class StringUtil {
         return value.toString();
     }
 
-    /**
-     * 将对象转换为Long，空对象转换为0L 空字符串也转换为0L
-     * 仅用于特殊情况，因为会覆盖原先的null情况
-     *
-     * @param value 待处理对象
-     * @return Long对象，不会为null
-     */
-    @stable
-    public static Long nullToLong(Object value) {
-        Long v = objToLong(value);
-        return v == null ? 0L : v;
-    }
-
-    /**
-     * 将对象转换成Long，空对象 空字符串以及无法转换的对象转换成null
-     *
-     * @param value 待处理数据
-     * @return Long对象
-     */
-    @stable
-    public static Long objToLong(Object value) {
-        return value == null || isEmptyStr(value) ? null : stringToLong(value.toString().trim());
-    }
-
-    /**
-     * 将对象转换成Integer,null 空字符串转换成 0
-     * 仅在特殊情况下使用，因为会覆盖原来的null值
-     *
-     * @param value 待转换对象
-     * @return Integer值 或者0
-     */
-    @stable
-    public static Integer nullToInteger(Object value) {
-        Integer v = stringToInteger(value.toString());
-        return v == null ? 0 : v;
-    }
-
-    /**
-     * 将对象转换成Integer,null 空字符串转换成 null
-     *
-     * @param value 待转换对象
-     * @return Integer值 或者null
-     */
-    @stable
-    public static Integer objToInteger(Object value) {
-        return value == null || isEmptyStr(value) ? null : stringToInteger(value.toString());
-    }
-
-    /**
-     * 对象转换为double 空对象或者无法转换的情况返回0值的Double
-     * 特殊情况下使用 会覆盖原来的null情况
-     *
-     * @param value 待转换对象
-     * @return Double 或者 0值Double
-     */
-    @stable
-    public static Double nullToDouble(Object value) {
-        try {
-            if (value != null && !StringUtil.isEmptyStr(value.toString())) {
-                return Double.parseDouble(String.valueOf(value));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return (double) 0;
-    }
-
-    /**
-     * 对象转换为double 空对象或者无法转换的情况返回null
-     * 特殊情况下使用 会覆盖原来的null情况
-     *
-     * @param value 待转换对象
-     * @return Double 或者 0值Double
-     */
-    @stable
-    public static Double objToDouble(Object value) {
-        if (isEmptyStr(value)) {
-            return null;
-        }
-        try {
-            return Double.parseDouble(String.valueOf(value));
-        } catch (Exception e) {
-            //e.printStackTrace();
-            log.debug("objToDouble :" + value.toString());
-            return null;
-        }
-    }
-
-    /**
-     * 对象转换为Float 空对象或者无法转换的情况返回0值的 Float
-     * 特殊情况下使用 会覆盖原来的null情况
-     *
-     * @param value 待转换对象
-     * @return Float 或者 0值 Float
-     */
-    @stable
-    public static Float nullToFloat(Object value) {
-        try {
-            if (value != null && !StringUtil.isEmptyStr(value.toString())) {
-                return Float.parseFloat(String.valueOf(value));
-            }
-        } catch (Exception e) {
-            //e.printStackTrace();
-        }
-        return (float) 0;
-    }
-
-    /**
-     * 对象转换为 Float 空对象或者无法转换的情况返回null
-     * 特殊情况下使用 会覆盖原来的null情况
-     *
-     * @param value 待转换对象
-     * @return Float 或者 0值 Float
-     */
-    @stable
-    public static Float objToFloat(Object value) {
-        if (isEmptyStr(value)) {
-            return null;
-        }
-        try {
-            return Float.parseFloat(String.valueOf(value));
-        } catch (Exception e) {
-            log.debug("objToFloat :" + value.toString());
-        }
-        return null;
-    }
-
-    /**
-     * 对象转换为布尔值， 1 true 转换为true，其余转换为false
-     *
-     * @param value 待转换对象
-     * @return 布尔值
-     */
-    @stable
-    public static Boolean nullToBoolean(Object value) {
-        return !isEmptyStr(value) && ("1".equals(value.toString().trim()) || "true".equalsIgnoreCase(value.toString().trim()));
-    }
-
-    /**
-     * 对象转换为布尔值，空字符串等转换为null
-     * 1 true ==>true
-     * 0 false ==> false
-     * 其他的均为null
-     *
-     * @param value 待转换对象
-     * @return 布尔值或者null
-     */
-    @stable
-    public static Boolean objToBoolean(Object value) {
-        if (isEmptyStr(value))
-            return null;
-        if ("1".equals(value.toString().trim())
-                || "true".equalsIgnoreCase(value.toString().trim()))
-            return true;
-        if ("0".equals(value.toString().trim())
-                || "false".equalsIgnoreCase(value.toString().trim()))
-            return false;
-
-        return null;
-    }
 
     /**
      * 字符串转换为Long 空字符串，无法转换的字符串为null
@@ -458,7 +272,6 @@ public class StringUtil {
                 longList.add(Long.valueOf(str));
             } catch (Exception e) {
                 //e.printStackTrace();
-                log.debug("strListToLongList convert Exception @:" + str);
             }
         }
         return longList;
@@ -747,29 +560,43 @@ public class StringUtil {
     }
 
     /**
-     * 按照默认值将对象转换为Int，如果转换失败，则返回默认值。默认值为null则为0
-     * <br>
+     * 字符串数据高亮 实际使用replaceAll处理
      *
-     * @param value        待转换对象
-     * @param defaultValue 默认值
-     * @return 返回值
+     * @param source 源数据
+     * @param find   匹配数据
+     * @param pre    高亮头部tag
+     * @param post   高亮尾部tag
+     * @return 高亮后的字符串
      */
     @stable
-    public static Integer toInt(Object value, Integer defaultValue) {
-        if (defaultValue == null) {
-            defaultValue = 0;
+    public static String highlightString(final String source, final String find, final String pre, final String post) {
+        if (source == null) {
+            return null;
         }
-        if (value == null) {
-            return defaultValue;
+        if (find == null || source.length() < find.length()) {
+            return source;
         }
-        try {
-            return Integer.parseInt(value.toString());
-        } catch (final NumberFormatException nfe) {
-            return defaultValue;
+        if (!source.contains(find)) {
+            return source;
         }
+        String copy = source + "";
+        return copy.replaceAll(find, pre + find + post);
     }
 
-    /////////////////////////////////////////////////////以下是未完成或者不明确行为的代码，代码只有参考意义，暂时全部设置为private
+    /**
+     * 将数字字符转成实际的int(0-9) 无法转换的情况返回null
+     * @param ch 待处理字符
+     * @return 返回数字
+     */
+    @stable
+    public static Integer getCharVal(Character ch){
+        if(ch == null || !Character.isDigit(ch)){
+            return null;
+        }
+        return Character.digit(ch,10);
+    }
+
+    /////////////////////////////////////////////////////以下是未完成的代码，代码只有参考意义，暂时全部设置为private
     private String hexStringToString(String hex, String charset) {
         StringBuilder sbuf = new StringBuilder();
         try {

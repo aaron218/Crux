@@ -7,12 +7,8 @@ import java.util.LinkedHashMap;
  *
  * @author lic
  */
-public class CacheLRU extends LinkedHashMap<String,Object>{
+public class CacheLRU extends LinkedHashMap<String, Object> {
     private static final long serialVersionUID = -8782397547207272211L;
-
-
-
-
 
 
 }

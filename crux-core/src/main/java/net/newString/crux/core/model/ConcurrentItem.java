@@ -8,6 +8,6 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  * @author lic
  */
-public class ConcurrentItem extends ConcurrentHashMap<String,Object> implements Serializable {
+public class ConcurrentItem extends ConcurrentHashMap<String, Object> implements Serializable {
     private static final long serialVersionUID = 2629197375524473962L;
 }

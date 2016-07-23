@@ -13,7 +13,7 @@ import java.security.Security;
  * 未验证
  */
 @stable
-public class DesUtil {
+public abstract class DesUtil {
 
     /**
      * 字符串默认键值

@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>crux-core</artifactId>
-    <version>1.2.0</version>
+    <version>${crux.core.version}</version>
 
     <description>最基本核心包，使用了Java基本库编辑。要求java8以上 本项目部分代码参考了 commons lang包，按照业务进行了更改</description>
 
@@ -29,7 +29,7 @@
     </build>
 
     <properties>
-        <crux.core.version>${crux.version}</crux.core.version>
+        <crux.core.version>${crux.module.version}</crux.core.version>
     </properties>
 
 </project>
