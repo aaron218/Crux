@@ -96,7 +96,7 @@ public class CNPersonIDUtil {
      * @param id 待验证身份证号
      * @return 是否合法
      */
-    public static boolean validIDFast(String id){
+    public static boolean validIDSimple(String id){
         if(id==null || !(id.length()==15 || id.length()==18)){
             return false;
         }
