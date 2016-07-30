@@ -4,7 +4,7 @@ import net.newString.crux.core.stable;
 
 import java.math.BigDecimal;
 
-public class ObjectUtil {
+public abstract class ObjectUtil {
 
 
     /**

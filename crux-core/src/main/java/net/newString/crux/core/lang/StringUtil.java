@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
  * 字符串处理工具，包括一些数值转换，同时包括一部分对Object的处理
  */
 @stable("lic")
-public class StringUtil {
+public abstract class StringUtil {
 
     private static char hexDigits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8',
             '9', 'a', 'b', 'c', 'd', 'e', 'f'};

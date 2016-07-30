@@ -10,7 +10,7 @@ import java.util.Random;
  *
  */
 @stable
-public class RandomUtil {
+public abstract class RandomUtil {
 
     private static Random rnd = null;
 
