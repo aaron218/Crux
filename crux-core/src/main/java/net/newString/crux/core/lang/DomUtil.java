@@ -41,13 +41,13 @@ public abstract class DomUtil {
     }
 
     public static Document getDocument() {
-        Document doc = null;
         try {
-            doc = factory.newDocumentBuilder().newDocument();
-        } catch (ParserConfigurationException e) {
+            Document doc = factory.newDocumentBuilder().newDocument();
+            doc.setXmlStandalone(true);
+            return doc;
+        } catch (ParserConfigurationException ignored) {
+            return null;
         }
-        doc.setXmlStandalone(true);
-        return doc;
     }
 
     /**
