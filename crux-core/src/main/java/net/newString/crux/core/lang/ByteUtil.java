@@ -56,7 +56,6 @@ public abstract class ByteUtil {
     public static short byte2short(byte b[]) {
         if (b.length < 2)
             return 0;
-
         return (short) ((b[1] & 0xff) | (b[0] & 0xff) << 8);
     }
 
