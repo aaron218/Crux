@@ -1,19 +1,19 @@
 package net.newString.crux.core.model;
 
-import net.newString.crux.core.lang.ByteUtil;
 import net.newString.crux.core.lang.BytesConvert;
 import net.newString.crux.core.model.Exception.ModelConvertException;
 
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created on 2016/7/22 11:06.
  *
  * @author lic
  */
-public class Item extends HashMap<String, Object> implements Serializable {
+public class CruxItem extends HashMap<String, Object> implements Serializable {
     private static final long serialVersionUID = 2629197375524473962L;
 
     /**
@@ -35,16 +35,21 @@ public class Item extends HashMap<String, Object> implements Serializable {
      * @return 结果 或者抛出异常
      * @throws ModelConvertException
      */
-    public static Item fromBytes(byte[] bytes) throws ModelConvertException{
+    public static CruxItem fromBytes(byte[] bytes) throws ModelConvertException{
         try {
             Object obj = BytesConvert.byteToObject(bytes);
-            if(obj instanceof Item){
-                return (Item) obj;
+            if(obj instanceof CruxItem){
+                return (CruxItem) obj;
             }
-        } catch (IOException | ClassNotFoundException e) {
+            if(obj instanceof Map){
+                CruxItem cruxItem = new CruxItem();
+                cruxItem.putAll((Map<String, Object>) obj);
+                return cruxItem;
+            }
+        } catch (Exception e) {
             throw new ModelConvertException(e);
         }
         throw new ModelConvertException("ModelConvertException:" +
-                "\n\tThe Object convert from bytes is not an instance of Item!");
+                "\n\tThe Object convert from bytes is not an instance of CruxItem or Map<String, Object>!");
     }
 }
