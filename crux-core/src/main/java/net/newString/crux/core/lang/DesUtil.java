@@ -5,6 +5,7 @@ import net.newString.crux.core.stable;
 import javax.crypto.Cipher;
 import java.security.Key;
 import java.security.Security;
+import java.util.Date;
 
 /**
  * DES加密和解密工具,可以对字符串进行加密和解密操作  。
@@ -178,10 +179,7 @@ public abstract class DesUtil {
         for (int i = 0; i < arrBTmp.length && i < arrB.length; i++) {
             arrB[i] = arrBTmp[i];
         }
-
         // 生成密钥
-
         return new javax.crypto.spec.SecretKeySpec(arrB, "DES");
     }
-
 }

@@ -1,6 +1,7 @@
 package net.newString.crux.core.model;
 
 import net.newString.crux.core.lang.ByteUtil;
+import net.newString.crux.core.lang.BytesConvert;
 import net.newString.crux.core.model.Exception.ModelConvertException;
 
 import java.io.IOException;
@@ -22,7 +23,7 @@ public class Item extends HashMap<String, Object> implements Serializable {
      */
     public byte[] toBytes() throws ModelConvertException {
         try {
-            return ByteUtil.objToByte(this);
+            return BytesConvert.objToByte(this);
         } catch (IOException e) {
             throw new ModelConvertException(e);
         }
@@ -36,7 +37,7 @@ public class Item extends HashMap<String, Object> implements Serializable {
      */
     public static Item fromBytes(byte[] bytes) throws ModelConvertException{
         try {
-            Object obj = ByteUtil.byteToObject(bytes);
+            Object obj = BytesConvert.byteToObject(bytes);
             if(obj instanceof Item){
                 return (Item) obj;
             }

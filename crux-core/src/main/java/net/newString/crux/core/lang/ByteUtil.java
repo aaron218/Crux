@@ -507,44 +507,4 @@ public abstract class ByteUtil {
         return sb.toString();
     }
 
-    /**
-     * 将对象转换成Byte，注意，对象以及其组合属性应该均为基本属性或者实现序列化的接口
-     *
-     * @param obj 传入对象
-     * @return byte数组
-     * @throws IOException
-     */
-    public synchronized static byte[] objToByte(Object obj) throws IOException {
-        if (obj == null) {
-            return null;
-        }
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-        objectOutputStream.writeObject(obj);
-        byte[] bytes = outputStream.toByteArray();
-        outputStream.close();
-        objectOutputStream.close();
-        return bytes;
-    }
-
-    /***
-     * 将Byte数组转换成对象 注意可能部分属性为不可序列化导致对象不完全可用
-     *
-     * @param bytes 传入字符串
-     * @return 对象
-     * @throws IOException
-     * @throws ClassNotFoundException
-     */
-    public synchronized static Object byteToObject(byte[] bytes) throws IOException, ClassNotFoundException {
-        if (bytes == null || bytes.length == 0) {
-            return null;
-        }
-        ByteArrayInputStream inputStream = new ByteArrayInputStream(bytes);
-        ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
-        Object object = objectInputStream.readObject();
-        inputStream.close();
-        objectInputStream.close();
-        return object;
-    }
-
 }

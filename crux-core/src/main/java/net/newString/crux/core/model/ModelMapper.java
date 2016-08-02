@@ -69,7 +69,7 @@ public abstract class ModelMapper {
                 }
             }
             return (D) obj;
-        } catch (NoSuchMethodException | IllegalAccessException
+        } catch (NoSuchMethodException | IllegalAccessException | ClassCastException
                 | InstantiationException | InvocationTargetException e) {
             throw new ModelMapperException(e);
         }
@@ -77,7 +77,7 @@ public abstract class ModelMapper {
 
 
     /**
-     * 将一个对象转化为Map，属性名称转换为key，属性值为value
+     * 将一个对象转化为Map，属性名称转换为key，属性值为value 获取的属性必须具备对应的public的Get方法
      *
      * @param source 源对象
      * @return 转化后的对象
@@ -88,9 +88,10 @@ public abstract class ModelMapper {
 
 
     /**
-     * @param source
-     * @param destinationType
-     * @return
+     * 将一个Map转换为对象，属性的名称映射为key，属性值映射为value，获取的属性必须具有public属性的set方法
+     * @param source 源数据Map
+     * @param destinationType 目标类型
+     * @return 目标对象
      */
     public static <D> D fromMap(Map<String, Object> source, Class<D> destinationType) {
         return null;

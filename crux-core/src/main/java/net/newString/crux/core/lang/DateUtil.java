@@ -9,21 +9,21 @@ import java.util.*;
 
 /**
  * Created by aaron on 6/23/2015.
- * 日期操作工具集
+ * 日期操作工具集 如需要更复杂的功能，
  */
 @stable("lic")
 public abstract class DateUtil {
-    public static final String DATE_YYYYMMDD_PATTERN = "yyyyMMdd";
-    public static final String DATE_TIME_MS_PATTERN = "yyyy-MM-dd HH:mm:ss.S"; //标准输出包括毫秒数
-    public static final String DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
-    public static final String TIME_HHMM_PATTERN = "HH:mm";
-    public static final String TIME_HHMM_PATTERN2 = "HHmm";
-    public static final String DATE_TIME_NO_HORI_PATTERN = "yyyyMMdd HH:mm:ss";
-    public static final String DATE_TIME_NO_SPACE_PATTERN = "yyyyMMddHHmmss";
-    public static final String DATE_TIME_NO_SPACE_PATTERN_Mills = "yyyyMMddHHmmssS";
-    public static final String DATE_TIME_NO_SPACE_PATTERN_Dot_Mills = "yyyyMMddHHmmss.S";
-    public static final String DATE_TIME_PLAYBILL_PATTERN = "yyyyMMdd HH:mm";
-    public static final String DATE_ENGLISH_FORMAT = "EEE MMM dd HH:mm:ss zzz yyyy";  //CST时间
+    private static final String DATE_YYYYMMDD_PATTERN = "yyyyMMdd";
+    private static final String DATE_TIME_MS_PATTERN = "yyyy-MM-dd HH:mm:ss.S"; //标准输出包括毫秒数
+    private static final String DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
+    private static final String TIME_HHMM_PATTERN = "HH:mm";
+    private static final String TIME_HHMM_PATTERN2 = "HHmm";
+    private static final String DATE_TIME_NO_HORI_PATTERN = "yyyyMMdd HH:mm:ss";
+    private static final String DATE_TIME_NO_SPACE_PATTERN = "yyyyMMddHHmmss";
+    private static final String DATE_TIME_NO_SPACE_PATTERN_Mills = "yyyyMMddHHmmssS";
+    private static final String DATE_TIME_NO_SPACE_PATTERN_Dot_Mills = "yyyyMMddHHmmss.S";
+    private static final String DATE_TIME_PLAYBILL_PATTERN = "yyyyMMdd HH:mm";
+    private static final String DATE_ENGLISH_FORMAT = "EEE MMM dd HH:mm:ss zzz yyyy";  //CST时间
 
     public static final SimpleDateFormat timeFormat = new SimpleDateFormat(DATE_TIME_MS_PATTERN);
     public static final SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_TIME_PATTERN);
@@ -44,12 +44,11 @@ public abstract class DateUtil {
 
 
     /**
-     * Checkstyle rule: utility classes should not have public constructor
      */
     private DateUtil() {
     }
 
-    public static Map<String, SimpleDateFormat> getInstance() {
+    private static Map<String, SimpleDateFormat> getInstance() {
         if (patternFormatMap == null) {
             patternFormatMap = new HashMap<String, SimpleDateFormat>();
             patternFormatMap.put(DATE_TIME_MS_PATTERN, timeFormat);
@@ -75,7 +74,7 @@ public abstract class DateUtil {
      * @return 转换日期
      */
     @stable
-    public static String formatDate(String pattern, Date date) {
+    public synchronized static String formatDate(String pattern, Date date) {
         SimpleDateFormat sdf = DateUtil.getInstance().get(pattern);
 
         if (sdf == null) {
@@ -93,7 +92,7 @@ public abstract class DateUtil {
      * @return Date对象
      */
     @stable
-    public static Date parseDate(String pattern, String dateStr) {
+    public synchronized static Date parseDate(String pattern, String dateStr) {
         SimpleDateFormat sdf = DateUtil.getInstance().get(pattern);
         if (sdf == null) {
             sdf = new SimpleDateFormat(pattern);
@@ -115,7 +114,7 @@ public abstract class DateUtil {
      * @return 当前时间的转换值
      */
     @stable
-    public static String getNowDate(final String pattern) {
+    public synchronized static String getNowDate(final String pattern) {
         return formatDate(pattern, new Date());
     }
 
@@ -188,9 +187,10 @@ public abstract class DateUtil {
         return Math.abs(System.nanoTime());
     }
 
+    //快速时间转化方法组
     /**
      * 将Date类型转换为 yyyyMMddHHmmssS 形式的Long数据 毫秒数为3位 比SimpleDateFormat速度快
-     * <br>使用拼接处理快速转换而非dateFormat 即 不处理时区问题
+     * <br>使用拼接处理快速转换而非dateFormat  不处理时区问题
      * <br>该方法内部使用了不建议使用的JDK方法
      * @param date 待处理数据
      * @return 返回Long 或者 null
@@ -212,7 +212,7 @@ public abstract class DateUtil {
 
     /**
      * 将Date类型转换为 yyyyMMddHHmmss 形式的Long数据 比SimpleDateFormat速度快
-     * <br>使用拼接处理快速转换而非dateFormat 即 不处理时区问题
+     * <br>使用拼接处理快速转换而非dateFormat  不处理时区问题
      * <br>该方法内部使用了不建议使用的JDK方法
      * @param date 待处理数据
      * @return 返回Long 或者 null
@@ -233,7 +233,7 @@ public abstract class DateUtil {
 
     /**
      * 将Date类型转换为yyyyMMdd形式的Long数据 比SimpleDateFormat速度快
-     * <br>使用拼接处理快速转换而非dateFormat 即 不处理时区问题
+     * <br>使用拼接处理快速转换而非dateFormat  不处理时区问题
      * <br>该方法内部使用了不建议使用的JDK方法
      * @param date 待处理数据
      * @return 返回Long 或者 null
@@ -247,6 +247,43 @@ public abstract class DateUtil {
         value += (long) (date.getMonth() + 1) * 100L;
         value += (long) (date.getYear() + 1900) * 10000L;
         return value;
+    }
+
+    /**
+     * 将Date类型转换为yyyy-MM-dd HH:mm:ss形式的String数据 比SimpleDateFormat速度快
+     * <br>使用拼接处理快速转换而非dateFormat  不处理时区问题
+     * <br>该方法内部使用了不建议使用的JDK方法
+     * @param date 待处理数据
+     * @return 转换后字符串
+     */
+    @stable
+    public static String formatDataToTimeStr(final Date date){
+        if (date == null) {
+            return null;
+        }
+        StringBuilder sb = new StringBuilder().append(date.getYear()+1900).append("-");
+        sb.append(date.getMonth()+1).append("-");
+        sb.append(date.getDay()).append(" ");
+        sb.append(date.getHours()).append(":").append(date.getMinutes()).append(":").append(date.getSeconds());
+        return sb.toString();
+    }
+
+    /**
+     * 将Date类型转换为yyyy-MM-dd形式的String数据 比SimpleDateFormat速度快
+     * <br>使用拼接处理快速转换而非dateFormat  不处理时区问题
+     * <br>该方法内部使用了不建议使用的JDK方法
+     * @param date 待处理数据
+     * @return 转换后字符串
+     */
+    @stable
+    public static String formatDataToDayStr(final Date date){
+        if (date == null) {
+            return null;
+        }
+        StringBuilder sb = new StringBuilder().append(date.getYear()+1900).append("-");
+        sb.append(date.getMonth()+1).append("-");
+        sb.append(date.getDay());
+        return sb.toString();
     }
 
 

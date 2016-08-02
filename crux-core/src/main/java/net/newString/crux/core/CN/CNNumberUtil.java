@@ -60,9 +60,9 @@ public class CNNumberUtil {
 
 
     /**
-     * 将double类型的金钱数字转换为中文的金钱数字 小树部分包括角分厘
-     * @param value
-     * @return
+     * 将double类型的金钱数字转换为中文的金钱数字 小数部分包括角分厘
+     * @param value 待处理数据
+     * @return 中文数字
      */
     private static String toSimplifiedMoney(Double value){
         if(value==null || value.longValue() > Long.MAX_VALUE){
@@ -73,9 +73,9 @@ public class CNNumberUtil {
     }
 
     /**
-     * 将double类型的金钱数字转换为中文的金钱数字 小树部分包括角分厘
-     * @param value
-     * @return
+     * 将double类型的金钱数字转换为中文的金钱数字 小数部分包括角分厘
+     * @param value 待处理数据
+     * @return 大写中文数字
      */
     private static String toTraditionalMoney(Double value){
         return null;
@@ -171,13 +171,4 @@ public class CNNumberUtil {
         return sb.toString();
     }
 
-
-    public static void main(String[] args) {
-        System.out.println(fiveStepConvertSimple(1200L, simplifiedNumber));
-        System.out.println(fiveStepConvertSimple(1200L, traditionalNumber));
-        System.out.println(fullFromat(9220000000477580007L, simplifiedNumber));
-        System.out.println(fullFromat(9000000203600005807L, simplifiedNumber));
-        System.out.println(fullFromat(9220000000477580007L, traditionalNumber));
-        System.out.println(fullFromat(9000000203600005807L, traditionalNumber));
-    }
 }

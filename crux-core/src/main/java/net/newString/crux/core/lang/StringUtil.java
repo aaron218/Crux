@@ -450,7 +450,8 @@ public abstract class StringUtil {
     }
 
     /**
-     * 得到一个Integer值的指定长度的字符串形式 参考{@link StringUtil#getStringByAppointLen(String, int, boolean)}
+     * 得到一个Integer值的指定长度的字符串形式
+     * 参考{@link StringUtil#getStringByAppointLen(String, int, boolean)}
      *
      * @param i   Integer
      * @param len 长度
@@ -585,15 +586,31 @@ public abstract class StringUtil {
 
     /**
      * 将数字字符转成实际的int(0-9) 无法转换的情况返回null
+     *
      * @param ch 待处理字符
      * @return 返回数字
      */
     @stable
-    public static Integer getCharVal(Character ch){
-        if(ch == null || !Character.isDigit(ch)){
+    public static Integer getCharVal(Character ch) {
+        if (ch == null || !Character.isDigit(ch)) {
             return null;
         }
-        return Character.digit(ch,10);
+        return Character.digit(ch, 10);
+    }
+
+    /**
+     * 反序一个字符串 内部使用StringBuilder来实现。如果输入为null 返回为null;
+     *
+     * @param str 待处理字符串
+     * @return 处理后字符串
+     */
+    @stable
+    public static String reverse(String str) {
+        if (str == null) {
+            return null;
+        }
+        StringBuilder sb = new StringBuilder(str);
+        return sb.reverse().toString();
     }
 
     /////////////////////////////////////////////////////以下是未完成的代码，代码只有参考意义，暂时全部设置为private
