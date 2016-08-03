@@ -3,7 +3,7 @@ package net.newString.crux.core.CN;
 import java.util.Date;
 
 /**
- * 中文日期处理   年月日处理 天干地支处理 属相处理
+ * 中文日期处理 农历年月日处理 天干地支处理 属相处理
  * @author lic
  */
 public class CNDateUtil {
@@ -19,11 +19,7 @@ public class CNDateUtil {
     /**
      * 中国属相
      */
-    String[] animalZodiac = {};
-    /**
-     * 十二星座
-     */
-    String[] zodic = {};
+    String[] animalZodiac = {"鼠","牛","虎","兔","龙","蛇","马","羊","猴","鸡","狗","猪"};
 
 
 

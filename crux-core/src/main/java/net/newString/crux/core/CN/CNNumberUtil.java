@@ -73,7 +73,7 @@ public class CNNumberUtil {
     }
 
     /**
-     * 将double类型的金钱数字转换为中文的金钱数字 小数部分包括角分厘
+     * 将double类型的金钱数字转换为大写中文的金钱数字 小数部分包括角分厘
      * @param value 待处理数据
      * @return 大写中文数字
      */
