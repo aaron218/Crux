@@ -4,6 +4,7 @@ import net.newString.crux.core.model.Exception.ModelMapperException;
 
 import java.lang.reflect.*;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -82,7 +83,9 @@ public abstract class ModelMapper {
      * @param source 源对象
      * @return 转化后的对象
      */
-    public static Map<String, Object> toMap(Object source) {
+    public static Map<String, Object> toMap(Object source) throws ModelMapperException {
+        Field[] fields = source.getClass().getDeclaredFields();
+
         return null;
     }
 

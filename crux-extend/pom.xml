@@ -25,13 +25,16 @@
 
     <artifactId>crux-extend</artifactId>
     <version>${crux.extend.version}</version>
-    <description>扩展的crux包，与core包不同，通过二次封装一些第三方库，本包提供了更加丰富的功能，但是也引入了更多的依赖</description>
+    <description>扩展的crux包，与core包不同，通过二次封装一些第三方库，本包提供了更加丰富的功能，但是也引入了更多的依赖 同时也会依赖core</description>
 
     <dependencies>
+        <!--数据源处理所需要的基本包 所有scope为provided级别 version为功能兼容的建议最低版本号
+            使用时需要提供等于或者高于此版本号的兼容包 否则可能会找不到部分类或实现-->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <version>4.5.1</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -40,9 +43,9 @@
             <version>${crux.log4j.version}</version>
         </dependency>
         <dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-            <version>${crux.commons-logging.version}</version>
+            <groupId>net.newString</groupId>
+            <artifactId>crux-core</artifactId>
+            <version>${crux.module.version}</version>
         </dependency>
     </dependencies>
 

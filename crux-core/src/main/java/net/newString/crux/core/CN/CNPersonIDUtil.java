@@ -100,11 +100,18 @@ public class CNPersonIDUtil {
         if(id==null || !(id.length()==15 || id.length()==18)){
             return false;
         }
+        if(id.contains("000000")){//号码中不允许6个0连续出现
+            return false;
+        }
         if(id.length()==15 && NumberUtil.isDigits(id)){
             return true;
         }
-        if(id.length()==18 && !NumberUtil.isDigits(id.substring(0,17))){
-            return id.endsWith("X") || id.endsWith("x");
+        if(id.length()==18){
+            if(NumberUtil.isDigits(id)){
+                return true;
+            }else if(NumberUtil.isDigits(id.substring(0,17))){
+                return id.endsWith("X") || id.endsWith("x") || id.endsWith("*");
+            }
         }
         return false;
     }
