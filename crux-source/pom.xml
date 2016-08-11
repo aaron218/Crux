@@ -23,6 +23,11 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
+            <!--<plugin>-->
+            <!--<groupId>org.apache.mojo</groupId>-->
+            <!--<artifactId>native2ascii-maven-plugin</artifactId>-->
+            <!--<version>1.0-alpha-1</version>-->
+            <!--</plugin>-->
         </plugins>
     </build>
 
@@ -72,6 +77,13 @@
             <artifactId>commons-lang3</artifactId>
             <version>${crux.core.commons-lang3.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.elasticsearch</groupId>
+            <artifactId>elasticsearch</artifactId>
+            <version>2.3.3</version>
+        </dependency>
+
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>

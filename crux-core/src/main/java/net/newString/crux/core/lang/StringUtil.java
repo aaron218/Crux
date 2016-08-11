@@ -613,6 +613,28 @@ public abstract class StringUtil {
         return sb.reverse().toString();
     }
 
+    /**
+     * 判断sources字符串是否包括指定字符串列表中任何一个
+     * @param source 源字符串
+     * @param multiMatch 多值
+     * @return 是否包含多值中任何一个
+     */
+    @stable
+    public static boolean containsOne(String source,Collection<String> multiMatch){
+        if(isEmptyStr(source)){
+            return false;
+        }
+        if(CollectionUtil.isEmpty(multiMatch)){
+            return true;
+        }
+        for(String str : multiMatch){
+            if(source.contains(str)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     /////////////////////////////////////////////////////以下是未完成的代码，代码只有参考意义，暂时全部设置为private
     private String hexStringToString(String hex, String charset) {
         StringBuilder sbuf = new StringBuilder();

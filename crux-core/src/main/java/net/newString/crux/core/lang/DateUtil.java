@@ -13,29 +13,29 @@ import java.util.*;
  */
 @stable("lic")
 public abstract class DateUtil {
-    private static final String DATE_YYYYMMDD_PATTERN = "yyyyMMdd";
-    private static final String DATE_TIME_MS_PATTERN = "yyyy-MM-dd HH:mm:ss.S"; //标准输出包括毫秒数
-    private static final String DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
-    private static final String TIME_HHMM_PATTERN = "HH:mm";
-    private static final String TIME_HHMM_PATTERN2 = "HHmm";
-    private static final String DATE_TIME_NO_HORI_PATTERN = "yyyyMMdd HH:mm:ss";
-    private static final String DATE_TIME_NO_SPACE_PATTERN = "yyyyMMddHHmmss";
-    private static final String DATE_TIME_NO_SPACE_PATTERN_Mills = "yyyyMMddHHmmssS";
-    private static final String DATE_TIME_NO_SPACE_PATTERN_Dot_Mills = "yyyyMMddHHmmss.S";
-    private static final String DATE_TIME_PLAYBILL_PATTERN = "yyyyMMdd HH:mm";
-    private static final String DATE_ENGLISH_FORMAT = "EEE MMM dd HH:mm:ss zzz yyyy";  //CST时间
+    public static final String DATE_YYYYMMDD_PATTERN = "yyyyMMdd";
+    public static final String DATE_TIME_MS_PATTERN = "yyyy-MM-dd HH:mm:ss.S"; //标准输出包括毫秒数
+    public static final String DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
+    public static final String TIME_HHMM_PATTERN = "HH:mm";
+    public static final String TIME_HHMM_PATTERN2 = "HHmm";
+    public static final String DATE_TIME_NO_HORI_PATTERN = "yyyyMMdd HH:mm:ss";
+    public static final String DATE_TIME_NO_SPACE_PATTERN = "yyyyMMddHHmmss";
+    public static final String DATE_TIME_NO_SPACE_PATTERN_Mills = "yyyyMMddHHmmssS";
+    public static final String DATE_TIME_NO_SPACE_PATTERN_Dot_Mills = "yyyyMMddHHmmss.S";
+    public static final String DATE_TIME_PLAYBILL_PATTERN = "yyyyMMdd HH:mm";
+    public static final String DATE_ENGLISH_FORMAT = "EEE MMM dd HH:mm:ss zzz yyyy";  //CST时间
 
-    public static final SimpleDateFormat timeFormat = new SimpleDateFormat(DATE_TIME_MS_PATTERN);
-    public static final SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_TIME_PATTERN);
-    public static final SimpleDateFormat yyyyMMdd = new SimpleDateFormat(DATE_YYYYMMDD_PATTERN);
-    public static final SimpleDateFormat HHmm = new SimpleDateFormat(TIME_HHMM_PATTERN);
-    public static final SimpleDateFormat HHmm2 = new SimpleDateFormat(TIME_HHMM_PATTERN2);
-    public static final SimpleDateFormat yyyyMMdd_HHmmss = new SimpleDateFormat(DATE_TIME_NO_HORI_PATTERN);
-    public static final SimpleDateFormat yyyyMMddHHmmssFile = new SimpleDateFormat(DATE_TIME_NO_SPACE_PATTERN);
-    public static final SimpleDateFormat yyyyMMddHHmmssDotMills = new SimpleDateFormat(DATE_TIME_NO_SPACE_PATTERN_Dot_Mills);
-    public static final SimpleDateFormat yyyyMMddHHmmssMills = new SimpleDateFormat(DATE_TIME_NO_SPACE_PATTERN_Mills);
-    public static final SimpleDateFormat PLAYBILL_TIME_PATTERN = new SimpleDateFormat(DATE_TIME_PLAYBILL_PATTERN);
-    public static final SimpleDateFormat ENGLISH_SDF = new SimpleDateFormat(DATE_ENGLISH_FORMAT, Locale.ENGLISH);
+    private static final SimpleDateFormat timeFormat = new SimpleDateFormat(DATE_TIME_MS_PATTERN);
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_TIME_PATTERN);
+    private static final SimpleDateFormat yyyyMMdd = new SimpleDateFormat(DATE_YYYYMMDD_PATTERN);
+    private static final SimpleDateFormat HHmm = new SimpleDateFormat(TIME_HHMM_PATTERN);
+    private static final SimpleDateFormat HHmm2 = new SimpleDateFormat(TIME_HHMM_PATTERN2);
+    private static final SimpleDateFormat yyyyMMdd_HHmmss = new SimpleDateFormat(DATE_TIME_NO_HORI_PATTERN);
+    private static final SimpleDateFormat yyyyMMddHHmmss = new SimpleDateFormat(DATE_TIME_NO_SPACE_PATTERN);
+    private static final SimpleDateFormat yyyyMMddHHmmssDotMills = new SimpleDateFormat(DATE_TIME_NO_SPACE_PATTERN_Dot_Mills);
+    private static final SimpleDateFormat yyyyMMddHHmmssMills = new SimpleDateFormat(DATE_TIME_NO_SPACE_PATTERN_Mills);
+    private static final SimpleDateFormat PLAYBILL_TIME_PATTERN = new SimpleDateFormat(DATE_TIME_PLAYBILL_PATTERN);
+    private static final SimpleDateFormat ENGLISH_SDF = new SimpleDateFormat(DATE_ENGLISH_FORMAT, Locale.ENGLISH);
     /**
      * 计算时间的起始时间
      */
@@ -57,7 +57,7 @@ public abstract class DateUtil {
             patternFormatMap.put(TIME_HHMM_PATTERN, HHmm);
             patternFormatMap.put(TIME_HHMM_PATTERN2, HHmm2);
             patternFormatMap.put(DATE_TIME_NO_HORI_PATTERN, yyyyMMdd_HHmmss);
-            patternFormatMap.put(DATE_TIME_NO_SPACE_PATTERN, yyyyMMddHHmmssFile);
+            patternFormatMap.put(DATE_TIME_NO_SPACE_PATTERN, yyyyMMddHHmmss);
             patternFormatMap.put(DATE_TIME_NO_SPACE_PATTERN_Mills, yyyyMMddHHmmssMills);
             patternFormatMap.put(DATE_TIME_NO_SPACE_PATTERN_Dot_Mills, yyyyMMddHHmmssDotMills);
             patternFormatMap.put(DATE_TIME_PLAYBILL_PATTERN, PLAYBILL_TIME_PATTERN);

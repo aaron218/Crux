@@ -9,6 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  * @author lic
  */
+@Deprecated //TODO 未完成
 public class ConcurrentItemBucket extends ConcurrentHashMap<String, Object> implements Serializable {
     private static final long serialVersionUID = -1655165845615003943L;
 
