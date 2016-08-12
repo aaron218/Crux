@@ -438,63 +438,48 @@ public abstract class StringUtil {
     }
 
     /**
-     * 得到一个Long值的指定长度的字符串形式 参考{@link StringUtil#getStringByAppointLen(String, int, boolean)}
-     *
-     * @param l   Long类型数据
-     * @param len 长度
-     * @return 处理后字符串
-     */
-    @stable
-    public static String getStringByAppointLen(Long l, int len) {
-        return getStringByAppointLen(l.toString(), len, true);
-    }
-
-    /**
-     * 得到一个Integer值的指定长度的字符串形式
-     * 参考{@link StringUtil#getStringByAppointLen(String, int, boolean)}
-     *
-     * @param i   Integer
-     * @param len 长度
-     * @return 处理后字符串
-     */
-    @stable
-    public static String getStringByAppointLen(Integer i, int len) {
-        if (i == null) {
-            return null;
-        }
-        return getStringByAppointLen(i.toString(), len, true);
-    }
-
-    /**
      * 得到一个String值的指定长度的字符串形式
-     * NOTE:	不足的前面添'0'
+     * NOTE:	不足的添'0'
+     * <br>如果 headFill 为true 则不足时前面补0 超过时截取前面相应长度的数据
+     * 如len=4 headFill=true fill='0'  ::"go"->"00go", "smile"->"smil"
+     * <br>如果 headFill 为false 则不足时后面补0 超过时截取后面相应长度的数据
+     * 如len=4 headFill=false fill='0' ::"go"->"go00", "smile"->"mile"
      *
-     * @param s       原始字符串
-     * @param len     处理后长度
-     * @param cutHead 当s的长度大于len时，截取方式：true,截掉头部；否则从截掉尾部
-     *                例如getStringByAppointLen("12345",3,true) ---> "345"
+     * @param s        原始字符串
+     * @param len      处理后长度
+     * @param headFill 头部补充模式
+     * @param fill     补充用字符
      * @return 处理后字符串
      */
     @stable
-    public static String getStringByAppointLen(String s, int len, boolean cutHead) {
+    public static String getStringByAppointLen(String s, int len, char fill, boolean headFill) {
         if (s == null || len <= 0) {
             return null;
         }
         if (len > s.length()) {
             int size = len - s.length();
-            StringBuilder sb = new StringBuilder();
-            while (size-- > 0) {
-                sb.append("0");
+            if(headFill){
+                StringBuilder sb = new StringBuilder();
+                while (size-- > 0) {
+                    sb.append(fill);
+                }
+                sb.append(s);
+                return sb.toString();
+            }else{
+                StringBuilder sb = new StringBuilder();
+                sb.append(s);
+                while (size-- > 0) {
+                    sb.append(fill);
+                }
+                return sb.toString();
             }
-            sb.append(s);
-            return sb.toString();
         } else if (len == s.length()) {
             return s;
         } else {
-            if (cutHead) {
-                return s.substring(s.length() - len, s.length());
-            } else {
+            if (headFill) {
                 return s.substring(0, len);
+            } else {
+                return s.substring(s.length() - len, s.length());
             }
         }
     }
@@ -615,20 +600,21 @@ public abstract class StringUtil {
 
     /**
      * 判断sources字符串是否包括指定字符串列表中任何一个
-     * @param source 源字符串
+     *
+     * @param source     源字符串
      * @param multiMatch 多值
      * @return 是否包含多值中任何一个
      */
     @stable
-    public static boolean containsOne(String source,Collection<String> multiMatch){
-        if(isEmptyStr(source)){
+    public static boolean containsOne(String source, Collection<String> multiMatch) {
+        if (isEmptyStr(source)) {
             return false;
         }
-        if(CollectionUtil.isEmpty(multiMatch)){
+        if (CollectionUtil.isEmpty(multiMatch)) {
             return true;
         }
-        for(String str : multiMatch){
-            if(source.contains(str)){
+        for (String str : multiMatch) {
+            if (source.contains(str)) {
                 return true;
             }
         }

@@ -41,6 +41,14 @@
             <version>5.3.1</version>
             <scope>provided</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.drools/drools-core -->
+        <dependency>
+            <groupId>org.drools</groupId>
+            <artifactId>drools-core</artifactId>
+            <version>6.4.0.Final</version>
+            <scope>provided</scope>
+        </dependency>
+
 
         <dependency>
             <groupId>log4j</groupId>

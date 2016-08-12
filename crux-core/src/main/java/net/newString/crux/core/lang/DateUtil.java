@@ -101,9 +101,8 @@ public abstract class DateUtil {
         try {
             return sdf.parse(dateStr);
         } catch (ParseException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
-
         return null;
     }
 
@@ -286,5 +285,21 @@ public abstract class DateUtil {
         return sb.toString();
     }
 
+    /**
+     * 将Date类型转换为yyyyMM形式的String数据 比SimpleDateFormat速度快
+     * <br>使用拼接处理快速转换而非dateFormat  不处理时区问题
+     * <br>该方法内部使用了不建议使用的JDK方法
+     * @param date 待处理数据
+     * @return 转换后字符串
+     */
+    @stable
+    public static String formatDataToMonthStr(final Date date){
+        if (date == null) {
+            return null;
+        }
+        StringBuilder sb = new StringBuilder().append(date.getYear()+1900);
+        sb.append(date.getMonth()+1);
+        return sb.toString();
+    }
 
 }

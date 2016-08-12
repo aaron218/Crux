@@ -1,11 +1,13 @@
 package net.newString.crux.core.CN;
 
 import net.newString.crux.core.lang.NumberUtil;
+import net.newString.crux.core.lang.StringUtil;
 import net.newString.crux.core.stable;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -124,7 +126,7 @@ public class CNPersonIDUtil {
      * @return 对应地区名称或null
      */
     @stable
-    public static String getHeadCodeValue(String code) {
+    public static Optional<String> getHeadCodeValue(String code) {
         if (IDHeadMap == null || IDHeadMap.size() == 0) {  //使用数据结构减少文件读取
             Properties prop = new Properties();
             InputStream in = CNPersonIDUtil.class.getResourceAsStream("/crux-core-personID.properties");
@@ -137,7 +139,39 @@ public class CNPersonIDUtil {
                 e.printStackTrace();
             }
         }
-        return IDHeadMap.get(code);
+        if(code==null || code.length()==0){
+            return Optional.empty();
+        }
+        String val ;
+        if(code.length()==2){
+            val = StringUtil.getStringByAppointLen(code,6,'0',false);
+            val = IDHeadMap.get(val);
+            return Optional.of(val);
+        }else if(code.length()==4){
+            String value1 = code.substring(0,2);
+            String value2 = code.substring(2,4);
+            if("00".equals(value2)){
+                return getHeadCodeValue(value1);
+            }
+            val = getHeadCodeValue(code.substring(0,2)).orElse("")
+                    +  StringUtil.null2Str(IDHeadMap.get(StringUtil.getStringByAppointLen(code, 6, '0', false)));
+            return Optional.of(val);
+        }else if(code.length()==6){
+            String value1 = code.substring(0,2);
+            String value2 = code.substring(2,4);
+            String value3 = code.substring(4,6);
+            if("00".equals(value2)){
+                return getHeadCodeValue(value1);
+            }
+            if("00".equals(value3)){
+                return getHeadCodeValue(value1+value2);
+            }
+            val = getHeadCodeValue(code.substring(0,4)).orElse("")
+                    +  StringUtil.null2Str(IDHeadMap.get(StringUtil.getStringByAppointLen(code, 6, '0', false)));
+            return Optional.of(val);
+        }else {
+            return Optional.empty();
+        }
     }
 
 }
