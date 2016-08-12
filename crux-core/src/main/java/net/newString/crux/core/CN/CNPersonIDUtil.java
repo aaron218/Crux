@@ -2,13 +2,12 @@ package net.newString.crux.core.CN;
 
 import net.newString.crux.core.lang.NumberUtil;
 import net.newString.crux.core.lang.StringUtil;
+import net.newString.crux.core.model.CruxItem;
 import net.newString.crux.core.stable;
+import sun.net.www.protocol.jar.JarURLConnection;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Properties;
+import java.io.*;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -19,7 +18,6 @@ public class CNPersonIDUtil {
     private static final char[] code = {'1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'}; // 11个
     private static final int[] factor = {0, 2, 4, 8, 5, 10, 9, 7, 3, 6, 1, 2, 4, 8, 5, 10, 9, 7}; // 18个;
     private static Map<String, String> IDHeadMap = new ConcurrentHashMap<>();
-
     /**
      * 转换15位身份证号码到18位 不验证15位证件号的合法性
      * 转换算法：首先在15位号码的第六位后面加上19，然后将这个17位的号码按照生成规范产生第18位
@@ -95,23 +93,24 @@ public class CNPersonIDUtil {
     /**
      * 快速检查是否是正确的身份证号 不验证校验位，也不验证内部各个数字的合法性
      * 15位必须全部是数字，18位的前17位必须是数字，最后一位是X或x或*
+     *
      * @param id 待验证身份证号
      * @return 是否合法
      */
-    public static boolean validIDSimple(String id){
-        if(id==null || !(id.length()==15 || id.length()==18)){
+    public static boolean validIDSimple(String id) {
+        if (id == null || !(id.length() == 15 || id.length() == 18)) {
             return false;
         }
-        if(id.contains("000000")){//号码中不允许6个0连续出现
+        if (id.contains("000000")) {//号码中不允许6个0连续出现
             return false;
         }
-        if(id.length()==15 && NumberUtil.isDigits(id)){
+        if (id.length() == 15 && NumberUtil.isDigits(id)) {
             return true;
         }
-        if(id.length()==18){
-            if(NumberUtil.isDigits(id)){
+        if (id.length() == 18) {
+            if (NumberUtil.isDigits(id)) {
                 return true;
-            }else if(NumberUtil.isDigits(id.substring(0,17))){
+            } else if (NumberUtil.isDigits(id.substring(0, 17))) {
                 return id.endsWith("X") || id.endsWith("x") || id.endsWith("*");
             }
         }
@@ -129,49 +128,20 @@ public class CNPersonIDUtil {
     public static Optional<String> getHeadCodeValue(String code) {
         if (IDHeadMap == null || IDHeadMap.size() == 0) {  //使用数据结构减少文件读取
             Properties prop = new Properties();
-            InputStream in = CNPersonIDUtil.class.getResourceAsStream("/crux-core-personID.properties");
+            InputStream in = CNPersonIDUtil.class.getResourceAsStream("/crux-core-ssxqDM.properties");
             try {
                 prop.load(in);
                 for (Object str : prop.keySet()) {
-                    IDHeadMap.put(str.toString(), new String(prop.get(str).toString().getBytes("ISO-8859-1"), "gbk"));
+                    IDHeadMap.put(str.toString(), new String(prop.get(str).toString().getBytes("ISO-8859-1"), "utf-8"));
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        if(code==null || code.length()==0){
+        if (code == null || code.length() == 0 || IDHeadMap.get(code)==null) {
             return Optional.empty();
         }
-        String val ;
-        if(code.length()==2){
-            val = StringUtil.getStringByAppointLen(code,6,'0',false);
-            val = IDHeadMap.get(val);
-            return Optional.of(val);
-        }else if(code.length()==4){
-            String value1 = code.substring(0,2);
-            String value2 = code.substring(2,4);
-            if("00".equals(value2)){
-                return getHeadCodeValue(value1);
-            }
-            val = getHeadCodeValue(code.substring(0,2)).orElse("")
-                    +  StringUtil.null2Str(IDHeadMap.get(StringUtil.getStringByAppointLen(code, 6, '0', false)));
-            return Optional.of(val);
-        }else if(code.length()==6){
-            String value1 = code.substring(0,2);
-            String value2 = code.substring(2,4);
-            String value3 = code.substring(4,6);
-            if("00".equals(value2)){
-                return getHeadCodeValue(value1);
-            }
-            if("00".equals(value3)){
-                return getHeadCodeValue(value1+value2);
-            }
-            val = getHeadCodeValue(code.substring(0,4)).orElse("")
-                    +  StringUtil.null2Str(IDHeadMap.get(StringUtil.getStringByAppointLen(code, 6, '0', false)));
-            return Optional.of(val);
-        }else {
-            return Optional.empty();
-        }
+        return Optional.of(IDHeadMap.get(code));
     }
 
 }

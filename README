@@ -7,4 +7,4 @@ crux-extend 扩展包 包含了基本包和二次封装的第三方包 主要是
 crux-source 数据源处理工具
 crux-search 数据查询工具 SQL format and Lucene format。
 crux-cache 数据缓存工具 包括内嵌的缓存服务和redis memcached等缓存的接口优化
-DOCS 编写自定义工具集过程中的笔记和心得 建议文档类型：TXT DOC PDF 以及脑图
+DOCS 编写自定义工具集过程中的笔记和心得 建议文档类型：TXT DOC PDF 以及暂时不使用或不进行编译的配置和数据文件
