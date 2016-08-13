@@ -1,4 +1,4 @@
-package net.newString.crux.core.lang;
+package net.newString.crux.core.security;
 
 
 import net.newString.crux.core.stable;
@@ -13,7 +13,7 @@ import java.security.NoSuchAlgorithmException;
  * 未验证
  */
 @stable
-public class MD5 {
+public final class MD5 {
 
     private static final int S11 = 7;
     private static final int S12 = 12;

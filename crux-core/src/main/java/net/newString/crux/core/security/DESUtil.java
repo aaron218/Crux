@@ -1,11 +1,10 @@
-package net.newString.crux.core.lang;
+package net.newString.crux.core.security;
 
 import net.newString.crux.core.stable;
 
 import javax.crypto.Cipher;
 import java.security.Key;
 import java.security.Security;
-import java.util.Date;
 
 /**
  * DES加密和解密工具,可以对字符串进行加密和解密操作  。
@@ -14,7 +13,7 @@ import java.util.Date;
  * 未验证
  */
 @stable
-public abstract class DesUtil {
+public final class DESUtil {
 
     /**
      * 字符串默认键值
@@ -51,7 +50,7 @@ public abstract class DesUtil {
      *
      * @throws Exception
      */
-    public DesUtil() throws Exception {
+    public DESUtil() throws Exception {
         this(strDefaultKey);
     }
 
@@ -61,7 +60,7 @@ public abstract class DesUtil {
      * @param strKey 指定的密钥
      * @throws Exception
      */
-    public DesUtil(String strKey) throws Exception {
+    public DESUtil(String strKey) throws Exception {
         Security.addProvider(new com.sun.crypto.provider.SunJCE());
         Key key = getKey(strKey.getBytes());
 

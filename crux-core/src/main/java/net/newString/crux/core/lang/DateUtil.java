@@ -5,7 +5,10 @@ import net.newString.crux.core.stable;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
 /**
  * Created by aaron on 6/23/2015.
@@ -187,10 +190,12 @@ public abstract class DateUtil {
     }
 
     //快速时间转化方法组
+
     /**
      * 将Date类型转换为 yyyyMMddHHmmssS 形式的Long数据 毫秒数为3位 比SimpleDateFormat速度快
      * <br>使用拼接处理快速转换而非dateFormat  不处理时区问题
      * <br>该方法内部使用了不建议使用的JDK方法
+     *
      * @param date 待处理数据
      * @return 返回Long 或者 null
      */
@@ -202,7 +207,7 @@ public abstract class DateUtil {
         long value = (long) date.getSeconds();
         value += (long) date.getMinutes() * 100L;
         value += (long) date.getHours() * 10000L;
-        value += (long) date.getDay() * 1000000L;
+        value += (long) date.getDate() * 1000000L;
         value += (long) (date.getMonth() + 1) * 100000000L;
         value += (long) (date.getYear() + 1900) * 10000000000L;
         value = value * 1000 + date.getTime() % 1000;
@@ -213,6 +218,7 @@ public abstract class DateUtil {
      * 将Date类型转换为 yyyyMMddHHmmss 形式的Long数据 比SimpleDateFormat速度快
      * <br>使用拼接处理快速转换而非dateFormat  不处理时区问题
      * <br>该方法内部使用了不建议使用的JDK方法
+     *
      * @param date 待处理数据
      * @return 返回Long 或者 null
      */
@@ -224,7 +230,7 @@ public abstract class DateUtil {
         long value = (long) date.getSeconds();
         value += (long) date.getMinutes() * 100L;
         value += (long) date.getHours() * 10000L;
-        value += (long) date.getDay() * 1000000L;
+        value += (long) date.getDate() * 1000000L;
         value += (long) (date.getMonth() + 1) * 100000000L;
         value += (long) (date.getYear() + 1900) * 10000000000L;
         return value;
@@ -234,6 +240,7 @@ public abstract class DateUtil {
      * 将Date类型转换为yyyyMMdd形式的Long数据 比SimpleDateFormat速度快
      * <br>使用拼接处理快速转换而非dateFormat  不处理时区问题
      * <br>该方法内部使用了不建议使用的JDK方法
+     *
      * @param date 待处理数据
      * @return 返回Long 或者 null
      */
@@ -242,7 +249,7 @@ public abstract class DateUtil {
         if (date == null) {
             return null;
         }
-        long value =  (long) date.getDay() ;
+        long value = (long) date.getDate();
         value += (long) (date.getMonth() + 1) * 100L;
         value += (long) (date.getYear() + 1900) * 10000L;
         return value;
@@ -252,17 +259,18 @@ public abstract class DateUtil {
      * 将Date类型转换为yyyy-MM-dd HH:mm:ss形式的String数据 比SimpleDateFormat速度快
      * <br>使用拼接处理快速转换而非dateFormat  不处理时区问题
      * <br>该方法内部使用了不建议使用的JDK方法
+     *
      * @param date 待处理数据
      * @return 转换后字符串
      */
     @stable
-    public static String formatDataToTimeStr(final Date date){
+    public static String formatDataToTimeStr(final Date date) {
         if (date == null) {
             return null;
         }
-        StringBuilder sb = new StringBuilder().append(date.getYear()+1900).append("-");
-        sb.append(date.getMonth()+1).append("-");
-        sb.append(date.getDay()).append(" ");
+        StringBuilder sb = new StringBuilder().append(date.getYear() + 1900).append("-");
+        sb.append((date.getMonth() + 1 >= 10) ? date.getMonth() + 1 : "0" + (date.getMonth() + 1)).append("-");
+        sb.append(date.getDate()).append(" ");
         sb.append(date.getHours()).append(":").append(date.getMinutes()).append(":").append(date.getSeconds());
         return sb.toString();
     }
@@ -271,17 +279,18 @@ public abstract class DateUtil {
      * 将Date类型转换为yyyy-MM-dd形式的String数据 比SimpleDateFormat速度快
      * <br>使用拼接处理快速转换而非dateFormat  不处理时区问题
      * <br>该方法内部使用了不建议使用的JDK方法
+     *
      * @param date 待处理数据
      * @return 转换后字符串
      */
     @stable
-    public static String formatDataToDayStr(final Date date){
+    public static String formatDataToDayStr(final Date date) {
         if (date == null) {
             return null;
         }
-        StringBuilder sb = new StringBuilder().append(date.getYear()+1900).append("-");
-        sb.append(date.getMonth()+1).append("-");
-        sb.append(date.getDay());
+        StringBuilder sb = new StringBuilder().append(date.getYear() + 1900).append("-");
+        sb.append((date.getMonth() + 1 >= 10) ? date.getMonth() + 1 : "0" + (date.getMonth() + 1)).append("-");
+        sb.append(date.getDate());
         return sb.toString();
     }
 
@@ -289,16 +298,17 @@ public abstract class DateUtil {
      * 将Date类型转换为yyyyMM形式的String数据 比SimpleDateFormat速度快
      * <br>使用拼接处理快速转换而非dateFormat  不处理时区问题
      * <br>该方法内部使用了不建议使用的JDK方法
+     *
      * @param date 待处理数据
      * @return 转换后字符串
      */
     @stable
-    public static String formatDataToMonthStr(final Date date){
+    public static String formatDataToMonthStr(final Date date) {
         if (date == null) {
             return null;
         }
-        StringBuilder sb = new StringBuilder().append(date.getYear()+1900);
-        sb.append(date.getMonth()+1);
+        StringBuilder sb = new StringBuilder().append(date.getYear() + 1900);
+        sb.append((date.getMonth() + 1 >= 10) ? date.getMonth() + 1 : "0" + (date.getMonth() + 1));
         return sb.toString();
     }
 
