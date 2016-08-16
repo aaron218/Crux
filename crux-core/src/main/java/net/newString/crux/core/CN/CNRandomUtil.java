@@ -1,7 +1,6 @@
 package net.newString.crux.core.CN;
 
 
-import net.newString.crux.core.filter.Filter;
 import net.newString.crux.core.lang.RandomUtil;
 
 /**
