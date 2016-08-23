@@ -40,7 +40,7 @@ public class CNPersonIDUtil {
      * @param value17 17位身份证号码
      * @return 补足后的18位号码或者null(不满足条件)
      */
-    public static String put18thValue(String value17) {
+    public static String put18thValue(final String value17) {
         if (value17 == null || value17.length() != 17) {
             return null;
         }
@@ -69,7 +69,7 @@ public class CNPersonIDUtil {
      * @param id 待处理身份证号
      * @return 是否符合条件
      */
-    public static boolean validID18(String id) {
+    public static boolean validID18(final String id) {
         if (id == null) {
             return false;
         }
@@ -92,16 +92,19 @@ public class CNPersonIDUtil {
 
     /**
      * 快速检查是否是正确的身份证号 不验证校验位，也不验证内部各个数字的合法性
-     * 15位必须全部是数字，18位的前17位必须是数字，最后一位是X或x或*
+     * 15位必须全部是数字，18位的前17位必须是数字，最后一位是X或x或* 不可以0开头
      *
      * @param id 待验证身份证号
      * @return 是否合法
      */
-    public static boolean validIDSimple(String id) {
+    public static boolean validIDSimple(final String id) {
         if (id == null || !(id.length() == 15 || id.length() == 18)) {
             return false;
         }
         if (id.contains("000000")) {//号码中不允许6个0连续出现
+            return false;
+        }
+        if(id.startsWith("0")){
             return false;
         }
         if (id.length() == 15 && NumberUtil.isDigits(id)) {
@@ -125,7 +128,7 @@ public class CNPersonIDUtil {
      * @return 对应地区名称或null
      */
     @stable
-    public static Optional<String> getHeadCodeValue(String code) {
+    public static Optional<String> getHeadCodeValue(final String code) {
         if (IDHeadMap == null || IDHeadMap.size() == 0) {  //使用数据结构减少文件读取
             Properties prop = new Properties();
             InputStream in = CNPersonIDUtil.class.getResourceAsStream("/crux-core-ssxqDM.properties");
