@@ -31,6 +31,7 @@
         <module>crux-search</module>
         <module>crux-cache</module>
         <module>crux-test</module>
+        <module>crux-rbac</module>
     </modules>
 
     <dependencies>

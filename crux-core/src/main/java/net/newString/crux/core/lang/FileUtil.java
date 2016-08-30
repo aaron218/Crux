@@ -3,6 +3,7 @@ package net.newString.crux.core.lang;
 
 import java.io.*;
 import java.math.BigDecimal;
+import java.nio.file.NotDirectoryException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -63,23 +64,11 @@ public class FileUtil {
             while ((bytesRead = is.read(buffer, 0, 8192)) != -1) {
                 os.write(buffer, 0, bytesRead);
             }
-        } catch (FileNotFoundException fnfe) {
-            throw fnfe;
-        } catch (IOException ioe) {
-            throw ioe;
         } finally {
-            try {
-                if (is != null)
-                    is.close();
-            } catch (Exception e) {
-                throw e;
-            }
-            try {
-                if (os != null)
-                    os.close();
-            } catch (Exception e) {
-                throw e;
-            }
+            if (is != null)
+                is.close();
+            if (os != null)
+                os.close();
         }
     }
 
@@ -89,7 +78,6 @@ public class FileUtil {
      * @param filePath    文件路径+文件名
      * @param fileContent 文件内容
      * @param encoding    字符串编码格式 默认系统编码
-     * @throws Exception
      */
     public static void writeFileByString(String filePath, String fileContent,
                                          String encoding) {
@@ -103,8 +91,6 @@ public class FileUtil {
      * @param fileContent 文件内容
      * @param encoding    字符串编码格式 默认系统编码
      * @param append      如果为true表示将fileContent中的内容添加到文件file末尾处
-     * @throws Exception
-     * @author duguocheng
      */
     public static void writeFileByString(String filePath, String fileContent,
                                          String encoding, boolean append) {
@@ -118,8 +104,11 @@ public class FileUtil {
             if (append) {
                 File tempFile = new File(filePath);
                 if (!tempFile.exists()) {
-                    tempFile.getParentFile().mkdirs();
-                    tempFile.createNewFile();
+                    if(tempFile.getParentFile().mkdirs()){
+                        if (!tempFile.createNewFile()) {
+                            return;
+                        }
+                    }
                 }
             } else
                 createNewFile(new File(filePath));
@@ -133,7 +122,7 @@ public class FileUtil {
             }
             out.print(fileContent);
             out.close();
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         } finally {
             if (out != null)
                 out.close();
@@ -145,14 +134,21 @@ public class FileUtil {
         if (file.exists()) {// 判断文件目录的存在
             if (file.isDirectory()) {// 判断文件的存在性
             } else {
-                file.createNewFile();// 创建文件
+                if (!file.createNewFile()) {
+                    throw new IOException("file with path:"+filepath+" can't created");
+                }
             }
         } else {
             File file2 = new File(file.getParent());
-            file2.mkdirs();
+            if (!file2.mkdirs()) {
+                throw new NotDirectoryException("directory can't create");
+            }
             if (file.isDirectory()) {
+                throw new IOException("file is directory");
             } else {
-                file.createNewFile();// 创建文件
+                if (!file.createNewFile()) {
+                    throw new IOException("file with path:"+filepath+" can't created");
+                }
             }
         }
         return file;
