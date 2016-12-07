@@ -13,12 +13,19 @@
     <description>RBAC 模式下的基本权限管理模块 基于内嵌的数据或者数据库操作</description>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.security/spring-security-web &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.security</groupId>-->
+            <!--<artifactId>spring-security-web</artifactId>-->
+            <!--<version>4.1.3.RELEASE</version>-->
+        <!--</dependency>-->
+        <!-- https://mvnrepository.com/artifact/org.apache.shiro.samples/samples-web -->
         <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-web</artifactId>
-            <version>4.1.3.RELEASE</version>
+            <groupId>org.apache.shiro.samples</groupId>
+            <artifactId>samples-web</artifactId>
+            <version>1.3.2</version>
         </dependency>
+
 
     </dependencies>
 

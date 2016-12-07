@@ -28,6 +28,17 @@
         </plugins>
     </build>
 
+    <dependencies>
+        <!-- 使用Guava作为功能比较，同时也简化测试的部分操作-->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>20.0</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
     <properties>
         <crux.core.version>${crux.module.version}</crux.core.version>
     </properties>

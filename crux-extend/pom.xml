@@ -60,7 +60,7 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>19.0</version>
+            <version>20.0</version>
             <scope>provided</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-exec -->
@@ -78,17 +78,18 @@
             <scope>provided</scope>
         </dependency>
 
-
-
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>${crux.log4j.version}</version>
+            <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>net.newString</groupId>
             <artifactId>crux-core</artifactId>
             <version>${crux.module.version}</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

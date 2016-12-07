@@ -1,11 +1,15 @@
 package net.newString.crux.core.lang;
 
 import net.newString.crux.core.stable;
+import sun.misc.Unsafe;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
+import java.lang.reflect.Field;
+import java.sql.*;
+import java.sql.Date;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * Created on 2016/8/4 17:08.
@@ -14,6 +18,7 @@ import java.util.List;
  */
 @stable
 public class CollectionUtil {
+
 
 
     /**
@@ -48,21 +53,53 @@ public class CollectionUtil {
 
 
 
-
-
-
-    public static void main(String[] args) {
-        List<String> list = new ArrayList<>();
-        list.add("1");
-        list.add("2");
-        list.add("3");
-        list.add("4");
-        list.add("5");
-
-        System.out.println(getRandomOne(list));
-        System.out.println(getRandomOne(list));
-        System.out.println(getRandomOne(list));
-        System.out.println(getRandomOne(list));
-        System.out.println(getRandomOne(list));
+    public static Unsafe getUnsafe() {
+        try {
+            Field f = Unsafe.class.getDeclaredField("theUnsafe");
+            f.setAccessible(true);
+            return (Unsafe)f.get(null);
+        } catch (Exception e) {
+       /* ... */
+        }
+        return null;
     }
+    public static void main(String[] args) {
+        AtomicInteger atomicInteger = new AtomicInteger();
+        atomicInteger.incrementAndGet();
+
+        Unsafe unsafe = getUnsafe();
+        int resize = unsafe.addressSize();
+
+        System.out.println("addressSize:"+resize);
+        System.out.println("pageSize:"+unsafe.pageSize());
+       // unsafe.park(true,10000L);
+        //unsafe.unpark(atomicInteger);
+        long oneHundred = 100;
+        long size = 3;
+        /*
+         * 调用allocateMemory分配内存
+         */
+        long memoryAddress = unsafe.allocateMemory(size);
+        System.out.println("Address:"+memoryAddress);
+        /*
+         * 将100写入到内存中
+         */
+        unsafe.putAddress(memoryAddress, oneHundred);
+
+        /*
+         * 内存中读取数据
+         */
+        long readValue = unsafe.getAddress(memoryAddress);
+
+        Object object = new Object();
+        unsafe.getObjectVolatile(object,memoryAddress);
+        System.out.println(object.getClass().getCanonicalName());
+
+        AtomicReference<String> atomicReference = new AtomicReference<>();
+        atomicReference.lazySet("");
+        unsafe.reallocateMemory(memoryAddress,oneHundred);
+        System.out.println("Val : " + readValue);
+
+    }
+
 }
