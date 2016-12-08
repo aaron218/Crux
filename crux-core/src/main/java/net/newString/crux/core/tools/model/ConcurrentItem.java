@@ -1,4 +1,4 @@
-package net.newString.crux.core.model;
+package net.newString.crux.core.tools.model;
 
 import java.io.Serializable;
 import java.util.concurrent.ConcurrentHashMap;

@@ -1,10 +1,9 @@
-package net.newString.crux.core.model;
+package net.newString.crux.core.tools;
 
-import net.newString.crux.core.model.Exception.ModelMapperException;
+import net.newString.crux.core.tools.model.Exception.ModelMapperException;
 
 import java.lang.reflect.*;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -12,13 +11,28 @@ import java.util.Map;
  *
  * @author lic
  */
+
+/**
+ * 对象转换工具
+ * 使用反射 get/set 方法进行对象转换(bool类型会判断是否存在is方法)。不做其他智能判断，使用前请确认已经明确待转换的各种数据结构
+ *
+ */
 public abstract class ModelMapper {
 
     private ModelMapper() {
     }
 
+
+
+    public static boolean mapperFill(Object source, Object dest){
+        return false;
+    }
+
+
     /**
-     * 将一个对象反射成为另外一个对象，属性通过get和set复制。
+     * 将一个对象反射成为另外一个对象，目标对象将会是一个新的对象
+     * <br>
+     * 属性通过get和set复制。
      * 要求：复制原对象中get方法属性public的方法，要求目标的set属性必须是public。
      * 或者：get和set方法允许为protected，但是此时必须同包
      * @param source          原对象
@@ -28,7 +42,7 @@ public abstract class ModelMapper {
      * @throws ModelMapperException 模型对象转换异常
      */
     @SuppressWarnings("unckecked")
-    public static <D> D mapper(Object source, Class<D> destinationType)
+    public static <D> D mapperNewInstance(Object source, Class<D> destinationType)
             throws ModelMapperException {
         Field[] fields = destinationType.getDeclaredFields();
         Class<?> clazz = source.getClass();
@@ -115,10 +129,15 @@ public abstract class ModelMapper {
     public static void main(String[] args) {
         Date b = null;
         try {
-            b = mapper(new Date(), Date.class);
+            Date date = new Date();
+            date.setMonth(7);
+            b = mapperNewInstance(date, Date.class);
+
+            System.out.println(date);
+            System.out.println(b);
         } catch (ModelMapperException modelMapperException) {
             modelMapperException.printStackTrace();
         }
-        System.out.println(b);
+
     }
 }

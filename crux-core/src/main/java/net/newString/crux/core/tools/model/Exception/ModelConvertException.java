@@ -1,4 +1,4 @@
-package net.newString.crux.core.model.Exception;
+package net.newString.crux.core.tools.model.Exception;
 
 /**
  * 封装Model 包中的数据产生的异常，包括序列化、反序列化、数据载入、数据转换等，

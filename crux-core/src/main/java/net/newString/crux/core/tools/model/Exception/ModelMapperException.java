@@ -1,4 +1,4 @@
-package net.newString.crux.core.model.Exception;
+package net.newString.crux.core.tools.model.Exception;
 
 /**
  *

@@ -1,10 +1,7 @@
 package net.newString.crux.core.CN;
 
 import net.newString.crux.core.lang.NumberUtil;
-import net.newString.crux.core.lang.StringUtil;
-import net.newString.crux.core.model.CruxItem;
 import net.newString.crux.core.stable;
-import sun.net.www.protocol.jar.JarURLConnection;
 
 import java.io.*;
 import java.util.*;

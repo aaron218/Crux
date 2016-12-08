@@ -1,4 +1,4 @@
-package net.newString.crux.core.model;
+package net.newString.crux.core.tools.model;
 
 /**
  * Created by Administrator on 2016/8/30 0030.

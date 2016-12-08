@@ -1,8 +1,8 @@
-package net.newString.crux.core.model;
+package net.newString.crux.core.tools.model;
 
 import net.newString.crux.core.lang.BytesConvert;
 import net.newString.crux.core.lang.StringUtil;
-import net.newString.crux.core.model.Exception.ModelConvertException;
+import net.newString.crux.core.tools.model.Exception.ModelConvertException;
 
 import java.io.IOException;
 import java.io.Serializable;

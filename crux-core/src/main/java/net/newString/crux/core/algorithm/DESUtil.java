@@ -1,4 +1,4 @@
-package net.newString.crux.core.security;
+package net.newString.crux.core.algorithm;
 
 import net.newString.crux.core.stable;
 
@@ -13,7 +13,7 @@ import java.security.Security;
  * 未验证
  */
 @stable
-public final class DESUtil {
+public abstract class DESUtil {
 
     /**
      * 字符串默认键值
