@@ -1,7 +1,7 @@
 package net.newString.crux.core.lang;
 
 
-import net.newString.crux.core.stable;
+import net.newString.crux.core.annotation.stable;
 
 import java.util.Arrays;
 import java.util.Random;

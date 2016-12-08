@@ -1,7 +1,7 @@
 package net.newString.crux.core.algorithm;
 
 
-import net.newString.crux.core.stable;
+import net.newString.crux.core.annotation.stable;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

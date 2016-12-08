@@ -1,6 +1,6 @@
 package net.newString.crux.core.algorithm;
 
-import net.newString.crux.core.stable;
+import net.newString.crux.core.annotation.stable;
 
 import javax.crypto.Cipher;
 import java.security.Key;

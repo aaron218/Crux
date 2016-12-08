@@ -1,4 +1,4 @@
-package net.newString.crux.core;
+package net.newString.crux.core.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;

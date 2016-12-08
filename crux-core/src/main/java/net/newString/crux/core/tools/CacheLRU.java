@@ -10,7 +10,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  *
  * @author lic
  */
-public class CacheLRU<K, V> extends LinkedHashMap<K, V> {
+public final class CacheLRU<K, V> extends LinkedHashMap<K, V> {
     private static final long serialVersionUID = -8782397547207272211L;
     private final int maxCapacity;
     private static final float DEFAULT_LOAD_FACTOR = 0.75f;
@@ -55,6 +55,7 @@ public class CacheLRU<K, V> extends LinkedHashMap<K, V> {
     }
 
     @Override
+    @Deprecated
     public V remove(Object key) {
         writeLock.lock();
         try {

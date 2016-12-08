@@ -1,6 +1,6 @@
 package net.newString.crux.core.CN;
 
-import net.newString.crux.core.stable;
+import net.newString.crux.core.annotation.stable;
 
 /**
  * 中文的数量转换，包括繁体数字、汉字数字 等

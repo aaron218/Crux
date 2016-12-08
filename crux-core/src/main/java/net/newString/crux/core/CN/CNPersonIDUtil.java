@@ -1,10 +1,13 @@
 package net.newString.crux.core.CN;
 
 import net.newString.crux.core.lang.NumberUtil;
-import net.newString.crux.core.stable;
+import net.newString.crux.core.annotation.stable;
 
-import java.io.*;
-import java.util.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -15,6 +18,7 @@ public class CNPersonIDUtil {
     private static final char[] code = {'1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'}; // 11个
     private static final int[] factor = {0, 2, 4, 8, 5, 10, 9, 7, 3, 6, 1, 2, 4, 8, 5, 10, 9, 7}; // 18个;
     private static Map<String, String> IDHeadMap = new ConcurrentHashMap<>();
+
     /**
      * 转换15位身份证号码到18位 不验证15位证件号的合法性
      * 转换算法：首先在15位号码的第六位后面加上19，然后将这个17位的号码按照生成规范产生第18位
@@ -101,7 +105,7 @@ public class CNPersonIDUtil {
         if (id.contains("000000")) {//号码中不允许6个0连续出现
             return false;
         }
-        if(id.startsWith("0")){
+        if (id.startsWith("0")) {
             return false;
         }
         if (id.length() == 15 && NumberUtil.isDigits(id)) {
@@ -128,8 +132,7 @@ public class CNPersonIDUtil {
     public static Optional<String> getHeadCodeValue(final String code) {
         if (IDHeadMap == null || IDHeadMap.size() == 0) {  //使用数据结构减少文件读取
             Properties prop = new Properties();
-            InputStream in = CNPersonIDUtil.class.getResourceAsStream("/crux-core-ssxqDM.properties");
-            try {
+            try (InputStream in = CNPersonIDUtil.class.getResourceAsStream("/crux-core-ssxqDM.properties")) {
                 prop.load(in);
                 for (Object str : prop.keySet()) {
                     IDHeadMap.put(str.toString(), new String(prop.get(str).toString().getBytes("ISO-8859-1"), "utf-8"));
@@ -138,7 +141,8 @@ public class CNPersonIDUtil {
                 e.printStackTrace();
             }
         }
-        if (code == null || code.length() == 0 || IDHeadMap.get(code)==null) {
+
+        if (code == null || code.length() == 0 || IDHeadMap.get(code) == null) {
             return Optional.empty();
         }
         return Optional.of(IDHeadMap.get(code));

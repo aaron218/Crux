@@ -1,5 +1,7 @@
 package net.newString.crux.core;
 
+import net.newString.crux.core.annotation.stable;
+
 /**
  * CruxCore包中联合处理的Exception
  * <br>只用于封装其他的Exception 只可用于简化过多且非重要的异常（少量异常或者异常类型对处理方式很重要的，不建议使用此封装）。

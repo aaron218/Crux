@@ -1,6 +1,4 @@
-package net.newString.crux.core.concurrency.annotation;
-
-import net.newString.crux.core.stable;
+package net.newString.crux.core.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;

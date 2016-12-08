@@ -1,6 +1,6 @@
 package net.newString.crux.core.tools;
 
-import net.newString.crux.core.concurrency.annotation.ThreadSafe;
+import net.newString.crux.core.annotation.ThreadSafe;
 import net.newString.crux.core.tools.model.Exception.ModelMapperException;
 
 import java.lang.reflect.*;
