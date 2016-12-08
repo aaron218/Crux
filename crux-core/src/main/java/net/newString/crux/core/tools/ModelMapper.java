@@ -1,5 +1,6 @@
 package net.newString.crux.core.tools;
 
+import net.newString.crux.core.concurrency.annotation.ThreadSafe;
 import net.newString.crux.core.tools.model.Exception.ModelMapperException;
 
 import java.lang.reflect.*;
@@ -17,17 +18,42 @@ import java.util.Map;
  * 使用反射 get/set 方法进行对象转换(bool类型会判断是否存在is方法)。不做其他智能判断，使用前请确认已经明确待转换的各种数据结构
  *
  */
+@ThreadSafe
 public abstract class ModelMapper {
 
     private ModelMapper() {
     }
 
 
-
-    public static boolean mapperFill(Object source, Object dest){
+    /**
+     * 装填式mapper 必须指定数据的源对象和目标对象
+     * <p>
+     * 数据状态过程中，只使用反射的get和set方法(以及boolean的is方法)
+     * @param source 源数据对象
+     * @param destination 目标数据对象
+     * @return 是否成功转换
+     */
+    public static boolean mapperFill(Object source,
+                                     Object destination)throws ModelMapperException{
         return false;
     }
 
+
+
+    /**
+     * 装填式mapper 必须指定数据的源对象和目标对象
+     * <p>
+     * 数据状态过程中，只使用反射的get和set方法(以及boolean的is方法)
+     * @param source 源数据对象
+     * @param destination 目标数据对象
+     * @param mapper 转换用的Map
+     * @return 是否成功转换
+     */
+    public static boolean mapperFill(Object source,
+                                     Object destination,
+                                     Map<String,String> mapper)throws ModelMapperException{
+        return false;
+    }
 
     /**
      * 将一个对象反射成为另外一个对象，目标对象将会是一个新的对象
@@ -42,7 +68,8 @@ public abstract class ModelMapper {
      * @throws ModelMapperException 模型对象转换异常
      */
     @SuppressWarnings("unckecked")
-    public static <D> D mapperNewInstance(Object source, Class<D> destinationType)
+    public static <D> D mapperNewInstance(Date source,
+                                          Class<D> destinationType)
             throws ModelMapperException {
         Field[] fields = destinationType.getDeclaredFields();
         Class<?> clazz = source.getClass();
@@ -50,7 +77,7 @@ public abstract class ModelMapper {
         boolean samePackage = clazz.getPackage().equals(destinationType.getPackage());
         try {
             Constructor<D> constructor = destinationType.getConstructor();
-            Object obj = constructor.newInstance();
+            D obj = constructor.newInstance();
 
             for (Field field : fields) {
                 String firstL = field.getName().substring(0, 1).toUpperCase();
@@ -83,13 +110,28 @@ public abstract class ModelMapper {
                     throw new ModelMapperException(er);
                 }
             }
-            return (D) obj;
+            return obj;
         } catch (NoSuchMethodException | IllegalAccessException | ClassCastException
                 | InstantiationException | InvocationTargetException e) {
             throw new ModelMapperException(e);
         }
     }
 
+    /**
+     *
+     * @param source
+     * @param destinationType
+     * @param mapper
+     * @param <D>
+     * @return
+     * @throws ModelMapperException
+     */
+    public static <D> D mapperNewInstance(Date source,
+                                          Class<D> destinationType,
+                                          Map<String,String> mapper)
+            throws ModelMapperException {
+        return null;
+    }
 
     /**
      * 将一个对象转化为Map，属性名称转换为key，属性值为value 获取的属性必须具备对应的public的Get方法
@@ -105,7 +147,7 @@ public abstract class ModelMapper {
 
 
     /**
-     * 将一个Map转换为对象，属性的名称映射为key，属性值映射为value，获取的属性必须具有public属性的set方法
+     * 将一个Map转换为对象，属性的名称映射为key，属性值映射为value，获取的属性必须具有public的set方法
      * @param source 源数据Map
      * @param destinationType 目标类型
      * @return 目标对象
