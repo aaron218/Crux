@@ -16,7 +16,7 @@ import java.util.concurrent.atomic.AtomicReference;
 @stable
 public class CollectionUtil {
 
-
+    volatile static Unsafe unsafe;
 
     /**
      * 判断一个collection 是否为空或者是否为null
@@ -48,17 +48,22 @@ public class CollectionUtil {
         return it.next();
     }
 
-
-
     public static Unsafe getUnsafe() {
-        try {
-            Field f = Unsafe.class.getDeclaredField("theUnsafe");
-            f.setAccessible(true);
-            return (Unsafe)f.get(null);
-        } catch (Exception e) {
-       /* ... */
+        if(unsafe == null){
+            synchronized (CollectionUtil.class){
+                if(unsafe ==null){
+                    try {
+                        Field f = Unsafe.class.getDeclaredField("theUnsafe");
+                        f.setAccessible(true);
+                        unsafe = (Unsafe)f.get(null);
+                        return unsafe;
+                    } catch (Exception e) {
+                        //nothing
+                    }
+                }
+            }
         }
-        return null;
+        return unsafe;
     }
     public static void main(String[] args) {
         AtomicInteger atomicInteger = new AtomicInteger();
