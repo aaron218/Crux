@@ -32,6 +32,7 @@
         <module>crux-cache</module>
         <module>crux-test</module>
         <module>crux-rbac</module>
+        <module>crux-table</module>
     </modules>
 
     <dependencies>
