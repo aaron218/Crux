@@ -5,7 +5,7 @@
     <parent>
         <artifactId>crux</artifactId>
         <groupId>net.newString</groupId>
-        <version>1.1.0-SNAPSHOT</version>
+        <version>1.2.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>crux-core</artifactId>
@@ -40,7 +40,7 @@
     </dependencies>
 
     <properties>
-        <crux.core.version>${crux.module.version}</crux.core.version>
+        <crux.core.version>${crux.common.version}</crux.core.version>
     </properties>
 
 </project>

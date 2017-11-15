@@ -5,7 +5,7 @@
     <parent>
         <artifactId>crux</artifactId>
         <groupId>net.newString</groupId>
-        <version>1.1.0-SNAPSHOT</version>
+        <version>1.2.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <build>
@@ -25,7 +25,7 @@
 
     <artifactId>crux-extend</artifactId>
     <version>${crux.extend.version}</version>
-    <description>扩展的crux包，与core包不同，通过二次封装一些第三方库，本包提供了更加丰富的功能，但是也引入了更多的依赖 同时也会依赖core</description>
+    <description>扩展的crux包，与core包不同，通过二次封装一些第三方库，本包提供了更加丰富的功能，但是也引入了更多的依赖并可能造成依赖冲突 同时也会依赖core</description>
 
     <dependencies>
         <!--数据源处理所需要的基本包 所有scope为provided级别 version为功能兼容的建议最低版本号
@@ -88,13 +88,13 @@
         <dependency>
             <groupId>net.newString</groupId>
             <artifactId>crux-core</artifactId>
-            <version>${crux.module.version}</version>
+            <version>${crux.common.version}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
 
     <properties>
-        <crux.extend.version>${crux.module.version}</crux.extend.version>
+        <crux.extend.version>${crux.common.version}</crux.extend.version>
     </properties>
 
 </project>

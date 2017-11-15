@@ -7,7 +7,7 @@
     <groupId>net.newString</groupId>
     <artifactId>crux</artifactId>
     <packaging>pom</packaging>
-    <version>1.1.0-SNAPSHOT</version><!--该版本号随着crux项目结构和大的功能变更而变更 一般不变-->
+    <version>1.2.0-SNAPSHOT</version><!--parentVersion 该版本号随着crux项目结构和大的功能变更而变更-->
 
     <build>
         <plugins>
@@ -44,14 +44,12 @@
         </dependency>
     </dependencies>
 
-
     <properties>
         <!--主版本号只会随着crux整体的变更而变更        (包括依赖的Java版本 不考虑向下兼容)，
         副版本号代表了大的功能变更以及重大的依赖调整      (不能保证模块的向下兼容性)，
         第三级版本号主要用于update和内部依赖的调整       (能保证向下兼容)
         版本号以 RELEASE 版本为准，中间版本更新不调整版本号-->
-        <crux.module.version>1.0.3-SNAPSHOT</crux.module.version>
-
+        <crux.common.version>1.1.0-SNAPSHOT</crux.common.version>
 
         <crux.junit.version>4.12</crux.junit.version>
         <crux.log4j.version>1.2.17</crux.log4j.version>
