@@ -10,7 +10,7 @@ import java.util.Random;
  *
  */
 @stable
-public abstract class RandomUtil {
+public final class RandomUtil {
 
     private static Random rnd = null;
 
@@ -53,7 +53,6 @@ public abstract class RandomUtil {
         if (len > LEN) {
             len = LEN;
         }
-        ;
         //计算无重复值随机数组
         initRnd();  //初始化随机数发生器
         int[] seed = new int[LEN];  //种子数组

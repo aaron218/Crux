@@ -5,9 +5,9 @@ import net.newstring.crux.core.CruxCoreException;
 import java.io.*;
 
 /**
- *
  * 字节码信息的转换，与{@linkplain ByteUtil 二进制基本工具}不同，侧重于数据转换、类型检验、简单的序列化等操作
  * 而非数据提取和基本二进制操作
+ *
  * @author lic
  */
 public abstract class BytesConvert {
@@ -57,13 +57,14 @@ public abstract class BytesConvert {
 
     /**
      * 将byte数组转换成指定类型的对象，如果传入的类型为空，则返回null
+     *
      * @param bytes 待处理byte数组
      * @param clazz 目标类型
-     * @param <T> 目标类型模板类
+     * @param <T>   目标类型模板类
      * @return 目标结果或者null
      * @throws CruxCoreException 再封装的异常
      */
-    public static <T> T byteToClass(byte[] bytes,Class<T> clazz) throws CruxCoreException{
+    public static <T> T byteToClass(byte[] bytes, Class<T> clazz) throws CruxCoreException {
         if (bytes == null || bytes.length == 0) {
             return null;
         }
@@ -78,7 +79,7 @@ public abstract class BytesConvert {
             T t = (T) object;
             return t;
         } catch (IOException | ClassNotFoundException | ClassCastException e) {
-           throw new CruxCoreException(e);
+            throw new CruxCoreException(e);
         }
     }
 }
