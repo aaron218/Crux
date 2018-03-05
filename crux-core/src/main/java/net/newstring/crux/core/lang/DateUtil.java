@@ -53,7 +53,7 @@ public abstract class DateUtil {
 
     private static Map<String, SimpleDateFormat> getInstance() {
         if (patternFormatMap == null) {
-            patternFormatMap = new HashMap<String, SimpleDateFormat>();
+            patternFormatMap = new HashMap<String, SimpleDateFormat>(16);
             patternFormatMap.put(DATE_TIME_MS_PATTERN, timeFormat);
             patternFormatMap.put(DATE_TIME_PATTERN, dateFormat);
             patternFormatMap.put(DATE_YYYYMMDD_PATTERN, yyyyMMdd);

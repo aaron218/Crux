@@ -33,6 +33,7 @@
         <module>crux-test</module>
         <module>crux-rbac</module>
         <module>crux-table</module>
+        <module>cruxstudy</module>
     </modules>
 
     <dependencies>
