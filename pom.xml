@@ -34,6 +34,7 @@
         <module>crux-rbac</module>
         <module>crux-table</module>
         <module>cruxstudy</module>
+        <module>spisample</module>
     </modules>
 
     <dependencies>

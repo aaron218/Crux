@@ -10,6 +10,7 @@ import java.util.*;
 
 /**
  * using JDK MD5 as HashFunction
+ * @author lic
  */
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
 public class SimpleConsistentHash<T> implements ConsistentHash<T> {
@@ -109,7 +110,9 @@ public class SimpleConsistentHash<T> implements ConsistentHash<T> {
         consistentHash.add("I");
         System.out.println(consistentHash.get("test5"));
         consistentHash.add("Z");
+        consistentHash.remove("L");
         System.out.println(consistentHash.get("test5"));
+
         System.out.println(consistentHash.getSize());
     }
 }
