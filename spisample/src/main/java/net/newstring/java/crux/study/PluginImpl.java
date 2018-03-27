@@ -13,6 +13,6 @@ public class PluginImpl implements Plugin {
 
     @Override
     public void doSome() {
-        System.out.println("do some B...");
+        System.out.println("do some K..."+this.toString());
     }
 }

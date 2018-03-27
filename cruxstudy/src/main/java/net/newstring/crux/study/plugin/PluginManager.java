@@ -16,6 +16,7 @@ public class PluginManager {
     static{
         System.out.println(PluginManager.class.getName());
     }
+
     private Map<String ,PluginClassLoader> pluginMap = new HashMap<>();
     private static String packagename = "net.newstring.java.crux.study.PluginImpl";
     public PluginManager(){
@@ -54,6 +55,7 @@ public class PluginManager {
     }
     public void unloadPlugin(String pluginName){
         this.pluginMap.get(pluginName).unloadJarFiles();
+        //
         this.pluginMap.remove(pluginName);
     }
 }
