@@ -13,7 +13,7 @@ import java.io.InputStreamReader;
 public class ProcessorTest {
 
     public static void main(String[] args) {
-        ProcessBuilder processBuilder = new ProcessBuilder("python","c:\\");
+        ProcessBuilder processBuilder = new ProcessBuilder("ping","-n","100","127.0.0.1");
         try {
             Process process = processBuilder.start();
             BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream(),"GBK"));
