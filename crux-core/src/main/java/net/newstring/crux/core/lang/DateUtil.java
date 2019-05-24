@@ -17,32 +17,31 @@ import java.util.Map;
 @stable("lic")
 public abstract class DateUtil {
     public static final String DATE_YYYYMMDD_PATTERN = "yyyyMMdd";
-    public static final String DATE_TIME_MS_PATTERN = "yyyy-MM-dd HH:mm:ss.S"; //标准输出包括毫秒数
+    public static final String DATE_TIME_MS_PATTERN = "yyyy-MM-dd HH:mm:ss.S";
     public static final String DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
     public static final String TIME_HHMM_PATTERN = "HH:mm";
     public static final String TIME_HHMM_PATTERN2 = "HHmm";
     public static final String DATE_TIME_NO_HORI_PATTERN = "yyyyMMdd HH:mm:ss";
     public static final String DATE_TIME_NO_SPACE_PATTERN = "yyyyMMddHHmmss";
-    public static final String DATE_TIME_NO_SPACE_PATTERN_Mills = "yyyyMMddHHmmssS";
-    public static final String DATE_TIME_NO_SPACE_PATTERN_Dot_Mills = "yyyyMMddHHmmss.S";
+    public static final String DATE_TIME_NO_SPACE_PATTERN_MILLS = "yyyyMMddHHmmssS";
+    public static final String DATE_TIME_NO_SPACE_PATTERN_DOT_MILLS = "yyyyMMddHHmmss.S";
     public static final String DATE_TIME_PLAYBILL_PATTERN = "yyyyMMdd HH:mm";
-    public static final String DATE_ENGLISH_FORMAT = "EEE MMM dd HH:mm:ss zzz yyyy";  //CST时间
+    public static final String DATE_ENGLISH_FORMAT = "EEE MMM dd HH:mm:ss zzz yyyy";
 
-    private static final SimpleDateFormat timeFormat = new SimpleDateFormat(DATE_TIME_MS_PATTERN);
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_TIME_PATTERN);
+    private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat(DATE_TIME_MS_PATTERN);
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat(DATE_TIME_PATTERN);
     private static final SimpleDateFormat yyyyMMdd = new SimpleDateFormat(DATE_YYYYMMDD_PATTERN);
     private static final SimpleDateFormat HHmm = new SimpleDateFormat(TIME_HHMM_PATTERN);
     private static final SimpleDateFormat HHmm2 = new SimpleDateFormat(TIME_HHMM_PATTERN2);
     private static final SimpleDateFormat yyyyMMdd_HHmmss = new SimpleDateFormat(DATE_TIME_NO_HORI_PATTERN);
     private static final SimpleDateFormat yyyyMMddHHmmss = new SimpleDateFormat(DATE_TIME_NO_SPACE_PATTERN);
-    private static final SimpleDateFormat yyyyMMddHHmmssDotMills = new SimpleDateFormat(DATE_TIME_NO_SPACE_PATTERN_Dot_Mills);
-    private static final SimpleDateFormat yyyyMMddHHmmssMills = new SimpleDateFormat(DATE_TIME_NO_SPACE_PATTERN_Mills);
+    private static final SimpleDateFormat yyyyMMddHHmmssDotMills = new SimpleDateFormat(DATE_TIME_NO_SPACE_PATTERN_DOT_MILLS);
+    private static final SimpleDateFormat yyyyMMddHHmmssMills = new SimpleDateFormat(DATE_TIME_NO_SPACE_PATTERN_MILLS);
     private static final SimpleDateFormat PLAYBILL_TIME_PATTERN = new SimpleDateFormat(DATE_TIME_PLAYBILL_PATTERN);
     private static final SimpleDateFormat ENGLISH_SDF = new SimpleDateFormat(DATE_ENGLISH_FORMAT, Locale.ENGLISH);
     /**
      * 计算时间的起始时间
      */
-    // private static Log log = LogFactory.getLog(DateUtil.class);
     private static Map<String, SimpleDateFormat> patternFormatMap;
 
 
@@ -54,15 +53,15 @@ public abstract class DateUtil {
     private static Map<String, SimpleDateFormat> getInstance() {
         if (patternFormatMap == null) {
             patternFormatMap = new HashMap<String, SimpleDateFormat>(16);
-            patternFormatMap.put(DATE_TIME_MS_PATTERN, timeFormat);
-            patternFormatMap.put(DATE_TIME_PATTERN, dateFormat);
+            patternFormatMap.put(DATE_TIME_MS_PATTERN, SIMPLE_DATE_FORMAT);
+            patternFormatMap.put(DATE_TIME_PATTERN, DATE_FORMAT);
             patternFormatMap.put(DATE_YYYYMMDD_PATTERN, yyyyMMdd);
             patternFormatMap.put(TIME_HHMM_PATTERN, HHmm);
             patternFormatMap.put(TIME_HHMM_PATTERN2, HHmm2);
             patternFormatMap.put(DATE_TIME_NO_HORI_PATTERN, yyyyMMdd_HHmmss);
             patternFormatMap.put(DATE_TIME_NO_SPACE_PATTERN, yyyyMMddHHmmss);
-            patternFormatMap.put(DATE_TIME_NO_SPACE_PATTERN_Mills, yyyyMMddHHmmssMills);
-            patternFormatMap.put(DATE_TIME_NO_SPACE_PATTERN_Dot_Mills, yyyyMMddHHmmssDotMills);
+            patternFormatMap.put(DATE_TIME_NO_SPACE_PATTERN_MILLS, yyyyMMddHHmmssMills);
+            patternFormatMap.put(DATE_TIME_NO_SPACE_PATTERN_DOT_MILLS, yyyyMMddHHmmssDotMills);
             patternFormatMap.put(DATE_TIME_PLAYBILL_PATTERN, PLAYBILL_TIME_PATTERN);
             patternFormatMap.put(DATE_ENGLISH_FORMAT, ENGLISH_SDF);
         }
@@ -139,7 +138,7 @@ public abstract class DateUtil {
      */
     @stable
     public static String getNowMillsTime() {
-        return getNowDate(DATE_TIME_NO_SPACE_PATTERN_Mills);
+        return getNowDate(DATE_TIME_NO_SPACE_PATTERN_MILLS);
     }
 
     /**
@@ -150,7 +149,7 @@ public abstract class DateUtil {
      */
     @stable
     public static String getNowDotMillsTime() {
-        return getNowDate(DATE_TIME_NO_SPACE_PATTERN_Dot_Mills);
+        return getNowDate(DATE_TIME_NO_SPACE_PATTERN_DOT_MILLS);
     }
 
     /**

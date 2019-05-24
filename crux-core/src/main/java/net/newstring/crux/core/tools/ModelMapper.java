@@ -168,18 +168,4 @@ public abstract class ModelMapper {
     }
 
 
-    public static void main(String[] args) {
-        Date b = null;
-        try {
-            Date date = new Date();
-            date.setMonth(7);
-            b = mapperNewInstance(date, Date.class);
-
-            System.out.println(date);
-            System.out.println(b);
-        } catch (ModelMapperException modelMapperException) {
-            modelMapperException.printStackTrace();
-        }
-
-    }
 }

@@ -9,15 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>shuapiao</artifactId>
-
-
-    <dependencies>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpcomponents-client</artifactId>
-        </dependency>
-    </dependencies>
+    <artifactId>crux-ext-struct</artifactId>
 
 
 </project>

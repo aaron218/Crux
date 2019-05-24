@@ -52,24 +52,13 @@ public class FileUtil {
     /**
      * 文件拷贝
      */
-    public static void fileCopy(File srcFile, File tarFile) throws Exception {
-        FileInputStream is = null;
-        FileOutputStream os = null;
-        try {
-            is = new FileInputStream(srcFile);
-            os = new FileOutputStream(tarFile);
+    public static void fileCopy(File srcFile, File tarFile) throws IOException {
+        try (FileInputStream is = new FileInputStream(srcFile); FileOutputStream os = new FileOutputStream(tarFile)) {
             // write the file to the file specified
             int bytesRead = 0;
             byte[] buffer = new byte[8192];
             while ((bytesRead = is.read(buffer, 0, 8192)) != -1) {
                 os.write(buffer, 0, bytesRead);
-            }
-        } finally {
-            if (is != null) {
-                is.close();
-            }
-            if (os != null) {
-                os.close();
             }
         }
     }
@@ -105,12 +94,8 @@ public class FileUtil {
 
             if (append) {
                 File tempFile = new File(filePath);
-                if (!tempFile.exists()) {
-                    if(tempFile.getParentFile().mkdirs()){
-                        if (!tempFile.createNewFile()) {
-                            return;
-                        }
-                    }
+                if (!tempFile.exists() && tempFile.getParentFile().mkdirs() && !tempFile.createNewFile()) {
+                    return;
                 }
             } else {
                 createNewFile(new File(filePath));
@@ -133,11 +118,11 @@ public class FileUtil {
         }
     }
 
-    public static File createFile(String filepath) throws Exception {
+    public static File createFile(String filepath) throws IOException {
         File file = new File(filepath);
-        if (file.exists()) {// 判断文件目录的存在
-            if (file.isDirectory()) {// 判断文件的存在性
-            } else {
+        /// 判断文件目录的存在
+        if (file.exists()) {
+            if (!file.isDirectory()) {
                 if (!file.createNewFile()) {
                     throw new IOException("file with path:"+filepath+" can't created");
                 }
@@ -159,10 +144,8 @@ public class FileUtil {
     }
 
     public static String loadAFileToString(File f) {
-        InputStream is = null;
         String ret = null;
-        try {
-            is = new BufferedInputStream(new FileInputStream(f));
+        try (InputStream is = new BufferedInputStream(new FileInputStream(f))) {
             long contentLength = f.length();
             ByteArrayOutputStream outstream = new ByteArrayOutputStream(contentLength > 0 ? (int) contentLength : 1024);
             byte[] buffer = new byte[4096];
@@ -174,13 +157,6 @@ public class FileUtil {
             ret = new String(outstream.toByteArray(), "utf-8");
         } catch (IOException e) {
             ret = "";
-        } finally {
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (Exception e) {
-                }
-            }
         }
         return ret;
     }

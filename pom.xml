@@ -37,7 +37,134 @@
         <module>spisample</module>
         <module>crux-type</module>
         <module>shuapiao</module>
+        <module>crux-ext-struct</module>
     </modules>
+
+    <properties>
+        <crux.common.version>1.1.0-SNAPSHOT</crux.common.version>
+
+        <crux.junit.version>4.12</crux.junit.version>
+        <crux.log4j.version>1.2.17</crux.log4j.version>
+        <crux.commons-logging.version>1.1.2</crux.commons-logging.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+    </properties>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${crux.junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!--http-->
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpcomponents-client</artifactId>
+                <version>4.5.4</version>
+            </dependency>
+
+
+
+            <dependency>
+                <groupId>net.sf.ehcache</groupId>
+                <artifactId>ehcache</artifactId>
+                <version>2.10.1</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>2.8.0</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>20.0</version>
+            </dependency>
+
+            <!--数据源处理所需要的基本包 所有scope为provided级别 version为功能兼容的建议最低版本号
+            使用时需要提供等于或者高于此版本号的兼容包 否则可能会找不到部分类或实现-->
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>4.5.1</version>
+                <scope>provided</scope>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>4.1</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-all</artifactId>
+                <version>1.10.19</version>
+                <scope>provided</scope>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
+            <dependency>
+                <groupId>org.jsoup</groupId>
+                <artifactId>jsoup</artifactId>
+                <version>1.9.2</version>
+                <scope>provided</scope>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-exec -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-exec</artifactId>
+                <version>1.3</version>
+                <scope>provided</scope>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/net.glxn/qrgen -->
+            <dependency>
+                <groupId>net.glxn</groupId>
+                <artifactId>qrgen</artifactId>
+                <version>1.4</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>${crux.log4j.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>net.newString</groupId>
+                <artifactId>crux-core</artifactId>
+                <version>${crux.common.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.elasticsearch</groupId>
+                <artifactId>elasticsearch</artifactId>
+                <version>5.3.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.solr</groupId>
+                <artifactId>solr-solrj</artifactId>
+                <version>5.3.1</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.drools/drools-core -->
+            <dependency>
+                <groupId>org.drools</groupId>
+                <artifactId>drools-core</artifactId>
+                <version>6.4.0.Final</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
 
     <dependencies>
         <dependency>
@@ -48,19 +175,5 @@
         </dependency>
     </dependencies>
 
-    <properties>
-        <!--主版本号只会随着crux整体的变更而变更        (包括依赖的Java版本 不考虑向下兼容)，
-        副版本号代表了大的功能变更以及重大的依赖调整      (不能保证模块的向下兼容性)，
-        第三级版本号主要用于update和内部依赖的调整       (能保证向下兼容)
-        版本号以 RELEASE 版本为准，中间版本更新不调整版本号-->
-        <!--一般化的版本号，逐步替代单个版本号，除非确有必要-->
-        <crux.common.version>1.1.0-SNAPSHOT</crux.common.version>
-
-        <crux.junit.version>4.12</crux.junit.version>
-        <crux.log4j.version>1.2.17</crux.log4j.version>
-        <crux.commons-logging.version>1.1.2</crux.commons-logging.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
-    </properties>
 
 </project>
