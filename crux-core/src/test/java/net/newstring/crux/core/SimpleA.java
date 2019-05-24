@@ -51,6 +51,12 @@ public class SimpleA {
 
     }
 
+    @Test
+    public void time(){
+        String str = "{\"sessionId\":\"m9a5eca5d107349f69bb42a3e3884063b\",\"userInfo\":{\"createDate\":1528696739090,\"id\":5,\"isAdmin\":1,\"nickname\":\"admin\",\"password\":\"******\",\"status\":1,\"username\":\"admin\"}}";
+        System.out.println(System.currentTimeMillis());
+    }
+
 
     private String moveSlash(String str){
         char[] chars = str.toCharArray();

@@ -35,6 +35,8 @@
         <module>crux-table</module>
         <module>cruxstudy</module>
         <module>spisample</module>
+        <module>crux-type</module>
+        <module>shuapiao</module>
     </modules>
 
     <dependencies>

@@ -1,6 +1,9 @@
 package net.newstring.crux.core.lang;
 
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * Created on 2016/7/22 11:16.
  * 数量工具
@@ -19,6 +22,15 @@ public class NumberUtil {
             }
         }
         return true;
+    }
+
+
+    public static Queue<Integer> getFluentValues(int size,int min,int max,double rate){
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(1);
+        Integer integer = queue.poll();
+        queue.size();
+        return queue;
     }
 
 }
