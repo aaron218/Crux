@@ -43,8 +43,8 @@
     <properties>
         <crux.common.version>1.1.0-SNAPSHOT</crux.common.version>
 
-        <crux.junit.version>4.12</crux.junit.version>
-        <crux.log4j.version>1.2.17</crux.log4j.version>
+        <crux.junit.version>4.13.2</crux.junit.version>
+        <crux.log4j.version>2.25.3</crux.log4j.version>
         <crux.commons-logging.version>1.1.2</crux.commons-logging.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
@@ -64,7 +64,7 @@
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpcomponents-client</artifactId>
-                <version>4.5.4</version>
+                <version>4.5.13</version>
             </dependency>
 
 
@@ -85,7 +85,7 @@
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>20.0</version>
+                <version>32.0.1-jre</version>
             </dependency>
 
             <!--数据源处理所需要的基本包 所有scope为provided级别 version为功能兼容的建议最低版本号
@@ -93,7 +93,7 @@
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpclient</artifactId>
-                <version>4.5.1</version>
+                <version>4.5.13</version>
                 <scope>provided</scope>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
@@ -105,15 +105,15 @@
             </dependency>
             <dependency>
                 <groupId>org.mockito</groupId>
-                <artifactId>mockito-all</artifactId>
-                <version>1.10.19</version>
+                <artifactId>mockito-core</artifactId>
+                <version>3.12.4</version>
                 <scope>provided</scope>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
             <dependency>
                 <groupId>org.jsoup</groupId>
                 <artifactId>jsoup</artifactId>
-                <version>1.9.2</version>
+                <version>1.15.3</version>
                 <scope>provided</scope>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-exec -->
@@ -132,8 +132,14 @@
             </dependency>
 
             <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>${crux.log4j.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
                 <version>${crux.log4j.version}</version>
                 <scope>provided</scope>
             </dependency>
@@ -148,18 +154,18 @@
             <dependency>
                 <groupId>org.elasticsearch</groupId>
                 <artifactId>elasticsearch</artifactId>
-                <version>5.3.0</version>
+                <version>7.17.16</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.solr</groupId>
                 <artifactId>solr-solrj</artifactId>
-                <version>5.3.1</version>
+                <version>8.11.3</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.drools/drools-core -->
             <dependency>
                 <groupId>org.drools</groupId>
                 <artifactId>drools-core</artifactId>
-                <version>6.4.0.Final</version>
+                <version>7.73.0.Final</version>
             </dependency>
 
         </dependencies>

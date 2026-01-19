@@ -48,8 +48,8 @@
         <!--</dependency>-->
         <dependency>
             <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka_2.10</artifactId>
-            <version>0.10.0.0</version>
+            <artifactId>kafka-clients</artifactId>
+            <version>3.8.0</version>
             <scope>provided</scope>
         </dependency>
         <!--<dependency>-->
@@ -63,24 +63,24 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>${crux.core.commons-lang3.version}</version>
+            <version>3.18.0</version>
         </dependency>
 
         <dependency>
             <groupId>org.elasticsearch</groupId>
             <artifactId>elasticsearch</artifactId>
-            <version>2.3.3</version>
+            <version>7.17.16</version>
         </dependency>
 
         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>${crux.log4j.version}</version>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.25.3</version>
         </dependency>
         <dependency>
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>
-            <version>1.10.3</version>
+            <version>1.15.3</version>
         </dependency>
 
 
@@ -94,7 +94,7 @@
 
 
     <properties>
-        <crux.core.commons-lang3.version>3.3.2</crux.core.commons-lang3.version>
+        <crux.core.commons-lang3.version>3.18.0</crux.core.commons-lang3.version>
         <crux.source.version>${crux.common.version}</crux.source.version>
     </properties>
 </project>

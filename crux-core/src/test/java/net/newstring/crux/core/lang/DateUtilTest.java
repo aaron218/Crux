@@ -20,7 +20,7 @@ public class DateUtilTest {
 
     @Before
     public void info(){
-        System.out.println("test:"+DateUtilTest.class.getCanonicalName()+" start..");
+        System.out.println("[test]:"+DateUtilTest.class.getCanonicalName()+" start..");
     }
 
     @Test
